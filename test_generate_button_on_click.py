@@ -1,7 +1,5 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import pyqtSlot
 
 
 class App(QWidget):
@@ -23,6 +21,7 @@ class App(QWidget):
         button2 = QPushButton('Button-2', self)
         button2.move(100, 200)
         button2.show()                              # +++
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

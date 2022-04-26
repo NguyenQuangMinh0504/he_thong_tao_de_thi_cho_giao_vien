@@ -1,0 +1,23 @@
+Dùng excel để đọc file thì sẽ nhanh hơn rất nhiều
+
+
+
+view đề thi kiểu gì ?
+đây có phải thi online ko ? (khả năng cao là đ)
+fee bao nhiêu
+chính xác thì sinh đề là sinh như thế nào (ra đề phát học sinh làm luôn ?)
+
+chương trình này phục vụ cho mấy giáo viên
+giáo viên dạy môn gì, 1 môn hay nhiều môn, dạy cấp mấy
+độ khó giáo viên đã chọn trước là sao ? ( tự chém )
+điểm thì sao, nếu mix giữa trắc nghiệm và tự luận thì điểm sẽ như thế nào ?
+Quá trình ra đề thi diễn ra như thế nào ?
+Xuất đề thi ra file format như thế nào ? (tự nghĩ được)
+
+Độ khó giáo viên đã chọn trước ?
+
+
+
+
+
+
