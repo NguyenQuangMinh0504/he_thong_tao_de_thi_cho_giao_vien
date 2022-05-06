@@ -70,24 +70,10 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.so_mon_hoc_vertical_layout.setContentsMargins(0, 0, 0, 0)
         self.so_mon_hoc_vertical_layout.setObjectName("so_mon_hoc_vertical_layout")
 
-
-        # self.mon_hoc_1 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-        # self.mon_hoc_1.setObjectName("mon_hoc_1")
-        # self.so_mon_hoc_vertical_layout.addWidget(self.mon_hoc_1)
-        # self.mon_hoc_2 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-        # self.mon_hoc_2.setObjectName("mon_hoc_2")
-        # self.so_mon_hoc_vertical_layout.addWidget(self.mon_hoc_2)
-        # self.mon_hoc_3 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-        # self.mon_hoc_3.setObjectName("mon_hoc_3")
-        # self.so_mon_hoc_vertical_layout.addWidget(self.mon_hoc_3)
-        # self.mon_hoc_4 = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-        # self.mon_hoc_4.setObjectName("mon_hoc_4")
-        # self.so_mon_hoc_vertical_layout.addWidget(self.mon_hoc_4)
-
-        self.subject_button = []
+        # self.subject_button = []
         for i in get_subject_name():
             subject_button = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-            self.so_mon_hoc_vertical_layout.addWidget(self.mon_hoc_1)
+            self.so_mon_hoc_vertical_layout.addWidget(subject_button)
             subject_button.setText(i)
 
         self.horizontalLayoutWidget_5 = QtWidgets.QWidget(quan_ly_mon_hoc_frame)
@@ -127,7 +113,6 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.luu_button.setText(_translate("quan_ly_mon_hoc_frame", "Lưu"))
         self.huy_button.setText(_translate("quan_ly_mon_hoc_frame", "Hủy"))
         self.xoa_mon_hoc_button.setText(_translate("quan_ly_mon_hoc_frame", "Xóa môn học"))
-
 
 
 if __name__ == "__main__":
