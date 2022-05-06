@@ -25,7 +25,7 @@
      <x>360</x>
      <y>50</y>
      <width>346</width>
-     <height>299</height>
+     <height>301</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -87,7 +87,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="danh_sach_mon_hoc_label">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -106,42 +106,35 @@
      <x>40</x>
      <y>100</y>
      <width>199</width>
-     <height>114</height>
+     <height>134</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <layout class="QVBoxLayout" name="so_mon_hoc_vertical_layout">
     <item>
-     <widget class="QLabel" name="label_6">
+     <widget class="QPushButton" name="mon_hoc_1">
       <property name="text">
-       <string>Lập trình hướng đối tượng</string>
+       <string>PushButton</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_7">
+     <widget class="QPushButton" name="mon_hoc_2">
       <property name="text">
-       <string>Nhập môn CNTT-TT</string>
+       <string>PushButton</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_8">
+     <widget class="QPushButton" name="mon_hoc_3">
       <property name="text">
-       <string>Thiết kế và lập trình web</string>
+       <string>PushButton</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_9">
+     <widget class="QPushButton" name="mon_hoc_4">
       <property name="text">
-       <string>Nhập môn công nghệ phần mềm</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>Tương tác người - máy</string>
+       <string>PushButton</string>
       </property>
      </widget>
     </item>
@@ -158,21 +151,21 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_5">
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="luu_button">
       <property name="text">
        <string>Lưu</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="huy_button">
       <property name="text">
        <string>Hủy</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="xoa_mon_hoc_button">
       <property name="text">
        <string>Xóa môn học</string>
       </property>
