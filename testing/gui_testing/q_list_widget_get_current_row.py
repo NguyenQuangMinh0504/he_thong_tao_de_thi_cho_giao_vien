@@ -29,44 +29,35 @@ class Window(QMainWindow):
         list_widget = QListWidget(self)
 
         # setting geometry to it
-        list_widget.setGeometry(50, 70, 150, 80)
+        list_widget.setGeometry(50, 70, 150, 60)
 
         # list widget items
-        item1 = QListWidgetItem("PyQt5 Geeks for Geeks")
+        item1 = QListWidgetItem("A")
         item2 = QListWidgetItem("B")
         item3 = QListWidgetItem("C")
-        item4 = QListWidgetItem("D")
-        item5 = QListWidgetItem("PyQt5 Geeks for Geeks")
-        item6 = QListWidgetItem("yhfytr")
-        item7 = QListWidgetItem("Cyttryrt")
-        item8 = QListWidgetItem("rtytrytryD")
 
         # adding items to the list widget
         list_widget.addItem(item1)
         list_widget.addItem(item2)
         list_widget.addItem(item3)
-        list_widget.addItem(item4)
-        list_widget.addItem(item5)
-        list_widget.addItem(item6)
-        list_widget.addItem(item7)
-        list_widget.addItem(item8)
 
-        # scroll bar
-        scroll_bar = QScrollBar(self)
-
-        # setting style sheet to the scroll bar
-
-        # setting vertical scroll bar to it
-        list_widget.setVerticalScrollBar(scroll_bar)
+        # setting current row
+        list_widget.setCurrentRow(2)
 
         # creating a label
         label = QLabel("GeesforGeeks", self)
 
         # setting geometry to the label
-        label.setGeometry(230, 80, 280, 80)
+        label.setGeometry(230, 80, 300, 80)
 
         # making label multi line
         label.setWordWrap(True)
+
+        # getting current selected row
+        value = list_widget.currentRow()
+
+        # setting text to the label
+        label.setText("Current Selected Row : " + str(value))
 
 
 # create pyqt5 app

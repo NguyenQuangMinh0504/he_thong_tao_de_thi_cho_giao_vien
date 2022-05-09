@@ -54,7 +54,7 @@ class Ui_Dialog(object):
         self.radioButton_3.setObjectName("radioButton_3")
         self.horizontalLayout_4.addWidget(self.radioButton_3)
         self.textEdit_3 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEdit_3.setObjectName("textEdit_3")
+        self.textEdit_3.setObjectName("gioi_thieu_text_edit")
         self.horizontalLayout_4.addWidget(self.textEdit_3)
         self.verticalLayout.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
