@@ -44,19 +44,19 @@ class Window(QMainWindow):
         # setting current item
         list_widget.setCurrentItem(item2)
 
-        # creating a label
+        # creating a danh_sach_cau_hoi_label
         label = QLabel("GeesforGeeks", self)
 
-        # setting geometry to the label
+        # setting geometry to the danh_sach_cau_hoi_label
         label.setGeometry(230, 80, 280, 80)
 
-        # making label multi line
+        # making danh_sach_cau_hoi_label multi line
         label.setWordWrap(True)
 
         # getting current item
         value = list_widget.currentItem().text()
 
-        # setting text to the label
+        # setting text to the danh_sach_cau_hoi_label
         label.setText("Current Item : " + str(value))
 
 

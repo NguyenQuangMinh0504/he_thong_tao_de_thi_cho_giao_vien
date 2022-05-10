@@ -37,7 +37,7 @@ class Ui_pop_up(object):
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontalLayout.setObjectName("dang_cau_hoi_horizontal_layout")
         self.ok_button = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.ok_button.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)

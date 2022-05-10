@@ -44,19 +44,19 @@ class Window(QMainWindow):
         # setting current row
         list_widget.setCurrentRow(2)
 
-        # creating a label
+        # creating a danh_sach_cau_hoi_label
         label = QLabel("GeesforGeeks", self)
 
-        # setting geometry to the label
+        # setting geometry to the danh_sach_cau_hoi_label
         label.setGeometry(230, 80, 300, 80)
 
-        # making label multi line
+        # making danh_sach_cau_hoi_label multi line
         label.setWordWrap(True)
 
         # getting current selected row
         value = list_widget.currentRow()
 
-        # setting text to the label
+        # setting text to the danh_sach_cau_hoi_label
         label.setText("Current Selected Row : " + str(value))
 
 

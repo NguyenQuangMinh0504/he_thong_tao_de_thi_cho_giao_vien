@@ -16,7 +16,4 @@ def get_subject_info(name):
     return [ma_hoc_phan, so_chuong, gioi_thieu]
 
 
-if __name__ == '__main__':
-    get_subject_info("Tương tác người máy")
-
 

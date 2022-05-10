@@ -15,8 +15,8 @@ class Window(QMainWindow):
         # setting  the geometry of window
         self.setGeometry(0, 0, 400, 300)
 
-        # creating a label widget
-        # by default label will display at top left corner
+        # creating a danh_sach_cau_hoi_label widget
+        # by default danh_sach_cau_hoi_label will display at top left corner
         self.label_1 = QLabel('It is Label 1', self)
 
         # moving position
@@ -25,8 +25,8 @@ class Window(QMainWindow):
         # setting up border
         self.label_1.setStyleSheet("border: 1px solid black;")
 
-        # creating a label widget
-        # by default label will display at top left corner
+        # creating a danh_sach_cau_hoi_label widget
+        # by default danh_sach_cau_hoi_label will display at top left corner
         self.label_2 = QLabel('It is Label 2', self)
 
         # moving position
