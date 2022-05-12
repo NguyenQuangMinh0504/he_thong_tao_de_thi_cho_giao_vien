@@ -138,15 +138,13 @@ class Ui_Frame(object):
                 item = QtWidgets.QListWidgetItem(i)
                 self.multiple_choice_question_list_widget.addItem(item)
             self.chuong_combo_box.clear()
-            #currently not working
-            print("Chapter: ", get_question_chapter(question))
+            print(get_question_chapter(question))
             self.chuong_combo_box.addItem(get_question_chapter(question))
             self.do_kho_combo_box.clear()
-            print("Difficulty: ", get_question_difficulty(question))
+            print(get_question_difficulty(question))
             self.do_kho_combo_box.addItem(get_question_difficulty(question))
         except AttributeError:
-            pass
-        except TypeError:
+            print("Attribute Error")
             pass
 
     def trac_nghiem_radio_button_click(self):

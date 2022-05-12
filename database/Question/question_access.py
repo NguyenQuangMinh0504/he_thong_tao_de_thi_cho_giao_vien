@@ -22,7 +22,7 @@ def get_question_difficulty(question):
     question_data = pd.read_excel(path)
     query = "Question == '{}'".format(question)
     filter_database = question_data.query(query)
-    return list(filter_database["Difficulty"])[0]
+    return str(list(filter_database["Difficulty"])[0])
 
 
 def get_question_chapter(question):
@@ -30,5 +30,5 @@ def get_question_chapter(question):
     question_data = pd.read_excel(path)
     query = "Question == '{}'".format(question)
     filter_database = question_data.query(query)
-    return list(filter_database["Chapter"])[0]
+    return str(list(filter_database["Chapter"])[0])
 
