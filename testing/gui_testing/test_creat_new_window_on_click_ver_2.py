@@ -1,18 +1,24 @@
 import sys
 
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QPushButton, QToolTip, QApplication
+from PyQt5.QtWidgets import QWidget, QPushButton, QToolTip, QApplication, QFrame
 
 
-class StudentLogin(QWidget):
+class StudentLogin(QFrame):
     def __init__(self):
         super().__init__()
         self.initUI()
+        self.btn = QPushButton('Student Login', self)
+        self.btn.move(20, 50)
+        self.btn.clicked.connect(self.click)
 
     def initUI(self):
         self.setGeometry(300, 300, 300, 200)
         self.setWindowTitle('Student log in screen')
         self.show()
+
+    def click(self):
+        print("Foo")
 
 
 class Login(QWidget):
@@ -36,6 +42,7 @@ class Login(QWidget):
 
     def student_log(self):
         self.widget = StudentLogin()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

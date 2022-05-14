@@ -1,15 +1,33 @@
 import pandas as pd
 
-QUESTION_PATH = "../database/Question/Question.xlsx"
+from database.path import QUESTION_PATH, MCQ_ANSWER_PATH
+
+mcq_answer_table = pd.read_excel(MCQ_ANSWER_PATH)
+
 
 def get_answer(question):
-    question_data = pd.read_excel(QUESTION_PATH)
-
-    path = "../database/MCQS_Answer/MCQS_Answer.xlsx"
-    mcqs_answer = pd.read_excel(path)
-
-    merge_data = pd.merge(question_data, mcqs_answer)
+    question_table = pd.read_excel(QUESTION_PATH)
+    merge_table = pd.merge(question_table, mcq_answer_table)
     query = "Question == '{}'".format(question)
-    filter_database = merge_data.query(query)
-    return list(filter_database["Dap_An"])
+    query_table = merge_table.query(query)
+    return list(query_table["Dap_An"])
+
+
+def delete_all_row(question_id):
+    # currently has a bug
+    question_table = pd.read_excel(QUESTION_PATH)
+    merge_table = pd.merge(question_table, mcq_answer_table)
+    query = "Question_ID == {}".format(question_id)
+    query_table_index = merge_table.query(query).index
+    mcq_answer_table.drop(query_table_index, inplace=True)
+
+
+def insert_row(question_id, dap_an, true_false):
+    mcq_answer_table.loc[-1] = [question_id, dap_an, true_false]
+    mcq_answer_table.index += 1
+    mcq_answer_table.sort_index(inplace=True)
+
+
+def mcq_answer_table_save():
+    mcq_answer_table.to_excel(MCQ_ANSWER_PATH, index=False)
 

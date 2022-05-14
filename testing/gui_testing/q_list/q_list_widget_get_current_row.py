@@ -43,6 +43,7 @@ class Window(QMainWindow):
 
         # setting current row
         list_widget.setCurrentRow(2)
+        print("Current item", list_widget.currentItem().text())
 
         # creating a danh_sach_cau_hoi_label
         label = QLabel("GeesforGeeks", self)
