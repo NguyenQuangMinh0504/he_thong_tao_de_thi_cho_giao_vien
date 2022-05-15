@@ -6,11 +6,9 @@ from database.path import QUESTION_PATH, MCQ_ANSWER_PATH
 mcq_answer_table = pd.read_csv(MCQ_ANSWER_PATH)
 
 
-def get_answer(question):
-    merge_table = pd.merge(question_table, mcq_answer_table, on="Question_ID")
-    query = "Question == '{}'".format(question)
-    query_table = merge_table.query(query)
-    return list(query_table["Dap_An"])
+def get_answer(question_id):
+    query = "Question_ID == {}".format(question_id)
+    return list(mcq_answer_table.query(query)["Dap_An"])
 
 
 def delete_all_row(question_id):
@@ -22,6 +20,14 @@ def insert_row(question_id, dap_an, true_false):
     mcq_answer_table.loc[-1] = [question_id, dap_an, true_false]
     mcq_answer_table.index += 1
     mcq_answer_table.sort_index(inplace=True)
+
+
+def get_right_answer(question_id):
+    query = "Question_ID == {} and Correct_Answer == True".format(question_id)
+    try:
+        return list(mcq_answer_table.query(query)["Dap_An"])[0]
+    except IndexError:
+        print("No result")
 
 
 def remove_answer(answer):

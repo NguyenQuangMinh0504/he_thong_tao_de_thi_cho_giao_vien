@@ -181,15 +181,17 @@ class Ui_Frame(object):
         self.chinh_sua_label.mousePressEvent = self.chinh_sua_click
         self.xoa_label.mousePressEvent = self.xoa_click
         self.them_cau_hoi_label.mousePressEvent = self.them_cau_hoi_click
+    # ------------------------------------------------------------------------------------------
+    # Handle when changing question from question list
 
     def change_row(self):
         try:
             question = self.question_list_widget.currentItem().text()
+            question_id = get_question_id(question)
             self.de_bai_text_edit.setPlainText(question)
             self.multiple_choice_answer_list_widget.clear()
-            for i in get_answer(question):
-                item = QtWidgets.QListWidgetItem(i)
-                self.multiple_choice_answer_list_widget.addItem(item)
+            for answer in get_answer(question_id):
+                self.multiple_choice_answer_list_widget.addItem(QtWidgets.QListWidgetItem(answer))
             self.chuong_combo_box.clear()
             self.chuong_combo_box.addItem(get_question_chapter(question))
             self.do_kho_combo_box.clear()
@@ -198,20 +200,22 @@ class Ui_Frame(object):
             print("Attribute Error")
             pass
 
-    # Radio button
+    # ------------------------------------------------------------------------------------------
+    # Radio button click handle
+
     def trac_nghiem_radio_button_click(self):
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
         for i in get_trac_nghiem_info():
-            item = QtWidgets.QListWidgetItem(i)
-            self.question_list_widget.addItem(item)
+            self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
 
     def tu_luan_radio_button_click(self):
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
         for i in get_tu_luan_info():
-            item = QtWidgets.QListWidgetItem(i)
-            self.question_list_widget.addItem(item)
+            self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
+
+    # ------------------------------------------------------------------------------------------
 
     def them_dap_an_click(self, *args, **kwargs):
         self.them_dap_an_pop_up.show()
@@ -280,7 +284,6 @@ class Ui_Frame(object):
         self.them_cau_hoi_pop_up.close()
         # add widget to gui
         self.question_list_widget.addItem(question)
-
 
     # ----------------------------------------------------------------------------------------
 
