@@ -15,6 +15,7 @@ from database.Question.question_access import *
 from database.MCQS_Answer.mcqs_access import *
 from them_dap_an_pop_up import Ui_them_dap_an_pop_up
 from chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
+from them_cau_hoi_pop_up import Ui_them_cau_hoi_pop_up
 
 
 class Ui_Frame(object):
@@ -68,9 +69,9 @@ class Ui_Frame(object):
         self.question_list_widget.setGeometry(QtCore.QRect(10, 80, 151, 181))
         self.question_list_widget.setObjectName("question_list_widget")
 
-        self.multiple_choice_question_list_widget = QtWidgets.QListWidget(Frame)
-        self.multiple_choice_question_list_widget.setGeometry(QtCore.QRect(280, 260, 201, 81))
-        self.multiple_choice_question_list_widget.setObjectName("multiple_choice_question_list_widget")
+        self.multiple_choice_answer_list_widget = QtWidgets.QListWidget(Frame)
+        self.multiple_choice_answer_list_widget.setGeometry(QtCore.QRect(280, 260, 201, 81))
+        self.multiple_choice_answer_list_widget.setObjectName("multiple_choice_answer_list_widget")
         self.verticalLayoutWidget = QtWidgets.QWidget(Frame)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(270, 400, 211, 91))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -118,12 +119,27 @@ class Ui_Frame(object):
         self.save_button.setGeometry(QtCore.QRect(270, 500, 113, 32))
         self.save_button.setObjectName("save_button")
 
+        self.them_cau_hoi_label = QtWidgets.QLabel(Frame)
+        self.them_cau_hoi_label.setGeometry(QtCore.QRect(10, 270, 101, 31))
+        self.them_cau_hoi_label.setObjectName("them_cau_hoi_label")
+
+        # POP UP PART
+        # Them dap ap pop up
         self.them_dap_an_pop_up = QFrame()
         self.ui_them_dap_an_pop_up = Ui_them_dap_an_pop_up()
         self.ui_them_dap_an_pop_up.setupUi(self.them_dap_an_pop_up)
+
+        # chinh sua dap an pop up
         self.chinh_sua_dap_an_pop_up = QFrame()
         self.ui_chinh_sua_dap_an_pop_up = Ui_chinh_sua_dap_an_pop_up()
         self.ui_chinh_sua_dap_an_pop_up.setupUi(self.chinh_sua_dap_an_pop_up)
+
+        # them cau cau hoi pop up
+        self.them_cau_hoi_pop_up = QFrame()
+        self.ui_them_cau_hoi_pop_up = Ui_them_cau_hoi_pop_up()
+        self.ui_them_cau_hoi_pop_up.setupUi(self.them_cau_hoi_pop_up)
+
+        # handle click
         self.handle_click()
         self.retranslateUi(Frame)
 
@@ -145,29 +161,35 @@ class Ui_Frame(object):
         self.chinh_sua_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#0000ff;\">Chỉnh sửa</span></p></body></html>"))
         self.xoa_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#fc0107;\">Xóa</span></p></body></html>"))
         self.save_button.setText(_translate("Frame", "Lưu"))
+        self.them_cau_hoi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#0000ff;\">Thêm câu hỏi</span></p></body></html>"))
 
     def handle_click(self):
         # handle click
         self.question_list_widget.currentRowChanged.connect(self.change_row)
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_radio_button_click)
         self.tu_luan_radio_button.clicked.connect(self.tu_luan_radio_button_click)
-        self.ui_them_dap_an_pop_up.ok_button.clicked.connect(self.them_dap_an_ok_button)
-        self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_ok_button)
         self.save_button.clicked.connect(self.save_button_click)
+        self.xoa_cau_hoi_button.clicked.connect(self.delete_question_click)
+
+        # pop up click
+        self.ui_them_dap_an_pop_up.ok_button.clicked.connect(self.them_dap_an_pop_up_ok_button_click)
+        self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_pop_up_ok_button_click)
+        self.ui_them_cau_hoi_pop_up.ok_button.clicked.connect(self.them_cau_hoi_pop_up_ok_button_click)
 
         # clickable label
         self.them_label.mousePressEvent = self.them_dap_an_click
         self.chinh_sua_label.mousePressEvent = self.chinh_sua_click
         self.xoa_label.mousePressEvent = self.xoa_click
+        self.them_cau_hoi_label.mousePressEvent = self.them_cau_hoi_click
 
     def change_row(self):
         try:
             question = self.question_list_widget.currentItem().text()
             self.de_bai_text_edit.setPlainText(question)
-            self.multiple_choice_question_list_widget.clear()
+            self.multiple_choice_answer_list_widget.clear()
             for i in get_answer(question):
                 item = QtWidgets.QListWidgetItem(i)
-                self.multiple_choice_question_list_widget.addItem(item)
+                self.multiple_choice_answer_list_widget.addItem(item)
             self.chuong_combo_box.clear()
             self.chuong_combo_box.addItem(get_question_chapter(question))
             self.do_kho_combo_box.clear()
@@ -177,7 +199,6 @@ class Ui_Frame(object):
             pass
 
     # Radio button
-
     def trac_nghiem_radio_button_click(self):
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
@@ -197,34 +218,71 @@ class Ui_Frame(object):
 
     def chinh_sua_click(self, *args, **kwargs):
         try:
-            question = self.multiple_choice_question_list_widget.currentItem().text()
+            question = self.multiple_choice_answer_list_widget.currentItem().text()
             self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(question)
             self.chinh_sua_dap_an_pop_up.show()
         except AttributeError:
             pass
 
     def xoa_click(self, *args, **kwargs):
-        self.multiple_choice_question_list_widget.takeItem(self.multiple_choice_question_list_widget.currentRow())
-
-    def them_dap_an_ok_button(self):
-        question = self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
-        self.multiple_choice_question_list_widget.addItem(question)
-        self.them_dap_an_pop_up.close()
-
-    def chinh_sua_dap_an_ok_button(self):
-        question = self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
-        self.multiple_choice_question_list_widget.currentItem().setText(question)
-        self.chinh_sua_dap_an_pop_up.close()
+        answer = self.multiple_choice_answer_list_widget.currentItem().text()
+        # remove answer from database
+        remove_answer(answer)
+        # remove data from ui
+        self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
 
     def save_button_click(self):
+        save_mcq_answer_table()
+        save_question_table()
+
+    def delete_question_click(self):
+        # get text from the question to delete
+        question = self.question_list_widget.currentItem().text()
+        # remove from ui
+        self.question_list_widget.takeItem(self.question_list_widget.currentRow())
+        # get question id from question text
+        question_id = get_question_id(question)
+        # delete all the answer related to the question from the mcq answer table
+        delete_all_row(question_id)
+        # delete question from question table
+        delete_question_from_question_table(question_id)
+
+    def them_cau_hoi_click(self, *args, **kwargs):
+        self.them_cau_hoi_pop_up.show()
+
+    # ------------------------------------------------------------------------------------------
+    # Pop up event handler
+
+    def chinh_sua_dap_an_pop_up_ok_button_click(self):
+        answer = self.multiple_choice_answer_list_widget.currentItem().text()
+        new_answer = self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
+        # update data
+        mcq_answer_table.replace(answer, new_answer, inplace=True)
+        # update ui
+        self.multiple_choice_answer_list_widget.currentItem().setText(new_answer)
+        # close pop up window
+        self.chinh_sua_dap_an_pop_up.close()
+
+    def them_dap_an_pop_up_ok_button_click(self):
+        # add question to database
+        mcq_answer = self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
         question = self.question_list_widget.currentItem().text()
         question_id = get_question_id(question)
-        delete_all_row(question_id)
-        for i in range(self.multiple_choice_question_list_widget.count()):
-            mcq_ans = self.multiple_choice_question_list_widget.item(i).text()
-            insert_row(int(question_id), mcq_ans, True)
-        print(mcq_answer_table)
-        mcq_answer_table_save()
+        insert_row(int(question_id), mcq_answer, True)
+        # update gui
+        self.multiple_choice_answer_list_widget.addItem(mcq_answer)
+        # close pop up window
+        self.them_dap_an_pop_up.close()
+
+    def them_cau_hoi_pop_up_ok_button_click(self):
+        question = self.ui_them_cau_hoi_pop_up.cau_hoi_text_edit.toPlainText()
+        # close pop up
+        self.them_cau_hoi_pop_up.close()
+        # add widget to gui
+        self.question_list_widget.addItem(question)
+
+
+    # ----------------------------------------------------------------------------------------
 
 
 if __name__ == "__main__":

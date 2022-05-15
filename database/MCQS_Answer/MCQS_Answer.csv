@@ -1,0 +1,13 @@
+Question_ID,Dap_An,Correct_Answer
+3,C++,True
+3,Java,True
+3,SmallTalk,True
+3,Kotlin,True
+1,Andrea Ferro,False
+1,Adele Goldberg,False
+1,Alan Kay,True
+1,Dennis Ritchie,False
+2,Efficient Code,False
+2,Code reusability,False
+2,Modularity,False
+2,Duplicate/Redundant data,True

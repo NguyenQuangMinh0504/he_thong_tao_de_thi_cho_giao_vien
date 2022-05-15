@@ -113,7 +113,6 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.gioi_thieu_text_edit.setPlainText(subject_info[2])
 
 
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
