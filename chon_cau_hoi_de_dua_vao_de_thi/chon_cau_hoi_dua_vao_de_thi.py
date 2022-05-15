@@ -17,17 +17,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(885, 581)
+        Frame.resize(971, 663)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.question_list_widget = QtWidgets.QListWidget(Frame)
-        self.question_list_widget.setGeometry(QtCore.QRect(40, 60, 301, 301))
+        self.question_list_widget.setGeometry(QtCore.QRect(40, 60, 301, 191))
         self.question_list_widget.setObjectName("question_list_widget")
         self.question_show_text_edit = QtWidgets.QTextEdit(Frame)
-        self.question_show_text_edit.setGeometry(QtCore.QRect(370, 60, 411, 301))
+        self.question_show_text_edit.setGeometry(QtCore.QRect(370, 60, 411, 191))
         self.question_show_text_edit.setObjectName("question_show_text_edit")
         self.horizontalLayoutWidget = QtWidgets.QWidget(Frame)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(40, 390, 261, 21))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(50, 280, 261, 21))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -42,8 +42,23 @@ class Ui_Frame(object):
         self.tu_luan_radio_button.setObjectName("tu_luan_radio_button")
         self.horizontalLayout.addWidget(self.tu_luan_radio_button)
         self.dang_cau_hoi_label = QtWidgets.QLabel(Frame)
-        self.dang_cau_hoi_label.setGeometry(QtCore.QRect(40, 370, 79, 15))
+        self.dang_cau_hoi_label.setGeometry(QtCore.QRect(50, 260, 79, 15))
         self.dang_cau_hoi_label.setObjectName("dang_cau_hoi_label")
+        self.them_vao_de_thi_button = QtWidgets.QPushButton(Frame)
+        self.them_vao_de_thi_button.setGeometry(QtCore.QRect(610, 270, 161, 41))
+        self.them_vao_de_thi_button.setObjectName("them_vao_de_thi_button")
+        self.exam_question_list_widget = QtWidgets.QListWidget(Frame)
+        self.exam_question_list_widget.setGeometry(QtCore.QRect(30, 350, 301, 251))
+        self.exam_question_list_widget.setObjectName("exam_question_list_widget")
+        self.exam_show_text_edit = QtWidgets.QTextEdit(Frame)
+        self.exam_show_text_edit.setGeometry(QtCore.QRect(370, 350, 401, 251))
+        self.exam_show_text_edit.setObjectName("exam_show_text_edit")
+        self.danh_sach_cau_hoi_label = QtWidgets.QLabel(Frame)
+        self.danh_sach_cau_hoi_label.setGeometry(QtCore.QRect(50, 20, 161, 21))
+        self.danh_sach_cau_hoi_label.setObjectName("danh_sach_cau_hoi_label")
+        self.danh_sach_cac_cau_trong_de_label = QtWidgets.QLabel(Frame)
+        self.danh_sach_cac_cau_trong_de_label.setGeometry(QtCore.QRect(40, 300, 311, 31))
+        self.danh_sach_cac_cau_trong_de_label.setObjectName("danh_sach_cac_cau_trong_de_label")
 
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_button_click)
         self.tu_luan_radio_button.clicked.connect(self.tu_luan_button_click)
@@ -57,47 +72,27 @@ class Ui_Frame(object):
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.question_show_text_edit.setHtml(_translate("Frame", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">grjdfhkgbodfwkgjierwgijerqhjgjierbg</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rgkjrdkghdergn</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rghhjregkhlrerh</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">herjhlrekghj</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rhjkrethre</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">erhjrekgjwae</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rgrjeshrilsg</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">rejerkhrew</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">reg</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gt</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">g</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gfd</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gfdh</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fdh</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">fgh</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gf</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">jfg</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">hj</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gj</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">ghjh</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">gj</p></body></html>"))
+        self.question_show_text_edit.setHtml(_translate("Frame",
+                                                        "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                        "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                        "p, li { white-space: pre-wrap; }\n"
+                                                        "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                        "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
         self.tat_ca_radio_button.setText(_translate("Frame", "Tất cả"))
         self.trac_nghiem_radio_button.setText(_translate("Frame", "Trắc nghiệm"))
         self.tu_luan_radio_button.setText(_translate("Frame", "Tự luận"))
         self.dang_cau_hoi_label.setText(_translate("Frame", "Dạng câu hỏi"))
+        self.them_vao_de_thi_button.setText(_translate("Frame", "Thêm vào đề thi"))
+        self.exam_show_text_edit.setHtml(_translate("Frame",
+                                                    "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                    "p, li { white-space: pre-wrap; }\n"
+                                                    "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+                                                    "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.danh_sach_cau_hoi_label.setText(_translate("Frame",
+                                                        "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách câu hỏi</span></p></body></html>"))
+        self.danh_sach_cac_cau_trong_de_label.setText(_translate("Frame",
+                                                                 "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách các câu trong đề</span></p></body></html>"))
 
     def trac_nghiem_button_click(self):
         self.question_list_widget.clear()
