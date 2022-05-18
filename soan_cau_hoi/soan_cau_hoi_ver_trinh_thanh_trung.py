@@ -18,7 +18,7 @@ from chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
 from them_cau_hoi_pop_up import Ui_them_cau_hoi_pop_up
 
 
-class Ui_Frame(object):
+class Ui_soan_cau_hoi_frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(590, 558)
@@ -228,8 +228,11 @@ class Ui_Frame(object):
     def chinh_sua_click(self, *args, **kwargs):
         if self.multiple_choice_answer_list_widget.currentItem() is not None:  # in case the user don't click any answer
             # set text of pop up text edit to current clicked answer
-            self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(
-                self.multiple_choice_answer_list_widget.currentItem().text())
+            current_answer = self.multiple_choice_answer_list_widget.currentItem().text()
+            self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(current_answer)
+            # set correct answer check box
+            self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.setChecked(get_answer_correct(current_answer))
+            # show pop up
             self.chinh_sua_dap_an_pop_up.show()
 
     def xoa_click(self, *args, **kwargs):
@@ -266,6 +269,7 @@ class Ui_Frame(object):
         new_answer = self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
         # update data
         mcq_answer_table.replace(answer, new_answer, inplace=True)
+        modify_correct(new_answer, self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.isChecked())
         # update ui
         self.multiple_choice_answer_list_widget.currentItem().setText(new_answer)
         # close pop up window
@@ -295,7 +299,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
+    ui = Ui_soan_cau_hoi_frame()
     ui.setupUi(Frame)
     Frame.show()
     sys.exit(app.exec_())

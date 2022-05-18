@@ -37,6 +37,16 @@ def remove_answer(answer):
     mcq_answer_table.drop(mcq_answer_table.query(query).index, inplace=True)
 
 
+def modify_correct(answer, correct):
+    query = "Dap_An == \"{}\"".format(answer)
+    mcq_answer_table.loc[mcq_answer_table.query(query).index[0], "Correct_Answer"] = correct
+
+
+def get_answer_correct(answer):
+    query = "Dap_An == \"{}\"".format(answer)
+    return list(mcq_answer_table.query(query)["Correct_Answer"])[0]
+
+
 def save_mcq_answer_table():
     mcq_answer_table.to_csv(MCQ_ANSWER_PATH, index=False)
 

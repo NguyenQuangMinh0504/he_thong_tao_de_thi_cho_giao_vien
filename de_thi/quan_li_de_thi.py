@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFrame
 
-from quan_li_de_thi.chon_cau_hoi_dua_vao_de_thi import ui_chon_cau_hoi_dua_vao_de_thi_frame
+from de_thi.chon_cau_hoi_dua_vao_de_thi import ui_chon_cau_hoi_dua_vao_de_thi_frame
 
 
 class Ui_Frame(object):

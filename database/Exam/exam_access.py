@@ -1,13 +1,14 @@
 import pandas as pd
 from database.path import EXAM_PATH
-exam = pd.read_csv("./Exam.csv")
-print(exam)
+exam = pd.read_csv(EXAM_PATH)
 
 
 def get_all_description():
     print(list(exam["Exam_ID"]))
 
 
-get_all_description()
+def insert_to_exam():
+    print("foo")
+    last_id = exam.iloc[-1, 0]
 
 

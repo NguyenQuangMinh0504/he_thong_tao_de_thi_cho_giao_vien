@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>giao_dien_chinh</class>
- <widget class="QFrame" name="giao_dien_chinh">
+ <class>Frame</class>
+ <widget class="QFrame" name="Frame">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>284</width>
-    <height>214</height>
+    <width>317</width>
+    <height>218</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <underline>false</underline>
-   </font>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
@@ -24,83 +19,46 @@
   <property name="frameShadow">
    <enum>QFrame::Raised</enum>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <item row="0" column="0" colspan="2">
-    <layout class="QVBoxLayout" name="button_layout">
-     <item>
-      <widget class="QPushButton" name="soan_cau_hoi_button">
-       <property name="text">
-        <string>Soạn câu hỏi</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="xay_dung_de_button">
-       <property name="text">
-        <string>Xây dựng đề </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="lam_bai_thi">
-       <property name="text">
-        <string>Làm bài thi</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="danh_gia_ket_qua_button">
-       <property name="text">
-        <string>Đánh giá kết quả</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="thiet_lap_label">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="font">
-      <font>
-       <underline>true</underline>
-      </font>
-     </property>
-     <property name="autoFillBackground">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#0000ff;&quot;&gt;Thiết lập&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QPushButton" name="thoat_button">
-     <property name="text">
-      <string>Thoát</string>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  <widget class="QPushButton" name="soan_cau_hoi_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Soạn câu hỏi</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="xay_dung_de_thi_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Xây dựng đề thi</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="quan_li_mon_hoc_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quản lý môn học</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>soan_cau_hoi_button</sender>
-   <signal>clicked()</signal>
-   <receiver>giao_dien_chinh</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>141</x>
-     <y>28</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>141</x>
-     <y>106</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

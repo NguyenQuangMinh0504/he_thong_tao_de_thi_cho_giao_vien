@@ -1,4 +1,8 @@
 Question_ID,Dap_An,Correct_Answer
+5,Inheritance,True
+5,Encapsulation,False
+5,Polymorphism,False
+5,Abstraction,False
 4,1993,False
 4,1970's,True
 4,1995,False
