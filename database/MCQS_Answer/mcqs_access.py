@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 from database.Question.question_access import question_table
 from database.path import QUESTION_PATH, MCQ_ANSWER_PATH
@@ -31,7 +32,8 @@ def get_right_answer(question_id):
 
 
 def remove_answer(answer):
-    query = "Dap_An == '{}'".format(answer)
+    query = "Dap_An == \"{}\"".format(answer)
+    print(query)
     mcq_answer_table.drop(mcq_answer_table.query(query).index, inplace=True)
 
 

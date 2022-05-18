@@ -165,7 +165,7 @@ class Ui_Frame(object):
 
     def handle_click(self):
         # handle click
-        self.question_list_widget.currentRowChanged.connect(self.change_row)
+        self.question_list_widget.currentRowChanged.connect(self.question_list_widget_row_change)
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_radio_button_click)
         self.tu_luan_radio_button.clicked.connect(self.tu_luan_radio_button_click)
         self.save_button.clicked.connect(self.save_button_click)
@@ -184,7 +184,7 @@ class Ui_Frame(object):
     # ------------------------------------------------------------------------------------------
     # Handle when changing question from question list
 
-    def change_row(self):
+    def question_list_widget_row_change(self):
         try:
             question = self.question_list_widget.currentItem().text()
             question_id = get_question_id(question)
@@ -193,9 +193,9 @@ class Ui_Frame(object):
             for answer in get_answer(question_id):
                 self.multiple_choice_answer_list_widget.addItem(QtWidgets.QListWidgetItem(answer))
             self.chuong_combo_box.clear()
-            self.chuong_combo_box.addItem(get_question_chapter(question))
+            self.chuong_combo_box.addItem(get_question_chapter(question_id))
             self.do_kho_combo_box.clear()
-            self.do_kho_combo_box.addItem(get_question_difficulty(question))
+            self.do_kho_combo_box.addItem(get_question_difficulty(question_id))
         except AttributeError:
             print("Attribute Error")
             pass
@@ -218,15 +218,19 @@ class Ui_Frame(object):
     # ------------------------------------------------------------------------------------------
 
     def them_dap_an_click(self, *args, **kwargs):
+        # clear the check box of them dap an pop up
+        self.ui_them_dap_an_pop_up.dap_an_check_box.setChecked(False)
+        # clear the text edit of them dap an pop up
+        self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.clear()
+        # show the text edit pop up
         self.them_dap_an_pop_up.show()
 
     def chinh_sua_click(self, *args, **kwargs):
-        try:
-            question = self.multiple_choice_answer_list_widget.currentItem().text()
-            self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(question)
+        if self.multiple_choice_answer_list_widget.currentItem() is not None:  # in case the user don't click any answer
+            # set text of pop up text edit to current clicked answer
+            self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(
+                self.multiple_choice_answer_list_widget.currentItem().text())
             self.chinh_sua_dap_an_pop_up.show()
-        except AttributeError:
-            pass
 
     def xoa_click(self, *args, **kwargs):
         answer = self.multiple_choice_answer_list_widget.currentItem().text()
@@ -271,8 +275,7 @@ class Ui_Frame(object):
         # add question to database
         mcq_answer = self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
         question = self.question_list_widget.currentItem().text()
-        question_id = get_question_id(question)
-        insert_row(int(question_id), mcq_answer, True)
+        insert_row(int(get_question_id(question)), mcq_answer, self.ui_them_dap_an_pop_up.dap_an_check_box.isChecked())
         # update gui
         self.multiple_choice_answer_list_widget.addItem(mcq_answer)
         # close pop up window

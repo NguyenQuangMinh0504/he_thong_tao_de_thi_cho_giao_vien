@@ -14,7 +14,7 @@ from database.MCQS_Answer.mcqs_access import get_answer, get_right_answer
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Frame(object):
+class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(971, 663)
@@ -63,8 +63,10 @@ class Ui_Frame(object):
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_button_click)
         self.tu_luan_radio_button.clicked.connect(self.tu_luan_button_click)
         self.tat_ca_radio_button.clicked.connect(self.tat_ca_button_click)
+        self.them_vao_de_thi_button.clicked.connect(self.them_vao_de_thi_button_click)
 
-        self.question_list_widget.currentRowChanged.connect(self.change_row)
+        self.question_list_widget.currentRowChanged.connect(self.question_list_widget_row_change)
+        self.exam_question_list_widget.currentRowChanged.connect(self.exam_question_list_widget_row_change)
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -109,7 +111,12 @@ class Ui_Frame(object):
         for i in get_info():
             self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
 
-    def change_row(self):
+    def them_vao_de_thi_button_click(self):
+        question = self.question_list_widget.currentItem().text()
+        self.exam_question_list_widget.addItem(question)
+        self.exam_question_list_widget_row_change()
+
+    def question_list_widget_row_change(self):
         try:
             self.question_show_text_edit.clear()
             question = self.question_list_widget.currentItem().text()
@@ -123,24 +130,29 @@ class Ui_Frame(object):
             self.question_show_text_edit.append("Độ khó: {}".format(get_question_difficulty(question_id)))
             self.question_show_text_edit.append("Chương: Chương {}".format(get_question_chapter(question_id)))
 
-            # self.multiple_choice_answer_list_widget.clear()
-            # for i in get_answer(question):
-            #     item = QtWidgets.QListWidgetItem(i)
-            #     self.multiple_choice_answer_list_widget.addItem(item)
-            # self.chuong_combo_box.clear()
-            # self.chuong_combo_box.addItem(get_question_chapter(question))
-            # self.do_kho_combo_box.clear()
-            # self.do_kho_combo_box.addItem(get_question_difficulty(question))
         except AttributeError:
             print("Attribute Error")
             pass
+
+    def exam_question_list_widget_row_change(self):
+        print("detect row change")
+        questions = [self.exam_question_list_widget.item(x).text()
+                     for x in range(self.exam_question_list_widget.count())]
+        self.exam_show_text_edit.clear()
+        alphabet = "ABCDEFGH"
+        for number, question in enumerate(questions):
+            question_id = get_question_id(question)
+            self.exam_show_text_edit.append("Câu {}: {}".format(number + 1, question))
+            for order, answer in enumerate(get_answer(question_id)):
+                self.exam_show_text_edit.append("{}.   {}".format(alphabet[order], answer))
+            self.exam_show_text_edit.append("")
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
+    ui = ui_chon_cau_hoi_dua_vao_de_thi_frame()
     ui.setupUi(Frame)
     Frame.show()
     sys.exit(app.exec_())
