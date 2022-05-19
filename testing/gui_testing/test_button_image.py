@@ -7,7 +7,7 @@ class Window(QWidget):
         QWidget.__init__(self)
         self.button = QPushButton('', self)
         self.button.clicked.connect(self.handleButton)
-        self.button.setIcon(QtGui.QIcon("../canvas_background.jpeg"))
+        self.button.setIcon(QtGui.QIcon("../../canvas_background.jpeg"))
         self.button.setIconSize(QtCore.QSize(200,200))
         layout = QVBoxLayout(self)
         layout.addWidget(self.button)

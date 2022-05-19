@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'quan_li_cau_hoi.ui'
+# Form implementation generated from reading ui file 'gui_quan_li_cau_hoi.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -106,9 +106,9 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.huy_button.setText(_translate("quan_ly_mon_hoc_frame", "Hủy"))
         self.xoa_mon_hoc_button.setText(_translate("quan_ly_mon_hoc_frame", "Xóa môn học"))
 
-    def mon_hoc_click(self, name):
-        subject_info = get_subject_info(name)
-        self.ten_mon_hoc_text_edit.setPlainText(name)
+    def mon_hoc_click(self, subject_name):
+        subject_info = get_subject_info(subject_name)
+        self.ten_mon_hoc_text_edit.setPlainText(subject_name)
         self.ma_hoc_phan_text_edit.setPlainText(subject_info[0])
         self.gioi_thieu_text_edit.setPlainText(subject_info[2])
 

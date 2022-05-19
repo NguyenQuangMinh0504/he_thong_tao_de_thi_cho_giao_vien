@@ -13,13 +13,15 @@ from PyQt5.QtWidgets import QFrame
 
 from database.Question.question_access import *
 from database.MCQS_Answer.mcqs_access import *
-from them_dap_an_pop_up import Ui_them_dap_an_pop_up
-from chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
-from them_cau_hoi_pop_up import Ui_them_cau_hoi_pop_up
+from soan_cau_hoi.chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
+from soan_cau_hoi.them_dap_an_pop_up import Ui_them_dap_an_pop_up
+from soan_cau_hoi.them_cau_hoi_pop_up import Ui_them_cau_hoi_frame
 
 
 class Ui_soan_cau_hoi_frame(object):
-    def setupUi(self, Frame):
+    def setupUi(self, Frame, subject_id):
+        # set up subject_id
+        self.subject_id = subject_id
         Frame.setObjectName("Frame")
         Frame.resize(590, 558)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -123,22 +125,6 @@ class Ui_soan_cau_hoi_frame(object):
         self.them_cau_hoi_label.setGeometry(QtCore.QRect(10, 270, 101, 31))
         self.them_cau_hoi_label.setObjectName("them_cau_hoi_label")
 
-        # POP UP PART
-        # Them dap ap pop up
-        self.them_dap_an_pop_up = QFrame()
-        self.ui_them_dap_an_pop_up = Ui_them_dap_an_pop_up()
-        self.ui_them_dap_an_pop_up.setupUi(self.them_dap_an_pop_up)
-
-        # chinh sua dap an pop up
-        self.chinh_sua_dap_an_pop_up = QFrame()
-        self.ui_chinh_sua_dap_an_pop_up = Ui_chinh_sua_dap_an_pop_up()
-        self.ui_chinh_sua_dap_an_pop_up.setupUi(self.chinh_sua_dap_an_pop_up)
-
-        # them cau cau hoi pop up
-        self.them_cau_hoi_pop_up = QFrame()
-        self.ui_them_cau_hoi_pop_up = Ui_them_cau_hoi_pop_up()
-        self.ui_them_cau_hoi_pop_up.setupUi(self.them_cau_hoi_pop_up)
-
         # handle click
         self.handle_click()
         self.retranslateUi(Frame)
@@ -171,11 +157,6 @@ class Ui_soan_cau_hoi_frame(object):
         self.save_button.clicked.connect(self.save_button_click)
         self.xoa_cau_hoi_button.clicked.connect(self.delete_question_click)
 
-        # pop up click
-        self.ui_them_dap_an_pop_up.ok_button.clicked.connect(self.them_dap_an_pop_up_ok_button_click)
-        self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_pop_up_ok_button_click)
-        self.ui_them_cau_hoi_pop_up.ok_button.clicked.connect(self.them_cau_hoi_pop_up_ok_button_click)
-
         # clickable label
         self.them_label.mousePressEvent = self.them_dap_an_click
         self.chinh_sua_label.mousePressEvent = self.chinh_sua_click
@@ -206,26 +187,33 @@ class Ui_soan_cau_hoi_frame(object):
     def trac_nghiem_radio_button_click(self):
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
-        for i in get_trac_nghiem_info():
+        for i in get_trac_nghiem_info(self.subject_id):
             self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
 
     def tu_luan_radio_button_click(self):
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
-        for i in get_tu_luan_info():
+        for i in get_tu_luan_info(self.subject_id):
             self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
 
     # ------------------------------------------------------------------------------------------
 
     def them_dap_an_click(self, *args, **kwargs):
+        self.them_dap_an_pop_up = QFrame()
+        self.ui_them_dap_an_pop_up = Ui_them_dap_an_pop_up()
+        self.ui_them_dap_an_pop_up.setupUi(self.them_dap_an_pop_up)
         # clear the check box of them dap an pop up
         self.ui_them_dap_an_pop_up.dap_an_check_box.setChecked(False)
         # clear the text edit of them dap an pop up
         self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.clear()
         # show the text edit pop up
         self.them_dap_an_pop_up.show()
+        self.ui_them_dap_an_pop_up.ok_button.clicked.connect(self.them_dap_an_pop_up_ok_button_click)
 
     def chinh_sua_click(self, *args, **kwargs):
+        self.chinh_sua_dap_an_pop_up = QFrame()
+        self.ui_chinh_sua_dap_an_pop_up = Ui_chinh_sua_dap_an_pop_up()
+        self.ui_chinh_sua_dap_an_pop_up.setupUi(self.chinh_sua_dap_an_pop_up)
         if self.multiple_choice_answer_list_widget.currentItem() is not None:  # in case the user don't click any answer
             # set text of pop up text edit to current clicked answer
             current_answer = self.multiple_choice_answer_list_widget.currentItem().text()
@@ -233,7 +221,9 @@ class Ui_soan_cau_hoi_frame(object):
             # set correct answer check box
             self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.setChecked(get_answer_correct(current_answer))
             # show pop up
+
             self.chinh_sua_dap_an_pop_up.show()
+            self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_pop_up_ok_button_click)
 
     def xoa_click(self, *args, **kwargs):
         answer = self.multiple_choice_answer_list_widget.currentItem().text()
@@ -259,7 +249,11 @@ class Ui_soan_cau_hoi_frame(object):
         delete_question_from_question_table(question_id)
 
     def them_cau_hoi_click(self, *args, **kwargs):
+        self.them_cau_hoi_pop_up = QFrame()
+        self.ui_them_cau_hoi_pop_up = Ui_them_cau_hoi_frame()
+        self.ui_them_cau_hoi_pop_up.setupUi(self.them_cau_hoi_pop_up, self.subject_id)
         self.them_cau_hoi_pop_up.show()
+        self.ui_them_cau_hoi_pop_up.ok_button.clicked.connect(self.them_cau_hoi_pop_up_ok_button_click)
 
     # ------------------------------------------------------------------------------------------
     # Pop up event handler

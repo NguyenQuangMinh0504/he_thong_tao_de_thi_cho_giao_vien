@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import QFrame
 from de_thi.chon_cau_hoi_dua_vao_de_thi import ui_chon_cau_hoi_dua_vao_de_thi_frame
 
 
-class Ui_Frame(object):
+class Ui_quan_li_de_thi_frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
         Frame.resize(800, 600)
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Frame = QtWidgets.QFrame()
-    ui = Ui_Frame()
+    ui = Ui_quan_li_de_thi_frame()
     ui.setupUi(Frame)
     Frame.show()
     sys.exit(app.exec_())
