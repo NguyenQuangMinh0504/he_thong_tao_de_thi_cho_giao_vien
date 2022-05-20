@@ -1,4 +1,5 @@
 Question_ID,Dap_An,Correct_Answer
+
 5,Inheritance,True
 5,Encapsulation,False
 5,Polymorphism,False
@@ -19,3 +20,11 @@ Question_ID,Dap_An,Correct_Answer
 2,Code reusability,False
 2,Modularity,False
 2,Duplicate/Redundant data,True
+16,None of the mentioned,False
+16,documentation and configuration of data,False
+16,set of programs,False
+16,"set of programs,  documentation & configuration of data",True
+17,Designing a software,False
+17,Testing a software,False
+17,Application of engineering principles to the design a software,True
+17,None of the above,False

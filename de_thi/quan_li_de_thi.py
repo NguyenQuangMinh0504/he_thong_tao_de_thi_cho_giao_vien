@@ -12,10 +12,12 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFrame
 
 from de_thi.chon_cau_hoi_dua_vao_de_thi import ui_chon_cau_hoi_dua_vao_de_thi_frame
+from database.Exam.exam_access import get_last_exam_id, get_exam
 
 
 class Ui_quan_li_de_thi_frame(object):
-    def setupUi(self, Frame):
+    def setupUi(self, Frame, subject_id):
+        self.subject_id = subject_id
         Frame.setObjectName("Frame")
         Frame.resize(800, 600)
         Frame.setAutoFillBackground(False)
@@ -39,18 +41,16 @@ class Ui_quan_li_de_thi_frame(object):
 "border-width: 5px;\n"
 "border-color: grey;}")
         self.ngan_hang_de_thi_frame.setObjectName("ngan_hang_de_thi_frame")
-        self.de_thi_button = QtWidgets.QPushButton(self.ngan_hang_de_thi_frame)
-        self.de_thi_button.setGeometry(QtCore.QRect(30, 20, 200, 120))
-        self.de_thi_button.setStyleSheet("background-image : url(./canvas_background.jpeg);")
-        self.de_thi_button.setObjectName("de_thi_button")
-        self.de_thi_button_2 = QtWidgets.QPushButton(self.ngan_hang_de_thi_frame)
-        self.de_thi_button_2.setGeometry(QtCore.QRect(280, 20, 200, 120))
-        self.de_thi_button_2.setStyleSheet("background-image : url(./canvas_background.jpeg);")
-        self.de_thi_button_2.setObjectName("de_thi_button_2")
-        self.de_thi_button_3 = QtWidgets.QPushButton(self.ngan_hang_de_thi_frame)
-        self.de_thi_button_3.setGeometry(QtCore.QRect(520, 20, 200, 120))
-        self.de_thi_button_3.setStyleSheet("background-image : url(./canvas_background.jpeg);")
-        self.de_thi_button_3.setObjectName("de_thi_button_3")
+        self.de_thi_button_width = 220
+        self.de_thi_button_height = 120
+        button_location = [[30, 20], [280, 20], [520, 20], [30, 200], [280, 200], [520, 200]]
+        for i, exam_info in enumerate(get_exam(self.subject_id)):
+            self.de_thi_button = QtWidgets.QPushButton(self.ngan_hang_de_thi_frame)
+            self.de_thi_button.setGeometry(QtCore.QRect(button_location[i][0], button_location[i][1],
+                                                    self.de_thi_button_width, self.de_thi_button_height))
+            self.de_thi_button.setText("{}\n {}".format(exam_info[2], exam_info[3]))
+            self.de_thi_button.clicked.connect(lambda state, x=exam_info[0]: self.mo_de_thi_button_click(x))
+            self.de_thi_button.setStyleSheet("background-image : url(./canvas_background.jpeg);")
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -62,15 +62,25 @@ class Ui_quan_li_de_thi_frame(object):
         self.quan_li_de_thi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" font-size:24pt;\">Quản lý đề thi</span></p></body></html>"))
         self.mo_de_thi_co_san_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" font-size:18pt;\">Mở đề thi có sẵn</span></p></body></html>"))
         self.tao_de_thi_moi_button.setText(_translate("Frame", "Tạo đề thi mới"))
-        self.de_thi_button.setText(_translate("Frame", "PushButton"))
-        self.de_thi_button_2.setText(_translate("Frame", "PushButton"))
-        self.de_thi_button_3.setText(_translate("Frame", "PushButton"))
 
     def tao_de_thi_moi_button_click(self):
 
         self.ui_chon_cau_hoi_de_dua_vao_de_thi = ui_chon_cau_hoi_dua_vao_de_thi_frame()
         self.chon_cau_hoi_de_dua_vao_de_thi_frame = QFrame()
-        self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame)
+        self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame,
+                                                       self.subject_id,
+                                                       get_last_exam_id()
+                                                       )
+        self.chon_cau_hoi_de_dua_vao_de_thi_frame.show()
+
+    def mo_de_thi_button_click(self, exam_id):
+        print(exam_id)
+        self.ui_chon_cau_hoi_de_dua_vao_de_thi = ui_chon_cau_hoi_dua_vao_de_thi_frame()
+        self.chon_cau_hoi_de_dua_vao_de_thi_frame = QFrame()
+        self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame,
+                                                       self.subject_id,
+                                                       exam_id
+                                                       )
         self.chon_cau_hoi_de_dua_vao_de_thi_frame.show()
 
 

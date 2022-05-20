@@ -167,6 +167,7 @@ class Ui_soan_cau_hoi_frame(object):
 
     def question_list_widget_row_change(self):
         try:
+            print("detect widget row change")
             question = self.question_list_widget.currentItem().text()
             question_id = get_question_id(question)
             self.de_bai_text_edit.setPlainText(question)

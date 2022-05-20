@@ -10,8 +10,9 @@ def insert_into_exam(exam_id, question_id, point):
     print(exam_question_table)
 
 
-def get_all_question():
-    return list(exam_question_table["Question_ID"])
+def get_all_question(exam_id):
+    query = "Exam_ID == {}".format(exam_id)
+    return list(exam_question_table.query(query)["Question_ID"])
 
 
 def save_exam_question_table():

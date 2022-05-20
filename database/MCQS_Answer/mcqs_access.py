@@ -18,9 +18,7 @@ def delete_all_row(question_id):
 
 
 def insert_row(question_id, dap_an, true_false):
-    mcq_answer_table.loc[-1] = [question_id, dap_an, true_false]
-    mcq_answer_table.index += 1
-    mcq_answer_table.sort_index(inplace=True)
+    mcq_answer_table.loc[mcq_answer_table.shape[0]] = [question_id, dap_an, true_false]
 
 
 def get_right_answer(question_id):
@@ -49,9 +47,4 @@ def get_answer_correct(answer):
 
 def save_mcq_answer_table():
     mcq_answer_table.to_csv(MCQ_ANSWER_PATH, index=False)
-
-
-def load_mcq_answer_table():
-    global mcq_answer_table
-    mcq_answer_table = pd.read_excel(MCQ_ANSWER_PATH)
 

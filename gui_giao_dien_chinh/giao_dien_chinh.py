@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFrame
 from gui_giao_dien_chinh.pop_up import Ui_pop_up
-from gui_quan_li_cau_hoi.quan_li_cau_hoi import Ui_quan_ly_mon_hoc_frame
+from gui_quan_li_mon_hoc.quan_li_mon_hoc import Ui_quan_ly_mon_hoc_frame
 from de_thi.quan_li_de_thi import Ui_quan_li_de_thi_frame
 from soan_cau_hoi.soan_cau_hoi_ver_trinh_thanh_trung import Ui_soan_cau_hoi_frame
 from database.Subject.subject_access import get_subject_id
@@ -73,7 +73,8 @@ class Ui_giao_dien_chinh_frame(object):
     def xay_dung_de_thi_pop_up_ok_button_click(self):
         self.xay_dung_de_thi_frame = QFrame()
         self.ui_xay_dung_de_thi_frame = Ui_quan_li_de_thi_frame()
-        self.ui_xay_dung_de_thi_frame.setupUi(self.xay_dung_de_thi_frame)
+        self.ui_xay_dung_de_thi_frame.setupUi(self.xay_dung_de_thi_frame,
+                                              get_subject_id(self.ui_pop_up.danh_sach_mon_hoc_combo_box.currentText()))
         self.xay_dung_de_thi_frame.show()
         self.pop_up_frame.close()
 

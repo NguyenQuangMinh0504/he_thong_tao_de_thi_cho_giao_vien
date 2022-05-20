@@ -1,6 +1,7 @@
-Subject_Id,Subject_Name,Mã học phần,Num_Chapter,Giới thiệu
-1,Lập trình hướng đối tượng,IT1234,5,Đây là giới thiệu môn OOP
-2,Nhập môn CNTT-TT,IT2345,6,Môn này nhàn lắm không học gì đâu
-3,Thiết kế và lập trình web ,IT5505,8,Lập trình Web thì tự học đi
+Subject_Id,Subject_Name,Course_Code,Num_Chapter,Description
+1,Lập trình hướng đối tượng,IT1234,8,Đây là giới thiệu môn OOP
+2,Nhập môn CNTT-TT,IT2345,6,Đây là giới thiệu môn nhập môn CNTT-TT
+3,Thiết kế và lập trình web ,IT5505,8,Đây là giới thiệu môn lập trình web
 4,Nhập môn CNPM,IT3303,7,Môn này giống hệt OOP thôi
 5,Tương tác người máy,IT6996,6,6996 với người máy
+
