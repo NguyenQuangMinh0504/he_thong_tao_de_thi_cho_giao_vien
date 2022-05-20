@@ -74,7 +74,6 @@ class Ui_quan_li_de_thi_frame(object):
         self.chon_cau_hoi_de_dua_vao_de_thi_frame.show()
 
     def mo_de_thi_button_click(self, exam_id):
-        print(exam_id)
         self.ui_chon_cau_hoi_de_dua_vao_de_thi = ui_chon_cau_hoi_dua_vao_de_thi_frame()
         self.chon_cau_hoi_de_dua_vao_de_thi_frame = QFrame()
         self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame,

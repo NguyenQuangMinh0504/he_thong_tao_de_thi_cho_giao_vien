@@ -29,5 +29,12 @@ def get_exam(subject_id):
     return exam_info
 
 
+def get_exam_info(exam_id):
+    query = "Exam_ID == {}".format(exam_id)
+    filter_table = exam_table.query(query)
+    if len(filter_table) != 0:
+        return list(filter_table.loc[filter_table.index[0]])
+    return False
+
 
 
