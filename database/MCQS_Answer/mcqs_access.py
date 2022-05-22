@@ -31,7 +31,6 @@ def get_right_answer(question_id):
 
 def remove_answer(answer):
     query = "Dap_An == \"{}\"".format(answer)
-    print(query)
     mcq_answer_table.drop(mcq_answer_table.query(query).index, inplace=True)
 
 
