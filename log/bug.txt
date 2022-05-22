@@ -1,2 +1,4 @@
 current has a bug when closing qmessagedialog close the parent widget
 # line 95 them_cau_hoi_pop_up.py
+
+viec ko dung sql -> co bug khi delete question_id do question_id dc dung trong exam_question
