@@ -1,5 +1,4 @@
 Question_ID,Dap_An,Correct_Answer
-
 5,Inheritance,True
 5,Encapsulation,False
 5,Polymorphism,False
@@ -28,3 +27,11 @@ Question_ID,Dap_An,Correct_Answer
 17,Testing a software,False
 17,Application of engineering principles to the design a software,True
 17,None of the above,False
+6,OOP can be used without using any header file,True
+6,stdlib.h,False
+6,iostream.h,False
+6,stdio.h,False
+7,It allows to be written outside classes,False
+7,It supports usual declaration of primitive data types,True
+7,It does not support pointers,False
+7,It doesn't support all types of inheritance,False

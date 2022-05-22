@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import QFrame
 
 from de_thi.chon_cau_hoi_dua_vao_de_thi import ui_chon_cau_hoi_dua_vao_de_thi_frame
 from database.Exam.exam_access import get_last_exam_id, get_exam
+from de_thi.tao_de_thi_pop_up import Ui_tao_de_thi_pop_up
 
 
 class Ui_quan_li_de_thi_frame(object):
@@ -64,14 +65,10 @@ class Ui_quan_li_de_thi_frame(object):
         self.tao_de_thi_moi_button.setText(_translate("Frame", "Tạo đề thi mới"))
 
     def tao_de_thi_moi_button_click(self):
-
-        self.ui_chon_cau_hoi_de_dua_vao_de_thi = ui_chon_cau_hoi_dua_vao_de_thi_frame()
-        self.chon_cau_hoi_de_dua_vao_de_thi_frame = QFrame()
-        self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame,
-                                                       self.subject_id,
-                                                       get_last_exam_id()
-                                                       )
-        self.chon_cau_hoi_de_dua_vao_de_thi_frame.show()
+        self.tao_de_thi_pop_up = QFrame()
+        self.ui_tao_de_thi_pop_up = Ui_tao_de_thi_pop_up()
+        self.ui_tao_de_thi_pop_up.setupUi(self.tao_de_thi_pop_up, self.subject_id)
+        self.tao_de_thi_pop_up.show()
 
     def mo_de_thi_button_click(self, exam_id):
         self.ui_chon_cau_hoi_de_dua_vao_de_thi = ui_chon_cau_hoi_dua_vao_de_thi_frame()
