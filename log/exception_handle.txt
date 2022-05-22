@@ -1,0 +1,1 @@
+qdialogmessage show error when not click type or not type question of add_question_pop_up

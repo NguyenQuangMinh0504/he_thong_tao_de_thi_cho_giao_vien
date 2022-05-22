@@ -1,0 +1,2 @@
+current has a bug when closing qmessagedialog close the parent widget
+# line 95 them_cau_hoi_pop_up.py
