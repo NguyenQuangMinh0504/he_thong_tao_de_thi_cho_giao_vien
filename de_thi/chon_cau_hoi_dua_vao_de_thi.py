@@ -11,7 +11,7 @@ from database.Exam.exam_question_access import insert_into_exam, save_exam_quest
 from database.Exam.exam_access import insert_to_exam, save_exam_table, get_exam_info
 
 from database.Question.question_access import *
-from database.MCQS_Answer.mcqs_access import get_answer, get_right_answer
+from database.MCQS_Answer.mcq_answer_access import get_answer, get_right_answer
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 

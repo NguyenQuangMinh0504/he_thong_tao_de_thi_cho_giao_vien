@@ -11,8 +11,9 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFrame, QMessageBox
 
+from database.MCQS_Answer.written_exam_answer_access import insert_answer, save_written_exam_answer_table
 from database.Question.question_access import *
-from database.MCQS_Answer.mcqs_access import *
+from database.MCQS_Answer.mcq_answer_access import *
 from database.Subject.subject_access import get_subject_chapter
 from database.Exam.exam_question_access import get_exam_id
 from database.Exam.exam_access import get_exam_info_string
@@ -108,9 +109,9 @@ class Ui_soan_cau_hoi_frame(object):
         self.cac_lua_chon_dap_an_label = QtWidgets.QLabel(self.cac_lua_chon_dap_an_container)
         self.cac_lua_chon_dap_an_label.setGeometry(QtCore.QRect(10, 0, 131, 16))
         self.cac_lua_chon_dap_an_label.setObjectName("cac_lua_chon_dap_an_label")
-        self.multiple_choice_question_list_widget = QtWidgets.QListWidget(self.cac_lua_chon_dap_an_container)
-        self.multiple_choice_question_list_widget.setGeometry(QtCore.QRect(20, 20, 201, 81))
-        self.multiple_choice_question_list_widget.setObjectName("multiple_choice_question_list_widget")
+        self.multiple_choice_answer_list_widget = QtWidgets.QListWidget(self.cac_lua_chon_dap_an_container)
+        self.multiple_choice_answer_list_widget.setGeometry(QtCore.QRect(20, 20, 201, 81))
+        self.multiple_choice_answer_list_widget.setObjectName("multiple_choice_question_list_widget")
         self.horizontalLayoutWidget_5 = QtWidgets.QWidget(self.cac_lua_chon_dap_an_container)
         self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(20, 110, 201, 41))
         self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
@@ -162,8 +163,6 @@ class Ui_soan_cau_hoi_frame(object):
 
         for i in range(get_subject_chapter(self.subject_id)):
             self.chuong_combo_box.addItem(str(i + 1))
-
-
 
     def handle_click(self):
         # handle click
@@ -253,8 +252,16 @@ class Ui_soan_cau_hoi_frame(object):
         self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
 
     def save_button_click(self):
+        answer = self.dap_an_hoac_goi_y_tra_loi_text_edit.toPlainText()
+        question_id = get_question_id(self.question_list_widget.currentItem().text())
+        print(question_id)
+        print(answer)
+        insert_answer(question_id, answer)
+
         save_mcq_answer_table()
         save_question_table()
+        save_written_exam_answer_table()
+
 
     def delete_question_click(self):
         # get text from the question to delete

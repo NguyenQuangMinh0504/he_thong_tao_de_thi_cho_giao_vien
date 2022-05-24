@@ -37,4 +37,12 @@ def get_exam_info(exam_id):
     return False
 
 
+def get_exam_info_string(exam_id):
+    query = "Exam_ID == {}".format(exam_id)
+    info = list(exam_table.loc[exam_table.query(query).index[0]])
+    return "{} năm học {} kỳ {}".format(info[2], info[3], info[5])
+
+
+
+
 

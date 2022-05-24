@@ -11,10 +11,6 @@ Question_ID,Dap_An,Correct_Answer
 3,Java,True
 3,SmallTalk,True
 3,Kotlin,True
-1,Andrea Ferro,False
-1,Adele Goldberg,False
-1,Alan Kay,True
-1,Dennis Ritchie,False
 2,Efficient Code,False
 2,Code reusability,False
 2,Modularity,False
@@ -34,4 +30,8 @@ Question_ID,Dap_An,Correct_Answer
 7,It allows to be written outside classes,False
 7,It supports usual declaration of primitive data types,True
 7,It does not support pointers,False
-7,It doesn't support all types of inheritance,False
+7,It doesn't support all type of inheritance,False
+18,Andrea Ferro,False
+18,Adele Goldberg,False
+18,Alan Kay,True
+18,Dennis Ritchie,False

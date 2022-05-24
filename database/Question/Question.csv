@@ -1,5 +1,4 @@
 Question_ID,Question,Subject_ID,Type,Difficulty,Chapter
-1,Who invented OOP ?,1,trac_nghiem,1,1
 2,Which is not a feature of OOP in general definitions?,1,trac_nghiem,2,2
 3,Which was the first purely object oriented programming language developed?,1,trac_nghiem,3,3
 4,When OOP concept did first came into picture?,1,trac_nghiem,1,2
@@ -16,3 +15,5 @@ Question_ID,Question,Subject_ID,Type,Difficulty,Chapter
 15,Define protected access modifier.,1,tu_luan,2,6
 16,software is defined as _____  ?,2,trac_nghiem,1,1
 17,What is Software Engineering ?,2,trac_nghiem,1,1
+18,Who invented OOP?,1,trac_nghiem,1,1
+19,What is meant by the term OOPs?,1,tu_luan,1,1
