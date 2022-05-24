@@ -223,7 +223,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="luu_de_thi_button">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>240</x>
      <y>610</y>
      <width>161</width>
      <height>41</height>
@@ -316,6 +316,24 @@ border-radius: 5px;</string>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="xoa_de_thi_button">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>610</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: red;
+color: white;
+border-radius: 5px;</string>
+   </property>
+   <property name="text">
+    <string>Xóa đề thi</string>
+   </property>
   </widget>
  </widget>
  <resources/>

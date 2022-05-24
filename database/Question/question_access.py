@@ -105,6 +105,23 @@ def get_feasible_question_on_coverage(subject_id, coverage):
     return question_ids
 
 
+def get_question_statistic(subject_id):
+    difficulty = []
+    for i in range(3):
+        query = "Subject_ID == {} and Difficulty == {}".format(subject_id, i + 1)
+        difficulty.append(question_table.query(query).shape[0])
+    from database.Subject.subject_access import get_subject_chapter
+    chapter = []
+    for i in range(get_subject_chapter(subject_id)):
+        query = "Subject_ID == {} and Chapter == {}".format(subject_id, i + 1)
+        chapter.append(question_table.query(query).shape[0])
+    return difficulty, chapter
+
+
+
+
+
+
 
 
 

@@ -9,8 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from database.Subject.subject_access import get_subject_name,\
-    get_subject_info, change_subject_info, save_subject_table, get_subject_id
+from database.Subject.subject_access import get_all_subject, get_subject_info, change_subject_info, save_subject_table, get_subject_id
 
 
 class Ui_quan_ly_mon_hoc_frame(object):
@@ -86,8 +85,7 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.mon_hoc_combo_box.currentTextChanged.connect(self.ten_mon_hoc_combo_box_change)
         self.luu_button.clicked.connect(self.luu_button_click)
 
-
-        for subject in get_subject_name():
+        for subject in get_all_subject():
             self.mon_hoc_combo_box.addItem(subject)
 
         self.ten_mon_hoc_combo_box_change()

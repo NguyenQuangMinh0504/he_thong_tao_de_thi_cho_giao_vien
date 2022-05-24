@@ -5,7 +5,7 @@ from database.path import SUBJECT_PATH
 subject_table = pd.read_csv(SUBJECT_PATH)
 
 
-def get_subject_name():
+def get_all_subject():
     return list(subject_table["Subject_Name"])
 
 
@@ -18,12 +18,12 @@ def get_subject_info(subject_name):
 
 def get_subject_id(subject_name):
     query = "Subject_Name == \"{}\"".format(subject_name)
-    return int(list(subject_table.query(query)["Subject_Id"])[0])
+    return list(subject_table.query(query)["Subject_Id"])[0]
 
 
 def get_subject_chapter(subject_id):
     query = "Subject_Id == {}".format(subject_id)
-    return int(list(subject_table.query(query)["Num_Chapter"])[0])
+    return list(subject_table.query(query)["Num_Chapter"])[0]
 
 
 def change_subject_info(subject_id, subject_name, course_code, num_chapter, description):
@@ -33,6 +33,13 @@ def change_subject_info(subject_id, subject_name, course_code, num_chapter, desc
 
 def save_subject_table():
     subject_table.to_csv(SUBJECT_PATH, index=False)
+
+
+def get_subject_name(subject_id):
+    query = "Subject_Id == {}".format(subject_id)
+    return list(subject_table.query(query)["Subject_Name"])[0]
+
+
 
 
 

@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from database.Subject.subject_access import get_subject_name
+from database.Subject.subject_access import get_all_subject
 
 
 class Ui_pop_up(object):
@@ -26,7 +26,7 @@ class Ui_pop_up(object):
         self.danh_sach_mon_hoc_combo_box.setGeometry(QtCore.QRect(160, 20, 221, 31))
         self.danh_sach_mon_hoc_combo_box.setObjectName("danh_sach_mon_hoc_combo_box")
 
-        for subject in get_subject_name():
+        for subject in get_all_subject():
             self.danh_sach_mon_hoc_combo_box.addItem(subject)
         self.ok_button = QtWidgets.QPushButton(pop_up)
         self.ok_button.setGeometry(QtCore.QRect(140, 70, 161, 41))
