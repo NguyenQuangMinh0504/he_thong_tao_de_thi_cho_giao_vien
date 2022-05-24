@@ -11,7 +11,6 @@ def modify_answer(question_id, answer):
 
 def insert_answer(question_id, answer):
     written_exam_answer_table.loc[written_exam_answer_table.shape[0]] = [question_id, answer]
-    print(written_exam_answer_table)
 
 
 def get_written_answer(question_id):
@@ -29,4 +28,5 @@ def save_written_exam_answer_table():
 def remove_question_and_answer_from_written_exam_answer_table(question_id):
     query = "Question_ID == {}".format(question_id)
     written_exam_answer_table.drop(written_exam_answer_table.query(query).index, inplace=True)
+    print(written_exam_answer_table)
 

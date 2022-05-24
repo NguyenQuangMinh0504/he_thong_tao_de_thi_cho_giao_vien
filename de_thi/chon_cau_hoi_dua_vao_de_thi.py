@@ -187,7 +187,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
     def them_vao_de_thi_button_click(self):
         question = self.question_list_widget.currentItem().text()
-        question_id = get_question_id(question)
+        question_id = get_question_id_on_question_from_question_table(question)
         insert_into_exam(self.exam_id, question_id, self.diem_cau_hoi_spin_box.value())
         self.exam_question_list_widget.addItem(question)
         self.exam_question_list_widget_row_change()
@@ -218,7 +218,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         try:
             self.question_show_text_edit.clear()
             question = self.question_list_widget.currentItem().text()
-            question_id = get_question_id(question)
+            question_id = get_question_id_on_question_from_question_table(question)
             list_answer = get_answer(question_id)
             self.question_show_text_edit.append(question)
             for number, answer in enumerate(list_answer):
@@ -238,7 +238,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.exam_show_text_edit.clear()
         alphabet = "ABCDEFGH"
         for number, question in enumerate(questions):
-            question_id = get_question_id(question)
+            question_id = get_question_id_on_question_from_question_table(question)
             self.exam_show_text_edit.append("Câu {}: {}".format(number + 1, question))
             for order, answer in enumerate(get_answer(question_id)):
                 self.exam_show_text_edit.append("{}.   {}".format(alphabet[order], answer))

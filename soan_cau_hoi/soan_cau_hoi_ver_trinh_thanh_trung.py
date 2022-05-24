@@ -11,7 +11,8 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFrame, QMessageBox
 
-from database.MCQS_Answer.written_exam_answer_access import save_written_exam_answer_table, get_written_answer
+from database.MCQS_Answer.written_exam_answer_access import save_written_exam_answer_table, get_written_answer, \
+    insert_answer
 from database.Question.question_access import *
 from database.MCQS_Answer.mcq_answer_access import *
 from database.Subject.subject_access import get_subject_chapter
@@ -181,10 +182,14 @@ class Ui_soan_cau_hoi_frame(object):
     # Handle when changing question from question list
 
     def question_list_widget_row_change(self):
+
         try:
             question = self.question_list_widget.currentItem().text()
-            question_id = get_question_id(question)
+            question_id = get_question_id_on_question_from_question_table(question)
+
             self.de_bai_text_edit.setPlainText(question)
+
+            self.dap_an_hoac_goi_y_tra_loi_text_edit.clear()
             written_answer = get_written_answer(question_id)
             if written_answer:
                 self.dap_an_hoac_goi_y_tra_loi_text_edit.setPlainText(written_answer)
@@ -192,9 +197,11 @@ class Ui_soan_cau_hoi_frame(object):
             self.multiple_choice_answer_list_widget.clear()
             for answer in get_answer(question_id):
                 self.multiple_choice_answer_list_widget.addItem(QtWidgets.QListWidgetItem(answer))
-            self.chuong_combo_box.setCurrentText(get_question_chapter(question_id))
+            self.chuong_combo_box.setCurrentText(str(get_question_chapter(question_id)))
+
             self.do_kho_combo_box.clear()
             self.do_kho_combo_box.addItem(get_question_difficulty(question_id))
+
         except AttributeError:
             print("Attribute Error")
             pass
@@ -243,7 +250,6 @@ class Ui_soan_cau_hoi_frame(object):
             # set correct answer check box
             self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.setChecked(get_answer_correct(current_answer))
             # show pop up
-
             self.chinh_sua_dap_an_pop_up.show()
             self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_pop_up_ok_button_click)
 
@@ -255,39 +261,34 @@ class Ui_soan_cau_hoi_frame(object):
         self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
 
     def save_button_click(self):
-        # answer = self.dap_an_hoac_goi_y_tra_loi_text_edit.toPlainText()
-        # question_id = get_question_id(self.question_list_widget.currentItem().text())
-        # insert_answer(question_id, answer)
-
+        answer = self.dap_an_hoac_goi_y_tra_loi_text_edit.toPlainText()
+        if self.question_list_widget.currentItem() is not None:
+            question_id = get_question_id_on_question_from_question_table(self.question_list_widget.currentItem().text())
+            insert_answer(question_id, answer)
         save_mcq_answer_table()
         save_question_table()
         save_written_exam_answer_table()
 
     def delete_question_click(self):
         # get text from the question to delete
-        question = self.question_list_widget.currentItem().text()
-        # get question id from question text
-        question_id = get_question_id(question)
-        exam_list = [get_exam_info_string(exam_id) for exam_id in get_exam_id(question_id)]
+        if self.question_list_widget.currentItem() is not None:
+            question = self.question_list_widget.currentItem().text()
+            # get question id from question text
+            question_id = get_question_id_on_question_from_question_table(question)
+            exam_list = [get_exam_info_string(exam_id) for exam_id in get_exam_id(question_id)]
 
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Critical)
-        msg.setText( "Những đề thi sau đây sẽ bị ảnh hưởng: \n" + "\n".join(exam_list))
-        msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        if msg.exec_() == QMessageBox.Ok:
-            from database.Question.question_access import remove_question_from_question_table
-            remove_question_from_question_table(question_id)
-            print("xoa thanh cong")
-        else:
-            print("bruh 2")
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText( "Những đề thi sau đây sẽ bị ảnh hưởng: \n" + "\n".join(exam_list))
+            msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            if msg.exec_() == QMessageBox.Ok:
+                from database.Question.question_access import remove_question_from_question_table
+                remove_question_from_question_table(question_id)
+                print("xoa thanh cong")
+            else:
+                print("bruh 2")
+            self.question_list_widget.takeItem(self.question_list_widget.currentRow())
 
-        # # remove from ui
-        # self.question_list_widget.takeItem(self.question_list_widget.currentRow())
-        #
-        # # delete all the answer related to the question from the mcq answer table
-        # delete_all_row(question_id)
-        # # delete question from question table
-        # delete_question_from_question_table(question_id)
 
     def them_cau_hoi_click(self, *args, **kwargs):
         self.them_cau_hoi_pop_up = QFrame()
@@ -314,7 +315,7 @@ class Ui_soan_cau_hoi_frame(object):
         # add question to database
         mcq_answer = self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
         question = self.question_list_widget.currentItem().text()
-        insert_row(int(get_question_id(question)), mcq_answer, self.ui_them_dap_an_pop_up.dap_an_check_box.isChecked())
+        insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer, self.ui_them_dap_an_pop_up.dap_an_check_box.isChecked())
         # update gui
         self.multiple_choice_answer_list_widget.addItem(mcq_answer)
         # close pop up window
