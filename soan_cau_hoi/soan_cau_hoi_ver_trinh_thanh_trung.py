@@ -9,13 +9,16 @@
 
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QFrame
+from PyQt5.QtWidgets import QFrame, QMessageBox
 
 from database.Question.question_access import *
 from database.MCQS_Answer.mcqs_access import *
+from database.Subject.subject_access import get_subject_chapter
+from database.Exam.exam_question_access import get_exam_id
+from database.Exam.exam_access import get_exam_info_string
 from soan_cau_hoi.chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
 from soan_cau_hoi.them_dap_an_pop_up import Ui_them_dap_an_pop_up
-from soan_cau_hoi.them_cau_hoi_pop_up import Ui_them_cau_hoi_frame
+from soan_cau_hoi.add_question_pop_up import Ui_them_cau_hoi_frame
 
 
 class Ui_soan_cau_hoi_frame(object):
@@ -63,17 +66,9 @@ class Ui_soan_cau_hoi_frame(object):
         self.de_bai_text_edit = QtWidgets.QTextEdit(self.horizontalLayoutWidget_2)
         self.de_bai_text_edit.setObjectName("de_bai_text_edit")
         self.de_bai_horizontal_layout.addWidget(self.de_bai_text_edit)
-        self.cac_lua_chon_dap_an_label = QtWidgets.QLabel(Frame)
-        self.cac_lua_chon_dap_an_label.setGeometry(QtCore.QRect(260, 230, 131, 16))
-        self.cac_lua_chon_dap_an_label.setObjectName("cac_lua_chon_dap_an_label")
-
         self.question_list_widget = QtWidgets.QListWidget(Frame)
         self.question_list_widget.setGeometry(QtCore.QRect(10, 80, 151, 181))
         self.question_list_widget.setObjectName("question_list_widget")
-
-        self.multiple_choice_answer_list_widget = QtWidgets.QListWidget(Frame)
-        self.multiple_choice_answer_list_widget.setGeometry(QtCore.QRect(280, 260, 201, 81))
-        self.multiple_choice_answer_list_widget.setObjectName("multiple_choice_answer_list_widget")
         self.verticalLayoutWidget = QtWidgets.QWidget(Frame)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(270, 400, 211, 91))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -101,8 +96,23 @@ class Ui_soan_cau_hoi_frame(object):
         self.xoa_cau_hoi_button = QtWidgets.QPushButton(Frame)
         self.xoa_cau_hoi_button.setGeometry(QtCore.QRect(420, 500, 113, 32))
         self.xoa_cau_hoi_button.setObjectName("xoa_cau_hoi_button")
-        self.horizontalLayoutWidget_5 = QtWidgets.QWidget(Frame)
-        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(280, 350, 201, 41))
+        self.save_button = QtWidgets.QPushButton(Frame)
+        self.save_button.setGeometry(QtCore.QRect(270, 500, 113, 32))
+        self.save_button.setObjectName("save_button")
+        self.them_cau_hoi_label = QtWidgets.QLabel(Frame)
+        self.them_cau_hoi_label.setGeometry(QtCore.QRect(10, 270, 101, 31))
+        self.them_cau_hoi_label.setObjectName("them_cau_hoi_label")
+        self.cac_lua_chon_dap_an_container = QtWidgets.QWidget(Frame)
+        self.cac_lua_chon_dap_an_container.setGeometry(QtCore.QRect(250, 220, 271, 161))
+        self.cac_lua_chon_dap_an_container.setObjectName("cac_lua_chon_dap_an_container")
+        self.cac_lua_chon_dap_an_label = QtWidgets.QLabel(self.cac_lua_chon_dap_an_container)
+        self.cac_lua_chon_dap_an_label.setGeometry(QtCore.QRect(10, 0, 131, 16))
+        self.cac_lua_chon_dap_an_label.setObjectName("cac_lua_chon_dap_an_label")
+        self.multiple_choice_question_list_widget = QtWidgets.QListWidget(self.cac_lua_chon_dap_an_container)
+        self.multiple_choice_question_list_widget.setGeometry(QtCore.QRect(20, 20, 201, 81))
+        self.multiple_choice_question_list_widget.setObjectName("multiple_choice_question_list_widget")
+        self.horizontalLayoutWidget_5 = QtWidgets.QWidget(self.cac_lua_chon_dap_an_container)
+        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(20, 110, 201, 41))
         self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
         self.them_chinh_su_xoa_horizontal_layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_5)
         self.them_chinh_su_xoa_horizontal_layout.setContentsMargins(0, 0, 0, 0)
@@ -116,20 +126,20 @@ class Ui_soan_cau_hoi_frame(object):
         self.xoa_label = QtWidgets.QLabel(self.horizontalLayoutWidget_5)
         self.xoa_label.setObjectName("xoa_label")
         self.them_chinh_su_xoa_horizontal_layout.addWidget(self.xoa_label)
-
-        self.save_button = QtWidgets.QPushButton(Frame)
-        self.save_button.setGeometry(QtCore.QRect(270, 500, 113, 32))
-        self.save_button.setObjectName("save_button")
-
-        self.them_cau_hoi_label = QtWidgets.QLabel(Frame)
-        self.them_cau_hoi_label.setGeometry(QtCore.QRect(10, 270, 101, 31))
-        self.them_cau_hoi_label.setObjectName("them_cau_hoi_label")
-
+        self.written_exam_answer_container = QtWidgets.QWidget(Frame)
+        self.written_exam_answer_container.setGeometry(QtCore.QRect(250, 220, 271, 161))
+        self.written_exam_answer_container.setObjectName("written_exam_answer_container")
+        self.dap_an_hoac_goi_y_tra_loi_label = QtWidgets.QLabel(self.written_exam_answer_container)
+        self.dap_an_hoac_goi_y_tra_loi_label.setGeometry(QtCore.QRect(10, 0, 161, 16))
+        self.dap_an_hoac_goi_y_tra_loi_label.setObjectName("dap_an_hoac_goi_y_tra_loi_label")
+        self.dap_an_hoac_goi_y_tra_loi_text_edit = QtWidgets.QTextEdit(self.written_exam_answer_container)
+        self.dap_an_hoac_goi_y_tra_loi_text_edit.setGeometry(QtCore.QRect(20, 20, 201, 81))
+        self.dap_an_hoac_goi_y_tra_loi_text_edit.setObjectName("dap_an_hoac_goi_y_tra_loi_text_edit")
+        self.retranslateUi(Frame)
+        QtCore.QMetaObject.connectSlotsByName(Frame)
         # handle click
         self.handle_click()
-        self.retranslateUi(Frame)
-
-        QtCore.QMetaObject.connectSlotsByName(Frame)
+        self.trac_nghiem_radio_button.click()
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
@@ -139,15 +149,21 @@ class Ui_soan_cau_hoi_frame(object):
         self.trac_nghiem_radio_button.setText(_translate("Frame", "Trắc nghiệm"))
         self.tu_luan_radio_button.setText(_translate("Frame", "Tự luận"))
         self.de_bai_label.setText(_translate("Frame", "Đề bài"))
-        self.cac_lua_chon_dap_an_label.setText(_translate("Frame", "Các lựa chọn đáp án"))
         self.chuong_label.setText(_translate("Frame", "Chương"))
         self.do_kho_label.setText(_translate("Frame", "Độ khó"))
         self.xoa_cau_hoi_button.setText(_translate("Frame", "Xóa câu hỏi"))
+        self.save_button.setText(_translate("Frame", "Lưu"))
+        self.them_cau_hoi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#0000ff;\">Thêm câu hỏi</span></p></body></html>"))
+        self.cac_lua_chon_dap_an_label.setText(_translate("Frame", "Các lựa chọn đáp án"))
         self.them_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#0000ff;\">Thêm</span></p></body></html>"))
         self.chinh_sua_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#0000ff;\">Chỉnh sửa</span></p></body></html>"))
         self.xoa_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#fc0107;\">Xóa</span></p></body></html>"))
-        self.save_button.setText(_translate("Frame", "Lưu"))
-        self.them_cau_hoi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" text-decoration: underline; color:#0000ff;\">Thêm câu hỏi</span></p></body></html>"))
+        self.dap_an_hoac_goi_y_tra_loi_label.setText(_translate("Frame", "Đáp án hoặc gợi ý trả lời"))
+
+        for i in range(get_subject_chapter(self.subject_id)):
+            self.chuong_combo_box.addItem(str(i + 1))
+
+
 
     def handle_click(self):
         # handle click
@@ -160,7 +176,7 @@ class Ui_soan_cau_hoi_frame(object):
         # clickable label
         self.them_label.mousePressEvent = self.them_dap_an_click
         self.chinh_sua_label.mousePressEvent = self.chinh_sua_click
-        self.xoa_label.mousePressEvent = self.xoa_click
+        self.xoa_label.mousePressEvent = self.delete_mcq_answer_click
         self.them_cau_hoi_label.mousePressEvent = self.them_cau_hoi_click
     # ------------------------------------------------------------------------------------------
     # Handle when changing question from question list
@@ -174,8 +190,7 @@ class Ui_soan_cau_hoi_frame(object):
             self.multiple_choice_answer_list_widget.clear()
             for answer in get_answer(question_id):
                 self.multiple_choice_answer_list_widget.addItem(QtWidgets.QListWidgetItem(answer))
-            self.chuong_combo_box.clear()
-            self.chuong_combo_box.addItem(get_question_chapter(question_id))
+            self.chuong_combo_box.setCurrentText(get_question_chapter(question_id))
             self.do_kho_combo_box.clear()
             self.do_kho_combo_box.addItem(get_question_difficulty(question_id))
         except AttributeError:
@@ -186,12 +201,16 @@ class Ui_soan_cau_hoi_frame(object):
     # Radio button click handle
 
     def trac_nghiem_radio_button_click(self):
+        self.cac_lua_chon_dap_an_container.show()
+        self.written_exam_answer_container.hide()
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
         for i in get_trac_nghiem_info(self.subject_id):
             self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
 
     def tu_luan_radio_button_click(self):
+        self.cac_lua_chon_dap_an_container.hide()
+        self.written_exam_answer_container.show()
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
         for i in get_tu_luan_info(self.subject_id):
@@ -226,7 +245,7 @@ class Ui_soan_cau_hoi_frame(object):
             self.chinh_sua_dap_an_pop_up.show()
             self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_pop_up_ok_button_click)
 
-    def xoa_click(self, *args, **kwargs):
+    def delete_mcq_answer_click(self, *args, **kwargs):
         answer = self.multiple_choice_answer_list_widget.currentItem().text()
         # remove answer from database
         remove_answer(answer)
@@ -240,14 +259,26 @@ class Ui_soan_cau_hoi_frame(object):
     def delete_question_click(self):
         # get text from the question to delete
         question = self.question_list_widget.currentItem().text()
-        # remove from ui
-        self.question_list_widget.takeItem(self.question_list_widget.currentRow())
         # get question id from question text
         question_id = get_question_id(question)
-        # delete all the answer related to the question from the mcq answer table
-        delete_all_row(question_id)
-        # delete question from question table
-        delete_question_from_question_table(question_id)
+        exam_list = [get_exam_info_string(exam_id) for exam_id in get_exam_id(question_id)]
+
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)
+        msg.setText( "Những đề thi sau đây sẽ bị ảnh hưởng: \n" + "\n".join(exam_list))
+        msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        if msg.exec_() == QMessageBox.Ok:
+            print("bruh")
+        else:
+            print("bruh 2")
+
+        # # remove from ui
+        # self.question_list_widget.takeItem(self.question_list_widget.currentRow())
+        #
+        # # delete all the answer related to the question from the mcq answer table
+        # delete_all_row(question_id)
+        # # delete question from question table
+        # delete_question_from_question_table(question_id)
 
     def them_cau_hoi_click(self, *args, **kwargs):
         self.them_cau_hoi_pop_up = QFrame()
