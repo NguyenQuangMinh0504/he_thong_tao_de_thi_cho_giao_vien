@@ -18,7 +18,7 @@ def get_subject_info(subject_name):
 
 def get_subject_id(subject_name):
     query = "Subject_Name == \"{}\"".format(subject_name)
-    return str(list(subject_table.query(query)["Subject_Id"])[0])
+    return int(list(subject_table.query(query)["Subject_Id"])[0])
 
 
 def get_subject_chapter(subject_id):

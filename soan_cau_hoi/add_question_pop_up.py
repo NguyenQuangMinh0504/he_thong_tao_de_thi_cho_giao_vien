@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
 from database.Subject.subject_access import get_subject_chapter
-from database.Question.question_access import add_question
+from database.Question.question_access import add_question_to_question_table
 
 
 class Ui_them_cau_hoi_frame(object):
@@ -101,20 +101,21 @@ class Ui_them_cau_hoi_frame(object):
             msg.exec_()
 
         elif len(error_list) == 0:
+            print(type(self.subject_id))
             if self.trac_nghiem_radio_button.isChecked():
-                add_question(self.cau_hoi_text_edit.toPlainText(),
-                             self.subject_id,
-                             "trac_nghiem",
-                             int(self.do_kho_combo_box.currentText()),
-                             int(self.chuong_combo_box.currentText())
-                             )
+                add_question_to_question_table(self.cau_hoi_text_edit.toPlainText(),
+                                               self.subject_id,
+                                               "trac_nghiem",
+                                               int(self.do_kho_combo_box.currentText()),
+                                               int(self.chuong_combo_box.currentText())
+                                               )
             elif self.tu_luan_radio_button.isChecked():
-                add_question(self.cau_hoi_text_edit.toPlainText(),
-                             self.subject_id,
-                             "tu_luan",
-                             int(self.do_kho_combo_box.currentText()),
-                             int(self.chuong_combo_box.currentText())
-                             )
+                add_question_to_question_table(self.cau_hoi_text_edit.toPlainText(),
+                                               self.subject_id,
+                                               "tu_luan",
+                                               int(self.do_kho_combo_box.currentText()),
+                                               int(self.chuong_combo_box.currentText())
+                                               )
 
 
 if __name__ == "__main__":

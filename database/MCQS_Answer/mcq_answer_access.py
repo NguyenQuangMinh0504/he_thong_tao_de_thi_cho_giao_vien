@@ -12,7 +12,7 @@ def get_answer(question_id):
     return list(mcq_answer_table.query(query)["Dap_An"])
 
 
-def delete_all_row(question_id):
+def remove_question_and_answer_from_mcq_answer_table(question_id):
     query = "Question_ID == {}".format(question_id)
     mcq_answer_table.drop(mcq_answer_table.query(query).index, inplace=True)
 

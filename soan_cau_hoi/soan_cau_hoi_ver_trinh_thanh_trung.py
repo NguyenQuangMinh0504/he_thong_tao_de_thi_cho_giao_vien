@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFrame, QMessageBox
 
-from database.MCQS_Answer.written_exam_answer_access import insert_answer, save_written_exam_answer_table
+from database.MCQS_Answer.written_exam_answer_access import save_written_exam_answer_table, get_written_answer
 from database.Question.question_access import *
 from database.MCQS_Answer.mcq_answer_access import *
 from database.Subject.subject_access import get_subject_chapter
@@ -182,10 +182,13 @@ class Ui_soan_cau_hoi_frame(object):
 
     def question_list_widget_row_change(self):
         try:
-            print("detect widget row change")
             question = self.question_list_widget.currentItem().text()
             question_id = get_question_id(question)
             self.de_bai_text_edit.setPlainText(question)
+            written_answer = get_written_answer(question_id)
+            if written_answer:
+                self.dap_an_hoac_goi_y_tra_loi_text_edit.setPlainText(written_answer)
+
             self.multiple_choice_answer_list_widget.clear()
             for answer in get_answer(question_id):
                 self.multiple_choice_answer_list_widget.addItem(QtWidgets.QListWidgetItem(answer))
@@ -252,16 +255,13 @@ class Ui_soan_cau_hoi_frame(object):
         self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
 
     def save_button_click(self):
-        answer = self.dap_an_hoac_goi_y_tra_loi_text_edit.toPlainText()
-        question_id = get_question_id(self.question_list_widget.currentItem().text())
-        print(question_id)
-        print(answer)
-        insert_answer(question_id, answer)
+        # answer = self.dap_an_hoac_goi_y_tra_loi_text_edit.toPlainText()
+        # question_id = get_question_id(self.question_list_widget.currentItem().text())
+        # insert_answer(question_id, answer)
 
         save_mcq_answer_table()
         save_question_table()
         save_written_exam_answer_table()
-
 
     def delete_question_click(self):
         # get text from the question to delete
@@ -275,7 +275,9 @@ class Ui_soan_cau_hoi_frame(object):
         msg.setText( "Những đề thi sau đây sẽ bị ảnh hưởng: \n" + "\n".join(exam_list))
         msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
         if msg.exec_() == QMessageBox.Ok:
-            print("bruh")
+            from database.Question.question_access import remove_question_from_question_table
+            remove_question_from_question_table(question_id)
+            print("xoa thanh cong")
         else:
             print("bruh 2")
 

@@ -7,6 +7,7 @@ question_table = pd.read_csv(QUESTION_PATH)
 
 
 def get_info(subject_id):
+
     query = "Subject_ID == {}".format(subject_id)
     filter_table = question_table.query(query)
     return list(filter_table["Question"])
@@ -14,14 +15,14 @@ def get_info(subject_id):
 
 def get_trac_nghiem_info(subject_id):
     query = "Type == \"trac_nghiem\" and Subject_ID == {}".format(subject_id)
-    filter_table = question_table.query(query)
-    return list(filter_table["Question"])
+    print(question_table.shape)
+    print(question_table["Subject_ID"])
+    return list(question_table.query(query)["Question"])
 
 
 def get_tu_luan_info(subject_id):
     query = "Type == \"tu_luan\" and  Subject_ID == {}".format(subject_id)
-    filter_database = question_table.query(query)
-    return list(filter_database["Question"])
+    return list(question_table.query(query)["Question"])
 
 
 def get_question_difficulty(question_id):
@@ -43,12 +44,18 @@ def get_question_id(question):
         return str(list(question_table.query(query)["Question_ID"])[0])
 
 
-def delete_question_from_question_table(question_id):
+def remove_question_from_question_table(question_id):
+    from database.Exam.exam_question_access import remove_question_from_exam_question_table
+    from database.MCQS_Answer.mcq_answer_access import remove_question_and_answer_from_mcq_answer_table
+    from database.MCQS_Answer.written_exam_answer_access import remove_question_and_answer_from_written_exam_answer_table
+    remove_question_and_answer_from_written_exam_answer_table(question_id)
+    remove_question_and_answer_from_mcq_answer_table(question_id)
+    remove_question_from_exam_question_table(question_id)
     query = "Question_ID == {}".format(question_id)
     question_table.drop(question_table.query(query).index, inplace=True)
 
 
-def add_question(question, subject_id, question_type, difficulty, chapter):
+def add_question_to_question_table(question, subject_id, question_type, difficulty, chapter):
     last_question_id = question_table.iloc[-1, 0]
     question_table.loc[question_table.shape[0]] = [last_question_id + 1, question, subject_id,
                                                    question_type, difficulty, chapter]

@@ -14,10 +14,19 @@ def insert_answer(question_id, answer):
     print(written_exam_answer_table)
 
 
+def get_written_answer(question_id):
+    query = "Question_ID == {}".format(question_id)
+    if len(written_exam_answer_table.query(query).index) == 0:
+        return False
+    else:
+        return written_exam_answer_table.loc[written_exam_answer_table.query(query).index[0], "Answer"]
+
+
 def save_written_exam_answer_table():
     written_exam_answer_table.to_csv(WRITTEN_EXAM_ANSWER_PATH, index=False)
 
 
-
-
+def remove_question_and_answer_from_written_exam_answer_table(question_id):
+    query = "Question_ID == {}".format(question_id)
+    written_exam_answer_table.drop(written_exam_answer_table.query(query).index, inplace=True)
 
