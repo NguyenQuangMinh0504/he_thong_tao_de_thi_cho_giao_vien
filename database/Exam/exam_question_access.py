@@ -41,6 +41,12 @@ def remove_question_from_exam_question_table(question_id):
     exam_question_table.drop(exam_question_table.query(query).index, inplace=True)
 
 
+def remove_exam_question_from_exam_question_table(exam_id):
+    query = "Exam_ID == {}".format(exam_id)
+    exam_question_table.drop(exam_question_table.query(query).index, inplace=True)
+
+
+
 
 
 

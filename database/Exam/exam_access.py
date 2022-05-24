@@ -43,6 +43,12 @@ def get_exam_info_string(exam_id):
     return "{} năm học {} kỳ {}".format(info[2], info[3], info[5])
 
 
+def remove_exam_from_exam_table(exam_id):
+    from database.Exam.exam_question_access import remove_exam_question_from_exam_question_table
+    remove_exam_question_from_exam_question_table(exam_id)
+    query = "Exam_ID == {}".format(exam_id)
+    exam_table.drop(exam_table.query(query).index, inplace=True)
+
 
 
 

@@ -64,8 +64,11 @@ def save_question_table():
 
 
 def get_question(question_id):
-    query = "Question_ID == {}".format(question_id)
-    return str(list(question_table.query(query)["Question"])[0])
+    try:
+        query = "Question_ID == {}".format(question_id)
+        return str(list(question_table.query(query)["Question"])[0])
+    except IndexError:
+        print(list(question_table.query(query)["Question"])[0])
 
 
 def get_feasible_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho):

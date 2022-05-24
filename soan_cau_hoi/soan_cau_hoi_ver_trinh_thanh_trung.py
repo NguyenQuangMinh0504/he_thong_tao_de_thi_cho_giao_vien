@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFrame, QMessageBox
 
 from database.MCQS_Answer.written_exam_answer_access import save_written_exam_answer_table, get_written_answer, \
-    insert_answer
+    insert_answer_or_modify_current_answer_to_written_exam_answer_table
 from database.Question.question_access import *
 from database.MCQS_Answer.mcq_answer_access import *
 from database.Subject.subject_access import get_subject_chapter
@@ -222,6 +222,7 @@ class Ui_soan_cau_hoi_frame(object):
         self.written_exam_answer_container.show()
         self.question_list_widget.clear()
         self.de_bai_text_edit.clear()
+        self.dap_an_hoac_goi_y_tra_loi_text_edit.clear()
         for i in get_tu_luan_info(self.subject_id):
             self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
 
@@ -264,7 +265,7 @@ class Ui_soan_cau_hoi_frame(object):
         answer = self.dap_an_hoac_goi_y_tra_loi_text_edit.toPlainText()
         if self.question_list_widget.currentItem() is not None:
             question_id = get_question_id_on_question_from_question_table(self.question_list_widget.currentItem().text())
-            insert_answer(question_id, answer)
+            insert_answer_or_modify_current_answer_to_written_exam_answer_table(question_id, answer)
         save_mcq_answer_table()
         save_question_table()
         save_written_exam_answer_table()
