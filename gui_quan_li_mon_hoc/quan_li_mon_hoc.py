@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFrame
+
 from database.Subject.subject_access import get_all_subject, get_subject_info, change_subject_info, save_subject_table, get_subject_id
 
 
@@ -74,9 +76,9 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.luu_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.luu_button.setObjectName("luu_button")
         self.horizontalLayout_5.addWidget(self.luu_button)
-        self.huy_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.huy_button.setObjectName("huy_button")
-        self.horizontalLayout_5.addWidget(self.huy_button)
+        self.add_subject_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.add_subject_button.setObjectName("add_subject_button")
+        self.horizontalLayout_5.addWidget(self.add_subject_button)
         self.xoa_mon_hoc_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.xoa_mon_hoc_button.setObjectName("xoa_mon_hoc_button")
         self.horizontalLayout_5.addWidget(self.xoa_mon_hoc_button)
@@ -84,6 +86,7 @@ class Ui_quan_ly_mon_hoc_frame(object):
 
         self.mon_hoc_combo_box.currentTextChanged.connect(self.ten_mon_hoc_combo_box_change)
         self.luu_button.clicked.connect(self.luu_button_click)
+        self.add_subject_button.clicked.connect(self.add_subject_button_click)
 
         for subject in get_all_subject():
             self.mon_hoc_combo_box.addItem(subject)
@@ -102,7 +105,7 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.so_chuong_label.setText(_translate("quan_ly_mon_hoc_frame", "Số chương"))
         self.gioi_thieu_label.setText(_translate("quan_ly_mon_hoc_frame", "Giới thiệu"))
         self.luu_button.setText(_translate("quan_ly_mon_hoc_frame", "Lưu"))
-        self.huy_button.setText(_translate("quan_ly_mon_hoc_frame", "Thêm môn học"))
+        self.add_subject_button.setText(_translate("quan_ly_mon_hoc_frame", "Thêm môn học"))
         self.xoa_mon_hoc_button.setText(_translate("quan_ly_mon_hoc_frame", "Xóa môn học"))
 
     def ten_mon_hoc_combo_box_change(self):
@@ -121,6 +124,13 @@ class Ui_quan_ly_mon_hoc_frame(object):
             self.gioi_thieu_text_edit.toPlainText()
         )
         save_subject_table()
+
+    def add_subject_button_click(self):
+        self.add_subject_frame = QFrame()
+        from gui_quan_li_mon_hoc.add_subject_frame import Ui_add_subject_frame
+        self.ui_add_subject_frame = Ui_add_subject_frame()
+        self.ui_add_subject_frame.setupUi(add_subject_frame=self.add_subject_frame)
+        self.add_subject_frame.show()
 
 
 if __name__ == "__main__":
