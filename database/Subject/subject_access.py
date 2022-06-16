@@ -40,6 +40,14 @@ def get_subject_name(subject_id):
     return list(subject_table.query(query)["Subject_Name"])[0]
 
 
+def add_subject(subject_name, course_code, num_chapter, description):
+    last_question_id = subject_table.iloc[-1, 0]
+    subject_table.loc[subject_table.shape[0]] = [last_question_id + 1, subject_name, course_code,
+                                                 num_chapter, description]
+    save_subject_table()
+
+
+
 
 
 
