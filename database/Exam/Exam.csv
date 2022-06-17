@@ -1,7 +1,2 @@
 Exam_ID,Subject_ID,Description,Năm học,Thời gian,Học kì
-1,1,Đề thi cuối kì OOP,2012-2013,60,1
-2,1,Đề thi giữa kì OOP,2013-2014,60,2
-3,1,Đề thi giữa kì OOP,2015-2016,90,1
-9,1,bruh,2022,60,0
-10,1,bruh,2021-2022,25,1
-11,1,Đề thi môn Lập trình hướng đối tượng,2016-2017,80,1
+0,1,Đề thi môn Lập trình hướng đối tượng,2021-2022,60,1

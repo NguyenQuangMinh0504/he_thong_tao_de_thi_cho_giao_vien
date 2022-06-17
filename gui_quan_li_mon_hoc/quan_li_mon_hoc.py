@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFrame
+from PyQt5.QtWidgets import QFrame, QMessageBox
 
 from database.Subject.subject_access import get_all_subject, get_subject_info, change_subject_info, save_subject_table, get_subject_id
 
@@ -87,6 +87,7 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.mon_hoc_combo_box.currentTextChanged.connect(self.ten_mon_hoc_combo_box_change)
         self.luu_button.clicked.connect(self.luu_button_click)
         self.add_subject_button.clicked.connect(self.add_subject_button_click)
+        self.xoa_mon_hoc_button.clicked.connect(self.delete_subject_button_click)
 
         for subject in get_all_subject():
             self.mon_hoc_combo_box.addItem(subject)
@@ -131,6 +132,22 @@ class Ui_quan_ly_mon_hoc_frame(object):
         self.ui_add_subject_frame = Ui_add_subject_frame()
         self.ui_add_subject_frame.setupUi(add_subject_frame=self.add_subject_frame)
         self.add_subject_frame.show()
+
+    def delete_subject_button_click(self):
+        from database.Subject.subject_access import remove_subject_from_subject_table
+        if not remove_subject_from_subject_table(get_subject_id(self.mon_hoc_combo_box.currentText())):
+            self.msg = QMessageBox()
+            self.msg.setIcon(QMessageBox.Critical)
+            self.msg.setText("Vui lòng xoá hết câu hỏi và đề thi của môn học trước khi xoá môn học")
+            self.msg.setStandardButtons(QMessageBox.Close)
+            self.msg.exec_()
+        else:
+            self.msg = QMessageBox()
+            self.msg.setIcon(QMessageBox.Information)
+            self.msg.setText("Bạn đã xoá môn học thành công")
+            self.msg.setStandardButtons(QMessageBox.Close)
+            self.msg.exec_()
+            self.mon_hoc_combo_box.removeItem(self.mon_hoc_combo_box.currentIndex())
 
 
 if __name__ == "__main__":

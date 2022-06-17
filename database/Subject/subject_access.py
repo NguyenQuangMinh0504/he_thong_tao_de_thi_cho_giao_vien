@@ -47,8 +47,11 @@ def add_subject(subject_name, course_code, num_chapter, description):
     save_subject_table()
 
 
-
-
-
-
-
+def remove_subject_from_subject_table(subject_id):
+    from database.Question.question_access import get_info
+    from database.Exam.exam_access import get_exam
+    if len(get_info(subject_id)) == 0 and len(get_exam(subject_id)) == 0:
+        query = "Subject_Id == {}".format(subject_id)
+        subject_table.drop(subject_table.query(query).index, inplace=True)
+        return True
+    return False
