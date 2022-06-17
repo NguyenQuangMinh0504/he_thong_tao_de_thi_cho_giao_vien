@@ -8,8 +8,9 @@ def get_all_description():
 
 
 def insert_to_exam(subject_id, description, school_year, duration, semester):
-    last_exam_id = exam_table.iloc[-1, 0]
-    exam_table.loc[exam_table.shape[0]] = [last_exam_id + 1, subject_id, description, school_year, duration, semester]
+
+    exam_table.loc[exam_table.shape[0]] = [get_last_exam_id(), subject_id, description,
+                                           school_year, duration, semester]
 
 
 def get_last_exam_id():
