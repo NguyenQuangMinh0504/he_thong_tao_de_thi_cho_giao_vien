@@ -13,7 +13,10 @@ def insert_to_exam(subject_id, description, school_year, duration, semester):
 
 
 def get_last_exam_id():
-    return exam_table.iloc[-1, 0] + 1
+    try:
+        return exam_table.iloc[-1, 0] + 1
+    except IndexError:
+        return 0
 
 
 def save_exam_table():
@@ -38,6 +41,7 @@ def get_exam_info(exam_id):
 
 
 def get_exam_info_string(exam_id):
+    print(exam_id)
     query = "Exam_ID == {}".format(exam_id)
     info = list(exam_table.loc[exam_table.query(query).index[0]])
     return "{} năm học {} kỳ {}".format(info[2], info[3], info[5])
