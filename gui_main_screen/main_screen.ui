@@ -19,7 +19,7 @@
   <property name="frameShadow">
    <enum>QFrame::Raised</enum>
   </property>
-  <widget class="QPushButton" name="soan_cau_hoi_button">
+  <widget class="QPushButton" name="question_manage_button">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -32,7 +32,7 @@
     <string>Soạn câu hỏi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="xay_dung_de_thi_button">
+  <widget class="QPushButton" name="exam_manage_button">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -45,7 +45,7 @@
     <string>Xây dựng đề thi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="quan_li_mon_hoc_button">
+  <widget class="QPushButton" name="subject_manage_button">
    <property name="geometry">
     <rect>
      <x>10</x>

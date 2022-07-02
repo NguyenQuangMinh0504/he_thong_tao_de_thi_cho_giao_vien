@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 
-from gui_giao_dien_chinh.giao_dien_chinh import Ui_giao_dien_chinh_frame
+from gui_main_screen.main_screen import Ui_giao_dien_chinh_frame
 
 if __name__ == '__main__':
     import sys
