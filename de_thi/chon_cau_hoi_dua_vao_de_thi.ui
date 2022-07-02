@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
-    <height>667</height>
+    <width>832</width>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -223,8 +223,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="luu_de_thi_button">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>610</y>
+     <x>230</x>
+     <y>630</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -321,7 +321,7 @@ border-radius: 5px;</string>
    <property name="geometry">
     <rect>
      <x>430</x>
-     <y>610</y>
+     <y>630</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -333,6 +333,23 @@ border-radius: 5px;</string>
    </property>
    <property name="text">
     <string>Xóa đề thi</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="export_to_file_label">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>610</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: blue;
+text-decoration: underline;</string>
+   </property>
+   <property name="text">
+    <string>Xuất ra file</string>
    </property>
   </widget>
  </widget>
