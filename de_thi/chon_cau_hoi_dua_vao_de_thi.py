@@ -174,6 +174,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
         # tool button handle
         self.up_arrow_button.clicked.connect(self.up_arrow_button_click)
+        self.down_arrow_button.clicked.connect(self.down_arrow_button_click)
 
         self.retranslateUi(Frame)
         self.tat_ca_radio_button.click()
@@ -228,9 +229,13 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
             self.thoi_gian_line_edit.setText(str(get_exam_info(self.exam_id)[-2]))
             self.nam_hoc_line_edit.setText(str(get_exam_info(self.exam_id)[-3]))
 
-    # ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
 
-    # ----------------------------RADIO BUTTON CLICK HANDLE --------------------------------
+    # ------------------------------------------------------------------------------------------------
+    # ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
+    # ------------------------------------------------------------------------------------------------
+
+    # ---------------------------------RADIO BUTTON CLICK HANDLE -------------------------------------
+
 
     def trac_nghiem_button_click(self):
         self.question_list_widget.clear()
