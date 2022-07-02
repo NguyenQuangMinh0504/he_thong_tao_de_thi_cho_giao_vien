@@ -259,15 +259,17 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
     def up_arrow_button_click(self):
         current_row = self.exam_question_list_widget.currentRow()
-        current_item = self.exam_question_list_widget.takeItem(current_row)
-        self.exam_question_list_widget.insertItem(current_row - 1, current_item)
-        self.exam_question_list_widget_row_change()
+        if current_row != -1:
+            current_item = self.exam_question_list_widget.takeItem(current_row)
+            self.exam_question_list_widget.insertItem(current_row - 1, current_item)
+            self.exam_question_list_widget_row_change()
 
     def down_arrow_button_click(self):
         current_row = self.exam_question_list_widget.currentRow()
-        current_item = self.exam_question_list_widget.takeItem(current_row)
-        self.exam_question_list_widget.insertItem(current_row + 1, current_item)
-        self.exam_question_list_widget_row_change()
+        if current_row != -1:
+            current_item = self.exam_question_list_widget.takeItem(current_row)
+            self.exam_question_list_widget.insertItem(current_row + 1, current_item)
+            self.exam_question_list_widget_row_change()
 
     # ------------------------------- LIST WIDGET CHANGE HANDLE FUNCTION -----------------------------------
 
