@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>836</width>
-    <height>701</height>
+    <width>801</width>
+    <height>707</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -181,50 +181,11 @@ p, li { white-space: pre-wrap; }
     <string>Điểm cho câu hỏi</string>
    </property>
   </widget>
-  <widget class="QLabel" name="thong_tin_ve_de_thi_label">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>480</y>
-     <width>151</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Thông tin về đề thi</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="thoi_gian_label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>510</y>
-     <width>101</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Thời gian</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="phut_label">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>510</y>
-     <width>60</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>phút</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="luu_de_thi_button">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>640</y>
+     <x>220</x>
+     <y>650</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -238,90 +199,11 @@ border-radius: 5px;</string>
     <string>Lưu đề thi</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="thoi_gian_line_edit">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>510</y>
-     <width>71</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="nam_hoc_label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>540</y>
-     <width>60</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Năm học</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="nam_hoc_line_edit">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>540</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="hoc_ki_label">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>580</y>
-     <width>60</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Học kỳ</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>570</y>
-     <width>181</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QRadioButton" name="ky_1_radio_button">
-      <property name="text">
-       <string>1</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QRadioButton" name="ky_2_radio_button">
-      <property name="text">
-       <string>2</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QRadioButton" name="ky_he_radio_button">
-      <property name="text">
-       <string>Kỳ hè</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="xoa_de_thi_button">
    <property name="geometry">
     <rect>
      <x>430</x>
-     <y>640</y>
+     <y>650</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -393,6 +275,157 @@ text-decoration: underline;</string>
    <property name="text">
     <string>Xáo trộn các câu hỏi</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="delete_question_from_exam_label">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>470</y>
+     <width>161</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">text-decoration: underline;
+color: red;</string>
+   </property>
+   <property name="text">
+    <string>Xoá câu hỏi ra khỏi đề thi</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="exam_info">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>490</y>
+     <width>301</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="thong_tin_ve_de_thi_label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Thông tin về đề thi</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="thoi_gian_line_edit">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>50</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="thoi_gian_label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Thời gian</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="phut_label">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>50</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>phút</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nam_hoc_line_edit">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>80</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="nam_hoc_label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Năm học</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="hoc_ki_label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>60</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Học kỳ</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>110</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QRadioButton" name="ky_1_radio_button">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="ky_2_radio_button">
+       <property name="text">
+        <string>2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="ky_he_radio_button">
+       <property name="text">
+        <string>Kỳ hè</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <resources/>

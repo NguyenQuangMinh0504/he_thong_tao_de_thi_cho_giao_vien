@@ -22,7 +22,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.exam_id = exam_id
         self.subject_id = subject_id
         Frame.setObjectName("Frame")
-        Frame.resize(836, 701)
+        Frame.resize(801, 707)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.question_list_widget = QtWidgets.QListWidget(Frame)
@@ -80,40 +80,13 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.phut_label.setGeometry(QtCore.QRect(200, 510, 60, 16))
         self.phut_label.setObjectName("phut_label")
         self.luu_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.luu_de_thi_button.setGeometry(QtCore.QRect(230, 640, 161, 41))
+        self.luu_de_thi_button.setGeometry(QtCore.QRect(220, 650, 161, 41))
         self.luu_de_thi_button.setStyleSheet("background-color: green;\n"
                                              "color: white;\n"
                                              "border-radius: 5px;")
         self.luu_de_thi_button.setObjectName("luu_de_thi_button")
-        self.thoi_gian_line_edit = QtWidgets.QLineEdit(Frame)
-        self.thoi_gian_line_edit.setGeometry(QtCore.QRect(110, 510, 71, 21))
-        self.thoi_gian_line_edit.setObjectName("thoi_gian_line_edit")
-        self.nam_hoc_label = QtWidgets.QLabel(Frame)
-        self.nam_hoc_label.setGeometry(QtCore.QRect(40, 540, 60, 16))
-        self.nam_hoc_label.setObjectName("nam_hoc_label")
-        self.nam_hoc_line_edit = QtWidgets.QLineEdit(Frame)
-        self.nam_hoc_line_edit.setGeometry(QtCore.QRect(110, 540, 131, 21))
-        self.nam_hoc_line_edit.setObjectName("nam_hoc_line_edit")
-        self.hoc_ki_label = QtWidgets.QLabel(Frame)
-        self.hoc_ki_label.setGeometry(QtCore.QRect(40, 580, 60, 16))
-        self.hoc_ki_label.setObjectName("hoc_ki_label")
-        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Frame)
-        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(110, 570, 181, 31))
-        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.ky_1_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
-        self.ky_1_radio_button.setObjectName("ky_1_radio_button")
-        self.horizontalLayout_2.addWidget(self.ky_1_radio_button)
-        self.ky_2_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
-        self.ky_2_radio_button.setObjectName("ky_2_radio_button")
-        self.horizontalLayout_2.addWidget(self.ky_2_radio_button)
-        self.ky_he_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
-        self.ky_he_radio_button.setObjectName("ky_he_radio_button")
-        self.horizontalLayout_2.addWidget(self.ky_he_radio_button)
         self.xoa_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.xoa_de_thi_button.setGeometry(QtCore.QRect(430, 640, 161, 41))
+        self.xoa_de_thi_button.setGeometry(QtCore.QRect(430, 650, 161, 41))
         self.xoa_de_thi_button.setStyleSheet("background-color: red;\n"
                                              "color: white;\n"
                                              "border-radius: 5px;")
@@ -135,6 +108,52 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.shuffle_question_label.setGeometry(QtCore.QRect(390, 610, 141, 16))
         self.shuffle_question_label.setStyleSheet("text-decoration: underline")
         self.shuffle_question_label.setObjectName("shuffle_question_label")
+        self.delete_question_from_exam_label = QtWidgets.QLabel(Frame)
+        self.delete_question_from_exam_label.setGeometry(QtCore.QRect(150, 470, 161, 16))
+        self.delete_question_from_exam_label.setStyleSheet("text-decoration: underline;\n"
+                                                           "color: red;")
+        self.delete_question_from_exam_label.setObjectName("delete_question_from_exam_label")
+        self.exam_info = QtWidgets.QFrame(Frame)
+        self.exam_info.setGeometry(QtCore.QRect(30, 490, 301, 151))
+        self.exam_info.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.exam_info.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.exam_info.setObjectName("exam_info")
+        self.thong_tin_ve_de_thi_label = QtWidgets.QLabel(self.exam_info)
+        self.thong_tin_ve_de_thi_label.setGeometry(QtCore.QRect(0, 20, 151, 21))
+        self.thong_tin_ve_de_thi_label.setObjectName("thong_tin_ve_de_thi_label")
+        self.thoi_gian_line_edit = QtWidgets.QLineEdit(self.exam_info)
+        self.thoi_gian_line_edit.setGeometry(QtCore.QRect(110, 50, 71, 21))
+        self.thoi_gian_line_edit.setObjectName("thoi_gian_line_edit")
+        self.thoi_gian_label = QtWidgets.QLabel(self.exam_info)
+        self.thoi_gian_label.setGeometry(QtCore.QRect(40, 50, 101, 21))
+        self.thoi_gian_label.setObjectName("thoi_gian_label")
+        self.phut_label = QtWidgets.QLabel(self.exam_info)
+        self.phut_label.setGeometry(QtCore.QRect(200, 50, 60, 16))
+        self.phut_label.setObjectName("phut_label")
+        self.nam_hoc_line_edit = QtWidgets.QLineEdit(self.exam_info)
+        self.nam_hoc_line_edit.setGeometry(QtCore.QRect(110, 80, 131, 21))
+        self.nam_hoc_line_edit.setObjectName("nam_hoc_line_edit")
+        self.nam_hoc_label = QtWidgets.QLabel(self.exam_info)
+        self.nam_hoc_label.setGeometry(QtCore.QRect(40, 80, 60, 16))
+        self.nam_hoc_label.setObjectName("nam_hoc_label")
+        self.hoc_ki_label = QtWidgets.QLabel(self.exam_info)
+        self.hoc_ki_label.setGeometry(QtCore.QRect(10, 110, 60, 16))
+        self.hoc_ki_label.setObjectName("hoc_ki_label")
+        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.exam_info)
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(80, 110, 181, 31))
+        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.ky_1_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.ky_1_radio_button.setObjectName("ky_1_radio_button")
+        self.horizontalLayout_2.addWidget(self.ky_1_radio_button)
+        self.ky_2_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.ky_2_radio_button.setObjectName("ky_2_radio_button")
+        self.horizontalLayout_2.addWidget(self.ky_2_radio_button)
+        self.ky_he_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.ky_he_radio_button.setObjectName("ky_he_radio_button")
+        self.horizontalLayout_2.addWidget(self.ky_he_radio_button)
 
         # button click handle
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_button_click)
@@ -151,6 +170,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         # clickable label handle
         self.export_to_file_label.mousePressEvent = self.export_to_file_label_click
         self.shuffle_question_label.mousePressEvent = self.shuffle_question_click
+        self.delete_question_from_exam_label.mousePressEvent = self.delete_question_from_exam_click
 
         # tool button handle
         self.up_arrow_button.clicked.connect(self.up_arrow_button_click)
@@ -184,18 +204,19 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.danh_sach_cac_cau_trong_de_label.setText(_translate("Frame",
                                                                  "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách các câu trong đề</span></p></body></html>"))
         self.diem_cho_cau_hoi_label.setText(_translate("Frame", "Điểm cho câu hỏi"))
+        self.luu_de_thi_button.setText(_translate("Frame", "Lưu đề thi"))
+        self.xoa_de_thi_button.setText(_translate("Frame", "Xóa đề thi"))
+        self.export_to_file_label.setText(_translate("Frame", "Xuất ra file"))
+        self.shuffle_question_label.setText(_translate("Frame", "Xáo trộn các câu hỏi"))
+        self.delete_question_from_exam_label.setText(_translate("Frame", "Xoá câu hỏi ra khỏi đề thi"))
         self.thong_tin_ve_de_thi_label.setText(_translate("Frame", "Thông tin về đề thi"))
         self.thoi_gian_label.setText(_translate("Frame", "Thời gian"))
         self.phut_label.setText(_translate("Frame", "phút"))
-        self.luu_de_thi_button.setText(_translate("Frame", "Lưu đề thi"))
         self.nam_hoc_label.setText(_translate("Frame", "Năm học"))
         self.hoc_ki_label.setText(_translate("Frame", "Học kỳ"))
         self.ky_1_radio_button.setText(_translate("Frame", "1"))
         self.ky_2_radio_button.setText(_translate("Frame", "2"))
         self.ky_he_radio_button.setText(_translate("Frame", "Kỳ hè"))
-        self.xoa_de_thi_button.setText(_translate("Frame", "Xóa đề thi"))
-        self.export_to_file_label.setText(_translate("Frame", "Xuất ra file"))
-        self.shuffle_question_label.setText(_translate("Frame", "Xáo trộn các câu hỏi"))
 
         # load info
         for question_id in get_all_question(self.exam_id):
@@ -242,6 +263,12 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
             current_item = self.exam_question_list_widget.takeItem(random_index)
             self.exam_question_list_widget.insertItem(0, current_item)
         self.exam_question_list_widget_row_change()
+
+    def delete_question_from_exam_click(self, *arg, **kwargs):
+        current_row = self.exam_question_list_widget.currentRow()
+        if current_row != -1:
+            self.exam_question_list_widget.takeItem(current_row)
+            self.exam_question_list_widget_row_change()
 
     # ---------------------------------------------------------------------------------------
 
