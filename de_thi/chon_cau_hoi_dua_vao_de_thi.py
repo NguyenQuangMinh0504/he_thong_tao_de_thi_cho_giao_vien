@@ -256,9 +256,10 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
     def export_to_file_label_click(self, *args, **kwargs):
         path = QFileDialog.getSaveFileName()
-        with open(path[0], "w") as f:
-            text = self.exam_show_text_edit.toPlainText()
-            f.write(text)
+        if path[0] != "":
+            with open(path[0], "w") as f:
+                text = self.exam_show_text_edit.toPlainText()
+                f.write(text)
 
     def shuffle_question_click(self, *args, **kwargs):
         exam_question_num = self.exam_question_list_widget.count()
