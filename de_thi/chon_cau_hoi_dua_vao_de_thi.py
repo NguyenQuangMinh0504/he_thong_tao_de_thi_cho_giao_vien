@@ -22,7 +22,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.exam_id = exam_id
         self.subject_id = subject_id
         Frame.setObjectName("Frame")
-        Frame.resize(832, 694)
+        Frame.resize(832, 687)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.question_list_widget = QtWidgets.QListWidget(Frame)
@@ -123,6 +123,14 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.export_to_file_label.setStyleSheet("color: blue;\n"
                                                 "text-decoration: underline;")
         self.export_to_file_label.setObjectName("export_to_file_label")
+        self.up_arrow_button = QtWidgets.QToolButton(Frame)
+        self.up_arrow_button.setGeometry(QtCore.QRect(350, 380, 16, 21))
+        self.up_arrow_button.setArrowType(QtCore.Qt.UpArrow)
+        self.up_arrow_button.setObjectName("up_arrow_button")
+        self.down_arrow_button = QtWidgets.QToolButton(Frame)
+        self.down_arrow_button.setGeometry(QtCore.QRect(350, 420, 16, 21))
+        self.down_arrow_button.setArrowType(QtCore.Qt.DownArrow)
+        self.down_arrow_button.setObjectName("down_arrow_button")
 
         # button click handle
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_button_click)
@@ -139,7 +147,8 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         # clickable label handle
         self.export_to_file_label.mousePressEvent = self.export_to_file_label_click
 
-
+        # tool button handle
+        self.up_arrow_button.clicked.connect(self.up_arrow_button_click)
 
         self.retranslateUi(Frame)
         self.tat_ca_radio_button.click()
@@ -191,6 +200,8 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         if get_exam_info(self.exam_id):
             self.thoi_gian_line_edit.setText(str(get_exam_info(self.exam_id)[-2]))
             self.nam_hoc_line_edit.setText(str(get_exam_info(self.exam_id)[-3]))
+
+# ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
 
     def export_to_file_label_click(self, *args, **kwargs):
         path = QFileDialog.getSaveFileName()
@@ -246,8 +257,19 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         save_exam_table()
         self.Frame.close()
 
-    # ---------------------------------------------------------------------
-    # list widget row change
+    def up_arrow_button_click(self):
+        current_row = self.exam_question_list_widget.currentRow()
+        current_item = self.exam_question_list_widget.takeItem(current_row)
+        self.exam_question_list_widget.insertItem(current_row - 1, current_item)
+        self.exam_question_list_widget_row_change()
+
+    def down_arrow_button_click(self):
+        current_row = self.exam_question_list_widget.currentRow()
+        current_item = self.exam_question_list_widget.takeItem(current_row)
+        self.exam_question_list_widget.insertItem(current_row + 1, current_item)
+        self.exam_question_list_widget_row_change()
+
+    # ------------------------------- LIST WIDGET CHANGE HANDLE FUNCTION -----------------------------------
 
     def question_list_widget_row_change(self):
         try:
@@ -279,7 +301,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
                 self.exam_show_text_edit.append("{}.   {}".format(alphabet[order], answer))
             self.exam_show_text_edit.append("")
 
-    # ---------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------
 
 
 if __name__ == "__main__":
