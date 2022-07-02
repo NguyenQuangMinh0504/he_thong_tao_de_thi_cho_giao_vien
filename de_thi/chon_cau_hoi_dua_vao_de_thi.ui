@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>831</width>
-    <height>688</height>
+    <width>836</width>
+    <height>701</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -224,7 +224,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>630</y>
+     <y>640</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -321,7 +321,7 @@ border-radius: 5px;</string>
    <property name="geometry">
     <rect>
      <x>430</x>
-     <y>630</y>
+     <y>640</y>
      <width>161</width>
      <height>41</height>
     </rect>
@@ -376,6 +376,22 @@ text-decoration: underline;</string>
    </property>
    <property name="arrowType">
     <enum>Qt::DownArrow</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="shuffle_question_label">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>610</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">text-decoration: underline</string>
+   </property>
+   <property name="text">
+    <string>Xáo trộn các câu hỏi</string>
    </property>
   </widget>
  </widget>

@@ -22,7 +22,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.exam_id = exam_id
         self.subject_id = subject_id
         Frame.setObjectName("Frame")
-        Frame.resize(832, 687)
+        Frame.resize(836, 701)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.question_list_widget = QtWidgets.QListWidget(Frame)
@@ -80,7 +80,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.phut_label.setGeometry(QtCore.QRect(200, 510, 60, 16))
         self.phut_label.setObjectName("phut_label")
         self.luu_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.luu_de_thi_button.setGeometry(QtCore.QRect(230, 630, 161, 41))
+        self.luu_de_thi_button.setGeometry(QtCore.QRect(230, 640, 161, 41))
         self.luu_de_thi_button.setStyleSheet("background-color: green;\n"
                                              "color: white;\n"
                                              "border-radius: 5px;")
@@ -113,7 +113,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.ky_he_radio_button.setObjectName("ky_he_radio_button")
         self.horizontalLayout_2.addWidget(self.ky_he_radio_button)
         self.xoa_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.xoa_de_thi_button.setGeometry(QtCore.QRect(430, 630, 161, 41))
+        self.xoa_de_thi_button.setGeometry(QtCore.QRect(430, 640, 161, 41))
         self.xoa_de_thi_button.setStyleSheet("background-color: red;\n"
                                              "color: white;\n"
                                              "border-radius: 5px;")
@@ -131,6 +131,10 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.down_arrow_button.setGeometry(QtCore.QRect(350, 420, 16, 21))
         self.down_arrow_button.setArrowType(QtCore.Qt.DownArrow)
         self.down_arrow_button.setObjectName("down_arrow_button")
+        self.shuffle_question_label = QtWidgets.QLabel(Frame)
+        self.shuffle_question_label.setGeometry(QtCore.QRect(390, 610, 141, 16))
+        self.shuffle_question_label.setStyleSheet("text-decoration: underline")
+        self.shuffle_question_label.setObjectName("shuffle_question_label")
 
         # button click handle
         self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_button_click)
@@ -146,6 +150,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
         # clickable label handle
         self.export_to_file_label.mousePressEvent = self.export_to_file_label_click
+        self.shuffle_question_label.mousePressEvent = self.shuffle_question_click
 
         # tool button handle
         self.up_arrow_button.clicked.connect(self.up_arrow_button_click)
@@ -190,6 +195,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.ky_he_radio_button.setText(_translate("Frame", "Kỳ hè"))
         self.xoa_de_thi_button.setText(_translate("Frame", "Xóa đề thi"))
         self.export_to_file_label.setText(_translate("Frame", "Xuất ra file"))
+        self.shuffle_question_label.setText(_translate("Frame", "Xáo trộn các câu hỏi"))
 
         # load info
         for question_id in get_all_question(self.exam_id):
@@ -201,13 +207,9 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
             self.thoi_gian_line_edit.setText(str(get_exam_info(self.exam_id)[-2]))
             self.nam_hoc_line_edit.setText(str(get_exam_info(self.exam_id)[-3]))
 
-# ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
+    # ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
 
-    def export_to_file_label_click(self, *args, **kwargs):
-        path = QFileDialog.getSaveFileName()
-        with open(path[0], "w") as f:
-            text = self.exam_show_text_edit.toPlainText()
-            f.write(text)
+    # ----------------------------RADIO BUTTON CLICK HANDLE --------------------------------
 
     def trac_nghiem_button_click(self):
         self.question_list_widget.clear()
@@ -223,6 +225,25 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.question_list_widget.clear()
         for i in get_info(self.subject_id):
             self.question_list_widget.addItem(QtWidgets.QListWidgetItem(i))
+
+    # ------------------------ CLICKABLE LABEL HANDLE ---------------------------------------
+
+    def export_to_file_label_click(self, *args, **kwargs):
+        path = QFileDialog.getSaveFileName()
+        with open(path[0], "w") as f:
+            text = self.exam_show_text_edit.toPlainText()
+            f.write(text)
+
+    def shuffle_question_click(self, *args, **kwargs):
+        exam_question_num = self.exam_question_list_widget.count()
+        import random
+        for i in range(exam_question_num):
+            random_index = random.randint(0, exam_question_num - 1)  # -1 because randint(a, b) include both a and b
+            current_item = self.exam_question_list_widget.takeItem(random_index)
+            self.exam_question_list_widget.insertItem(0, current_item)
+        self.exam_question_list_widget_row_change()
+
+    # ---------------------------------------------------------------------------------------
 
     def them_vao_de_thi_button_click(self):
         question = self.question_list_widget.currentItem().text()
@@ -308,6 +329,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Frame = QtWidgets.QFrame()
     ui = ui_chon_cau_hoi_dua_vao_de_thi_frame()
