@@ -223,12 +223,18 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         # load info
         for question_id in get_all_question(self.exam_id):
             self.exam_question_list_widget.addItem(get_question(question_id))
-
         self.exam_question_list_widget_row_change()
 
         if get_exam_info(self.exam_id):
             self.thoi_gian_line_edit.setText(str(get_exam_info(self.exam_id)[-2]))
             self.nam_hoc_line_edit.setText(str(get_exam_info(self.exam_id)[-3]))
+            semester = get_exam_info(self.exam_id)[-1]
+            if semester == 0:
+                self.ky_1_radio_button.click()
+            elif semester == 1:
+                self.ky_2_radio_button.click()
+            elif semester == 2:
+                self.ky_he_radio_button.click()
 
     # ------------------------------------------------------------------------------------------------
     # ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
