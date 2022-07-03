@@ -53,9 +53,12 @@ class Ui_quan_li_de_thi_frame(object):
             self.de_thi_button.clicked.connect(lambda state, x=exam_info[0]: self.mo_de_thi_button_click(x))
             self.de_thi_button.setStyleSheet("background-image : url(./canvas_background.jpeg);")
 
+        # there is a bug that this will be washed by garbage collector.
+        self.tao_de_thi_moi_button_click = self.tao_de_thi_moi_button_click
+        self.tao_de_thi_moi_button.clicked.connect(self.tao_de_thi_moi_button_click)
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
-        self.tao_de_thi_moi_button.clicked.connect(self.tao_de_thi_moi_button_click)
+
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
