@@ -77,7 +77,8 @@ class Ui_giao_dien_chinh_frame(object):
 
     def subject_manage_button_click(self):
         self.subject_manage_frame = QFrame()
-        Ui_quan_ly_mon_hoc_frame().setupUi(self.subject_manage_frame)
+        self.ui_subject_manage_frame = Ui_quan_ly_mon_hoc_frame()
+        self.ui_subject_manage_frame.setupUi(self.subject_manage_frame)
         self.subject_manage_frame.show()
 
 
