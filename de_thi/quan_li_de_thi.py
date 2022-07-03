@@ -19,6 +19,7 @@ from de_thi.tao_de_thi_pop_up import Ui_tao_de_thi_pop_up
 class Ui_quan_li_de_thi_frame(object):
     def setupUi(self, Frame, subject_id):
         self.subject_id = subject_id
+        self.Frame = Frame
         Frame.setObjectName("Frame")
         Frame.resize(800, 600)
         Frame.setAutoFillBackground(False)
@@ -70,7 +71,7 @@ class Ui_quan_li_de_thi_frame(object):
     def tao_de_thi_moi_button_click(self):
         self.tao_de_thi_pop_up = QFrame()
         self.ui_tao_de_thi_pop_up = Ui_tao_de_thi_pop_up()
-        self.ui_tao_de_thi_pop_up.setupUi(self.tao_de_thi_pop_up, self.subject_id)
+        self.ui_tao_de_thi_pop_up.setupUi(self.tao_de_thi_pop_up, self.subject_id, self.Frame)
         self.tao_de_thi_pop_up.show()
 
     def mo_de_thi_button_click(self, exam_id):
@@ -81,6 +82,7 @@ class Ui_quan_li_de_thi_frame(object):
                                                        exam_id
                                                        )
         self.chon_cau_hoi_de_dua_vao_de_thi_frame.show()
+
 
 
 if __name__ == "__main__":

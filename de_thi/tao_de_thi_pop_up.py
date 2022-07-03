@@ -17,8 +17,10 @@ from de_thi.ra_de_thi_tu_dong import Ui_ra_de_thi_tu_dong_frame
 
 
 class Ui_tao_de_thi_pop_up(object):
-    def setupUi(self, Frame, subject_id):
+    def setupUi(self, Frame, subject_id, parent_frame):
+        self.parent_frame = parent_frame
         self.subject_id = subject_id
+        self.Frame = Frame
         Frame.setObjectName("Frame")
         Frame.resize(361, 179)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -56,12 +58,16 @@ class Ui_tao_de_thi_pop_up(object):
                                                        get_last_exam_id()
                                                        )
         self.chon_cau_hoi_de_dua_vao_de_thi_frame.show()
+        self.Frame.close()
+        self.parent_frame.close()
 
     def tao_de_thi_tu_dong_button_click(self):
         self.ui_ra_de_thi_tu_dong = Ui_ra_de_thi_tu_dong_frame()
         self.ra_de_thi_tu_dong_frame = QFrame()
         self.ui_ra_de_thi_tu_dong.setupUi(self.ra_de_thi_tu_dong_frame, self.subject_id)
         self.ra_de_thi_tu_dong_frame.show()
+        self.Frame.close()
+        self.parent_frame.close()
 
 
 if __name__ == "__main__":
