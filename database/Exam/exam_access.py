@@ -1,5 +1,6 @@
 import pandas as pd
 from database.path import EXAM_PATH
+
 exam_table = pd.read_csv(EXAM_PATH)
 
 
@@ -7,10 +8,11 @@ def get_all_description():
     print(list(exam_table["Exam_ID"]))
 
 
-def insert_to_exam(subject_id, description, school_year, duration, semester):
-
-    exam_table.loc[exam_table.shape[0]] = [get_last_exam_id(), subject_id, description,
-                                           school_year, duration, semester]
+def remove_exam_from_exam_table(exam_id):
+    from database.Exam.exam_question_access import remove_exam_question_from_exam_question_table
+    remove_exam_question_from_exam_question_table(exam_id)
+    query = "Exam_ID == {}".format(exam_id)
+    exam_table.drop(exam_table.query(query).index, inplace=True)
 
 
 def get_last_exam_id():
@@ -18,6 +20,16 @@ def get_last_exam_id():
         return exam_table.iloc[-1, 0] + 1
     except IndexError:
         return 0
+
+
+def insert_else_update_exam_to_exam_table(subject_id, description, school_year, duration, semester,
+                                          exam_id=get_last_exam_id()):
+    if exam_id in exam_table["Exam_ID"].values:
+        exam_table.loc[exam_table["Exam_ID"] == exam_id] = [exam_id, subject_id, description,
+                                                            school_year, duration, semester]
+    elif exam_id not in exam_table["Exam_ID"].values:
+        exam_table.loc[exam_table.shape[0]] = [exam_id, subject_id, description,
+                                               school_year, duration, semester]
 
 
 def save_exam_table():
@@ -42,18 +54,6 @@ def get_exam_info(exam_id):
 
 
 def get_exam_info_string(exam_id):
-    print(exam_id)
     query = "Exam_ID == {}".format(exam_id)
     info = list(exam_table.loc[exam_table.query(query).index[0]])
     return "{} năm học {} kỳ {}".format(info[2], info[3], info[5])
-
-
-def remove_exam_from_exam_table(exam_id):
-    from database.Exam.exam_question_access import remove_exam_question_from_exam_question_table
-    remove_exam_question_from_exam_question_table(exam_id)
-    query = "Exam_ID == {}".format(exam_id)
-    exam_table.drop(exam_table.query(query).index, inplace=True)
-
-
-
-
