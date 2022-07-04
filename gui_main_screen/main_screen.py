@@ -20,22 +20,23 @@ from database.Subject.subject_access import get_subject_id
 class Ui_giao_dien_chinh_frame(object):
     def setupUi(self, Frame):
         Frame.setObjectName("Frame")
-        Frame.resize(317, 218)
+        Frame.resize(329, 245)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Frame)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.question_manage_button = QtWidgets.QPushButton(Frame)
-        self.question_manage_button.setGeometry(QtCore.QRect(10, 30, 291, 41))
         self.question_manage_button.setObjectName("question_manage_button")
+        self.verticalLayout.addWidget(self.question_manage_button)
         self.exam_manage_button = QtWidgets.QPushButton(Frame)
-        self.exam_manage_button.setGeometry(QtCore.QRect(10, 90, 291, 41))
         self.exam_manage_button.setObjectName("exam_manage_button")
+        self.verticalLayout.addWidget(self.exam_manage_button)
         self.subject_manage_button = QtWidgets.QPushButton(Frame)
-        self.subject_manage_button.setGeometry(QtCore.QRect(10, 150, 291, 41))
         self.subject_manage_button.setObjectName("subject_manage_button")
-
-        self.question_manage_button.clicked.connect(self.question_manage_button_click)
-        self.exam_manage_button.clicked.connect(self.exam_manage_button_click)
-        self.subject_manage_button.clicked.connect(self.subject_manage_button_click)
+        self.verticalLayout.addWidget(self.subject_manage_button)
+        self.export_data_button = QtWidgets.QPushButton(Frame)
+        self.export_data_button.setObjectName("export_data_button")
+        self.verticalLayout.addWidget(self.export_data_button)
 
         self.retranslateUi(Frame)
         QtCore.QMetaObject.connectSlotsByName(Frame)
@@ -46,6 +47,8 @@ class Ui_giao_dien_chinh_frame(object):
         self.question_manage_button.setText(_translate("Frame", "Soạn câu hỏi"))
         self.exam_manage_button.setText(_translate("Frame", "Xây dựng đề thi"))
         self.subject_manage_button.setText(_translate("Frame", "Quản lý môn học"))
+        self.export_data_button.setText(_translate("Frame", "Xuất dữ liệu"))
+
 
     def question_manage_button_click(self):
         self.pop_up_frame = QFrame()

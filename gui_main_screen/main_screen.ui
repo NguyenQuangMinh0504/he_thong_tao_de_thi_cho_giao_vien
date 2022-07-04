@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>317</width>
-    <height>218</height>
+    <width>329</width>
+    <height>245</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,45 +19,36 @@
   <property name="frameShadow">
    <enum>QFrame::Raised</enum>
   </property>
-  <widget class="QPushButton" name="question_manage_button">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>291</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Soạn câu hỏi</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="exam_manage_button">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>90</y>
-     <width>291</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Xây dựng đề thi</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="subject_manage_button">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>150</y>
-     <width>291</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Quản lý môn học</string>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QPushButton" name="question_manage_button">
+     <property name="text">
+      <string>Soạn câu hỏi</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="exam_manage_button">
+     <property name="text">
+      <string>Xây dựng đề thi</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="subject_manage_button">
+     <property name="text">
+      <string>Quản lý môn học</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="export_data_button">
+     <property name="text">
+      <string>Xuất dữ liệu</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
