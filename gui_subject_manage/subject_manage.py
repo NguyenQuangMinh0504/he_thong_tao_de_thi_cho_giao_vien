@@ -114,14 +114,14 @@ class Ui_subject_manage_frame(object):
         self.subject_name_text_edit.setText(self.subject_combo_box.currentText())
         self.subject_code_text_edit.setPlainText(info[0])
         self.description_text_edit.setText(info[2])
-        self.num_chapter_combo_box.setValue(info[1])
+        self.num_chapter_spin_box.setValue(info[1])
 
     def luu_button_click(self):
         change_subject_info(
             get_subject_id(self.subject_combo_box.currentText()),
             self.subject_name_text_edit.toPlainText(),
             self.subject_code_text_edit.toPlainText(),
-            self.num_chapter_combo_box.value(),
+            self.num_chapter_spin_box.value(),
             self.description_text_edit.toPlainText()
         )
         save_subject_table()
