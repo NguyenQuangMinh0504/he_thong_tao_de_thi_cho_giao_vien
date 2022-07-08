@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Frame</class>
- <widget class="QFrame" name="Frame">
+ <class>exam_frame</class>
+ <widget class="QFrame" name="exam_frame">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Frame</string>
+   <string>Đề thi</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::StyledPanel</enum>
@@ -57,21 +57,21 @@ p, li { white-space: pre-wrap; }
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QRadioButton" name="tat_ca_radio_button">
+     <widget class="QRadioButton" name="all_radio_button">
       <property name="text">
        <string>Tất cả</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="trac_nghiem_radio_button">
+     <widget class="QRadioButton" name="mcq_radio_button">
       <property name="text">
        <string>Trắc nghiệm</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="tu_luan_radio_button">
+     <widget class="QRadioButton" name="construct_response_radio_button">
       <property name="text">
        <string>Tự luận</string>
       </property>
@@ -79,7 +79,7 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="dang_cau_hoi_label">
+  <widget class="QLabel" name="question_type_label">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -92,7 +92,7 @@ p, li { white-space: pre-wrap; }
     <string>Dạng câu hỏi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="them_vao_de_thi_button">
+  <widget class="QPushButton" name="add_question_to_exam_button">
    <property name="geometry">
     <rect>
      <x>610</x>
@@ -132,7 +132,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="danh_sach_cau_hoi_label">
+  <widget class="QLabel" name="list_question">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -145,7 +145,7 @@ p, li { white-space: pre-wrap; }
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Danh sách câu hỏi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="danh_sach_cac_cau_trong_de_label">
+  <widget class="QLabel" name="list_exam_question_label">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -158,7 +158,7 @@ p, li { white-space: pre-wrap; }
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Danh sách các câu trong đề&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QDoubleSpinBox" name="diem_cau_hoi_spin_box">
+  <widget class="QDoubleSpinBox" name="question_score_spin_box">
    <property name="geometry">
     <rect>
      <x>510</x>
@@ -168,7 +168,7 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="diem_cho_cau_hoi_label">
+  <widget class="QLabel" name="question_score_label">
    <property name="geometry">
     <rect>
      <x>380</x>
@@ -181,7 +181,7 @@ p, li { white-space: pre-wrap; }
     <string>Điểm cho câu hỏi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="luu_de_thi_button">
+  <widget class="QPushButton" name="save_exam_button">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -199,7 +199,7 @@ border-radius: 5px;</string>
     <string>Lưu đề thi</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="xoa_de_thi_button">
+  <widget class="QPushButton" name="delete_exam_button">
    <property name="geometry">
     <rect>
      <x>430</x>
@@ -308,7 +308,7 @@ color: red;</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="thong_tin_ve_de_thi_label">
+   <widget class="QLabel" name="exam_description_label">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -321,7 +321,7 @@ color: red;</string>
      <string>Thông tin về đề thi</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="thoi_gian_line_edit">
+   <widget class="QLineEdit" name="time_line_edit">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -331,7 +331,7 @@ color: red;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="thoi_gian_label">
+   <widget class="QLabel" name="time_label">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -344,7 +344,7 @@ color: red;</string>
      <string>Thời gian</string>
     </property>
    </widget>
-   <widget class="QLabel" name="phut_label">
+   <widget class="QLabel" name="minute_label">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -357,7 +357,7 @@ color: red;</string>
      <string>phút</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="nam_hoc_line_edit">
+   <widget class="QLineEdit" name="year_line_edit">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -367,7 +367,7 @@ color: red;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="nam_hoc_label">
+   <widget class="QLabel" name="year_label">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -380,7 +380,7 @@ color: red;</string>
      <string>Năm học</string>
     </property>
    </widget>
-   <widget class="QLabel" name="hoc_ki_label">
+   <widget class="QLabel" name="semester_label">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -404,21 +404,21 @@ color: red;</string>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QRadioButton" name="ky_1_radio_button">
+      <widget class="QRadioButton" name="semester_1_radio_button">
        <property name="text">
         <string>1</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="ky_2_radio_button">
+      <widget class="QRadioButton" name="semester_2_radio_button">
        <property name="text">
         <string>2</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="ky_he_radio_button">
+      <widget class="QRadioButton" name="summer_semester_radio_button">
        <property name="text">
         <string>Kỳ hè</string>
        </property>

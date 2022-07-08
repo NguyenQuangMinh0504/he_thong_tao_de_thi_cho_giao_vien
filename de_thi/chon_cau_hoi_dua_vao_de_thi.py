@@ -17,152 +17,143 @@ from database.MCQS_Answer.mcq_answer_access import get_answer, get_right_answer
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
-    def setupUi(self, Frame, subject_id, exam_id):
-        self.Frame = Frame
+class Ui_exam_frame(object):
+    def setupUi(self, exam_frame, subject_id, exam_id):
+        self.Frame = exam_frame
         self.exam_id = exam_id
         self.subject_id = subject_id
-        Frame.setObjectName("Frame")
-        Frame.resize(801, 707)
-        Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        Frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.question_list_widget = QtWidgets.QListWidget(Frame)
+        exam_frame.setObjectName("exam_frame")
+        exam_frame.resize(801, 707)
+        exam_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        exam_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.question_list_widget = QtWidgets.QListWidget(exam_frame)
         self.question_list_widget.setGeometry(QtCore.QRect(40, 60, 301, 191))
         self.question_list_widget.setObjectName("question_list_widget")
-        self.question_show_text_edit = QtWidgets.QTextEdit(Frame)
+        self.question_show_text_edit = QtWidgets.QTextEdit(exam_frame)
         self.question_show_text_edit.setGeometry(QtCore.QRect(370, 60, 401, 191))
         self.question_show_text_edit.setObjectName("question_show_text_edit")
-        self.horizontalLayoutWidget = QtWidgets.QWidget(Frame)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(exam_frame)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(50, 280, 261, 21))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.tat_ca_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.tat_ca_radio_button.setObjectName("tat_ca_radio_button")
-        self.horizontalLayout.addWidget(self.tat_ca_radio_button)
-        self.trac_nghiem_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.trac_nghiem_radio_button.setObjectName("trac_nghiem_radio_button")
-        self.horizontalLayout.addWidget(self.trac_nghiem_radio_button)
-        self.tu_luan_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.tu_luan_radio_button.setObjectName("tu_luan_radio_button")
-        self.horizontalLayout.addWidget(self.tu_luan_radio_button)
-        self.dang_cau_hoi_label = QtWidgets.QLabel(Frame)
-        self.dang_cau_hoi_label.setGeometry(QtCore.QRect(50, 260, 79, 15))
-        self.dang_cau_hoi_label.setObjectName("dang_cau_hoi_label")
-        self.them_vao_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.them_vao_de_thi_button.setGeometry(QtCore.QRect(610, 270, 161, 41))
-        self.them_vao_de_thi_button.setObjectName("them_vao_de_thi_button")
-        self.exam_question_list_widget = QtWidgets.QListWidget(Frame)
+        self.all_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.all_radio_button.setObjectName("all_radio_button")
+        self.horizontalLayout.addWidget(self.all_radio_button)
+        self.mcq_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.mcq_radio_button.setObjectName("mcq_radio_button")
+        self.horizontalLayout.addWidget(self.mcq_radio_button)
+        self.construct_response_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
+        self.construct_response_radio_button.setObjectName("construct_response_radio_button")
+        self.horizontalLayout.addWidget(self.construct_response_radio_button)
+        self.question_type_label = QtWidgets.QLabel(exam_frame)
+        self.question_type_label.setGeometry(QtCore.QRect(50, 260, 79, 15))
+        self.question_type_label.setObjectName("question_type_label")
+        self.add_question_to_exam_button = QtWidgets.QPushButton(exam_frame)
+        self.add_question_to_exam_button.setGeometry(QtCore.QRect(610, 270, 161, 41))
+        self.add_question_to_exam_button.setObjectName("add_question_to_exam_button")
+        self.exam_question_list_widget = QtWidgets.QListWidget(exam_frame)
         self.exam_question_list_widget.setGeometry(QtCore.QRect(30, 350, 311, 111))
         self.exam_question_list_widget.setObjectName("exam_question_list_widget")
-        self.exam_show_text_edit = QtWidgets.QTextEdit(Frame)
+        self.exam_show_text_edit = QtWidgets.QTextEdit(exam_frame)
         self.exam_show_text_edit.setGeometry(QtCore.QRect(370, 350, 401, 251))
         self.exam_show_text_edit.setObjectName("exam_show_text_edit")
-        self.danh_sach_cau_hoi_label = QtWidgets.QLabel(Frame)
-        self.danh_sach_cau_hoi_label.setGeometry(QtCore.QRect(50, 20, 161, 21))
-        self.danh_sach_cau_hoi_label.setObjectName("danh_sach_cau_hoi_label")
-        self.danh_sach_cac_cau_trong_de_label = QtWidgets.QLabel(Frame)
-        self.danh_sach_cac_cau_trong_de_label.setGeometry(QtCore.QRect(40, 300, 311, 31))
-        self.danh_sach_cac_cau_trong_de_label.setObjectName("danh_sach_cac_cau_trong_de_label")
-        self.diem_cau_hoi_spin_box = QtWidgets.QDoubleSpinBox(Frame)
-        self.diem_cau_hoi_spin_box.setGeometry(QtCore.QRect(510, 280, 68, 24))
-        self.diem_cau_hoi_spin_box.setObjectName("diem_cau_hoi_spin_box")
-        self.diem_cho_cau_hoi_label = QtWidgets.QLabel(Frame)
-        self.diem_cho_cau_hoi_label.setGeometry(QtCore.QRect(380, 280, 131, 31))
-        self.diem_cho_cau_hoi_label.setObjectName("diem_cho_cau_hoi_label")
-        self.thong_tin_ve_de_thi_label = QtWidgets.QLabel(Frame)
-        self.thong_tin_ve_de_thi_label.setGeometry(QtCore.QRect(30, 480, 151, 21))
-        self.thong_tin_ve_de_thi_label.setObjectName("thong_tin_ve_de_thi_label")
-        self.thoi_gian_label = QtWidgets.QLabel(Frame)
-        self.thoi_gian_label.setGeometry(QtCore.QRect(40, 510, 101, 21))
-        self.thoi_gian_label.setObjectName("thoi_gian_label")
-        self.phut_label = QtWidgets.QLabel(Frame)
-        self.phut_label.setGeometry(QtCore.QRect(200, 510, 60, 16))
-        self.phut_label.setObjectName("phut_label")
-        self.luu_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.luu_de_thi_button.setGeometry(QtCore.QRect(220, 650, 161, 41))
-        self.luu_de_thi_button.setStyleSheet("background-color: green;\n"
+        self.list_question = QtWidgets.QLabel(exam_frame)
+        self.list_question.setGeometry(QtCore.QRect(50, 20, 161, 21))
+        self.list_question.setObjectName("list_question")
+        self.list_exam_question_label = QtWidgets.QLabel(exam_frame)
+        self.list_exam_question_label.setGeometry(QtCore.QRect(40, 300, 311, 31))
+        self.list_exam_question_label.setObjectName("list_exam_question_label")
+        self.question_score_spin_box = QtWidgets.QDoubleSpinBox(exam_frame)
+        self.question_score_spin_box.setGeometry(QtCore.QRect(510, 280, 68, 24))
+        self.question_score_spin_box.setObjectName("question_score_spin_box")
+        self.question_score_label = QtWidgets.QLabel(exam_frame)
+        self.question_score_label.setGeometry(QtCore.QRect(380, 280, 131, 31))
+        self.question_score_label.setObjectName("question_score_label")
+        self.save_exam_button = QtWidgets.QPushButton(exam_frame)
+        self.save_exam_button.setGeometry(QtCore.QRect(220, 650, 161, 41))
+        self.save_exam_button.setStyleSheet("background-color: green;\n"
                                              "color: white;\n"
                                              "border-radius: 5px;")
-        self.luu_de_thi_button.setObjectName("luu_de_thi_button")
-        self.xoa_de_thi_button = QtWidgets.QPushButton(Frame)
-        self.xoa_de_thi_button.setGeometry(QtCore.QRect(430, 650, 161, 41))
-        self.xoa_de_thi_button.setStyleSheet("background-color: red;\n"
+        self.save_exam_button.setObjectName("save_exam_button")
+        self.delete_exam_button = QtWidgets.QPushButton(exam_frame)
+        self.delete_exam_button.setGeometry(QtCore.QRect(430, 650, 161, 41))
+        self.delete_exam_button.setStyleSheet("background-color: red;\n"
                                              "color: white;\n"
                                              "border-radius: 5px;")
-        self.xoa_de_thi_button.setObjectName("xoa_de_thi_button")
-        self.export_to_file_label = QtWidgets.QLabel(Frame)
+        self.delete_exam_button.setObjectName("delete_exam_button")
+        self.export_to_file_label = QtWidgets.QLabel(exam_frame)
         self.export_to_file_label.setGeometry(QtCore.QRect(660, 610, 81, 16))
         self.export_to_file_label.setStyleSheet("color: blue;\n"
                                                 "text-decoration: underline;")
         self.export_to_file_label.setObjectName("export_to_file_label")
-        self.up_arrow_button = QtWidgets.QToolButton(Frame)
+        self.up_arrow_button = QtWidgets.QToolButton(exam_frame)
         self.up_arrow_button.setGeometry(QtCore.QRect(350, 380, 16, 21))
         self.up_arrow_button.setArrowType(QtCore.Qt.UpArrow)
         self.up_arrow_button.setObjectName("up_arrow_button")
-        self.down_arrow_button = QtWidgets.QToolButton(Frame)
+        self.down_arrow_button = QtWidgets.QToolButton(exam_frame)
         self.down_arrow_button.setGeometry(QtCore.QRect(350, 420, 16, 21))
         self.down_arrow_button.setArrowType(QtCore.Qt.DownArrow)
         self.down_arrow_button.setObjectName("down_arrow_button")
-        self.shuffle_question_label = QtWidgets.QLabel(Frame)
+        self.shuffle_question_label = QtWidgets.QLabel(exam_frame)
         self.shuffle_question_label.setGeometry(QtCore.QRect(390, 610, 141, 16))
         self.shuffle_question_label.setStyleSheet("text-decoration: underline")
         self.shuffle_question_label.setObjectName("shuffle_question_label")
-        self.delete_question_from_exam_label = QtWidgets.QLabel(Frame)
+        self.delete_question_from_exam_label = QtWidgets.QLabel(exam_frame)
         self.delete_question_from_exam_label.setGeometry(QtCore.QRect(150, 470, 161, 16))
         self.delete_question_from_exam_label.setStyleSheet("text-decoration: underline;\n"
-                                                           "color: red;")
+"color: red;")
         self.delete_question_from_exam_label.setObjectName("delete_question_from_exam_label")
-        self.exam_info = QtWidgets.QFrame(Frame)
+        self.exam_info = QtWidgets.QFrame(exam_frame)
         self.exam_info.setGeometry(QtCore.QRect(30, 490, 301, 151))
         self.exam_info.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.exam_info.setFrameShadow(QtWidgets.QFrame.Raised)
         self.exam_info.setObjectName("exam_info")
-        self.thong_tin_ve_de_thi_label = QtWidgets.QLabel(self.exam_info)
-        self.thong_tin_ve_de_thi_label.setGeometry(QtCore.QRect(0, 20, 151, 21))
-        self.thong_tin_ve_de_thi_label.setObjectName("thong_tin_ve_de_thi_label")
-        self.thoi_gian_line_edit = QtWidgets.QLineEdit(self.exam_info)
-        self.thoi_gian_line_edit.setGeometry(QtCore.QRect(110, 50, 71, 21))
-        self.thoi_gian_line_edit.setObjectName("thoi_gian_line_edit")
-        self.thoi_gian_label = QtWidgets.QLabel(self.exam_info)
-        self.thoi_gian_label.setGeometry(QtCore.QRect(40, 50, 101, 21))
-        self.thoi_gian_label.setObjectName("thoi_gian_label")
-        self.phut_label = QtWidgets.QLabel(self.exam_info)
-        self.phut_label.setGeometry(QtCore.QRect(200, 50, 60, 16))
-        self.phut_label.setObjectName("phut_label")
-        self.nam_hoc_line_edit = QtWidgets.QLineEdit(self.exam_info)
-        self.nam_hoc_line_edit.setGeometry(QtCore.QRect(110, 80, 131, 21))
-        self.nam_hoc_line_edit.setObjectName("nam_hoc_line_edit")
-        self.nam_hoc_label = QtWidgets.QLabel(self.exam_info)
-        self.nam_hoc_label.setGeometry(QtCore.QRect(40, 80, 60, 16))
-        self.nam_hoc_label.setObjectName("nam_hoc_label")
-        self.hoc_ki_label = QtWidgets.QLabel(self.exam_info)
-        self.hoc_ki_label.setGeometry(QtCore.QRect(10, 110, 60, 16))
-        self.hoc_ki_label.setObjectName("hoc_ki_label")
+        self.exam_description_label = QtWidgets.QLabel(self.exam_info)
+        self.exam_description_label.setGeometry(QtCore.QRect(0, 20, 151, 21))
+        self.exam_description_label.setObjectName("exam_description_label")
+        self.time_line_edit = QtWidgets.QLineEdit(self.exam_info)
+        self.time_line_edit.setGeometry(QtCore.QRect(110, 50, 71, 21))
+        self.time_line_edit.setObjectName("time_line_edit")
+        self.time_label = QtWidgets.QLabel(self.exam_info)
+        self.time_label.setGeometry(QtCore.QRect(40, 50, 101, 21))
+        self.time_label.setObjectName("time_label")
+        self.minute_label = QtWidgets.QLabel(self.exam_info)
+        self.minute_label.setGeometry(QtCore.QRect(200, 50, 60, 16))
+        self.minute_label.setObjectName("minute_label")
+        self.year_line_edit = QtWidgets.QLineEdit(self.exam_info)
+        self.year_line_edit.setGeometry(QtCore.QRect(110, 80, 131, 21))
+        self.year_line_edit.setObjectName("year_line_edit")
+        self.year_label = QtWidgets.QLabel(self.exam_info)
+        self.year_label.setGeometry(QtCore.QRect(40, 80, 60, 16))
+        self.year_label.setObjectName("year_label")
+        self.semester_label = QtWidgets.QLabel(self.exam_info)
+        self.semester_label.setGeometry(QtCore.QRect(10, 110, 60, 16))
+        self.semester_label.setObjectName("semester_label")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.exam_info)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(80, 110, 181, 31))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.ky_1_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
-        self.ky_1_radio_button.setObjectName("ky_1_radio_button")
-        self.horizontalLayout_2.addWidget(self.ky_1_radio_button)
-        self.ky_2_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
-        self.ky_2_radio_button.setObjectName("ky_2_radio_button")
-        self.horizontalLayout_2.addWidget(self.ky_2_radio_button)
-        self.ky_he_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
-        self.ky_he_radio_button.setObjectName("ky_he_radio_button")
-        self.horizontalLayout_2.addWidget(self.ky_he_radio_button)
+        self.semester_1_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.semester_1_radio_button.setObjectName("semester_1_radio_button")
+        self.horizontalLayout_2.addWidget(self.semester_1_radio_button)
+        self.semester_2_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.semester_2_radio_button.setObjectName("semester_2_radio_button")
+        self.horizontalLayout_2.addWidget(self.semester_2_radio_button)
+        self.summer_semester_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget_2)
+        self.summer_semester_radio_button.setObjectName("summer_semester_radio_button")
+        self.horizontalLayout_2.addWidget(self.summer_semester_radio_button)
 
         # button click handle
-        self.trac_nghiem_radio_button.clicked.connect(self.trac_nghiem_button_click)
-        self.tu_luan_radio_button.clicked.connect(self.tu_luan_button_click)
-        self.tat_ca_radio_button.clicked.connect(self.tat_ca_button_click)
-        self.them_vao_de_thi_button.clicked.connect(self.them_vao_de_thi_button_click)
-        self.luu_de_thi_button.clicked.connect(self.save_exam_button_click)
-        self.xoa_de_thi_button.clicked.connect(self.delete_exam_button_click)
+        self.mcq_radio_button.clicked.connect(self.trac_nghiem_button_click)
+        self.construct_response_radio_button.clicked.connect(self.tu_luan_button_click)
+        self.all_radio_button.clicked.connect(self.tat_ca_button_click)
+        self.add_question_to_exam_button.clicked.connect(self.them_vao_de_thi_button_click)
+        self.save_exam_button.clicked.connect(self.save_exam_button_click)
+        self.delete_exam_button.clicked.connect(self.delete_exam_button_click)
 
         # row change handle
         self.question_list_widget.currentRowChanged.connect(self.question_list_widget_row_change)
@@ -177,48 +168,48 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.up_arrow_button.clicked.connect(self.up_arrow_button_click)
         self.down_arrow_button.clicked.connect(self.down_arrow_button_click)
 
-        self.retranslateUi(Frame)
-        self.tat_ca_radio_button.click()
-        QtCore.QMetaObject.connectSlotsByName(Frame)
+        self.retranslateUi(exam_frame)
+        self.all_radio_button.click()
+        QtCore.QMetaObject.connectSlotsByName(exam_frame)
 
-    def retranslateUi(self, Frame):
+    def retranslateUi(self, exam_frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.question_show_text_edit.setHtml(_translate("Frame",
+        exam_frame.setWindowTitle(_translate("exam_frame", "Đề thi"))
+        self.question_show_text_edit.setHtml(_translate("exam_frame",
                                                         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                         "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                         "p, li { white-space: pre-wrap; }\n"
                                                         "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
                                                         "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.tat_ca_radio_button.setText(_translate("Frame", "Tất cả"))
-        self.trac_nghiem_radio_button.setText(_translate("Frame", "Trắc nghiệm"))
-        self.tu_luan_radio_button.setText(_translate("Frame", "Tự luận"))
-        self.dang_cau_hoi_label.setText(_translate("Frame", "Dạng câu hỏi"))
-        self.them_vao_de_thi_button.setText(_translate("Frame", "Thêm vào đề thi"))
-        self.exam_show_text_edit.setHtml(_translate("Frame",
+        self.all_radio_button.setText(_translate("exam_frame", "Tất cả"))
+        self.mcq_radio_button.setText(_translate("exam_frame", "Trắc nghiệm"))
+        self.construct_response_radio_button.setText(_translate("exam_frame", "Tự luận"))
+        self.question_type_label.setText(_translate("exam_frame", "Dạng câu hỏi"))
+        self.add_question_to_exam_button.setText(_translate("exam_frame", "Thêm vào đề thi"))
+        self.exam_show_text_edit.setHtml(_translate("exam_frame",
                                                     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                                     "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
                                                     "p, li { white-space: pre-wrap; }\n"
                                                     "</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
                                                     "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.danh_sach_cau_hoi_label.setText(_translate("Frame",
-                                                        "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách câu hỏi</span></p></body></html>"))
-        self.danh_sach_cac_cau_trong_de_label.setText(_translate("Frame",
-                                                                 "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách các câu trong đề</span></p></body></html>"))
-        self.diem_cho_cau_hoi_label.setText(_translate("Frame", "Điểm cho câu hỏi"))
-        self.luu_de_thi_button.setText(_translate("Frame", "Lưu đề thi"))
-        self.xoa_de_thi_button.setText(_translate("Frame", "Xóa đề thi"))
-        self.export_to_file_label.setText(_translate("Frame", "Xuất ra file"))
-        self.shuffle_question_label.setText(_translate("Frame", "Xáo trộn các câu hỏi"))
-        self.delete_question_from_exam_label.setText(_translate("Frame", "Xoá câu hỏi ra khỏi đề thi"))
-        self.thong_tin_ve_de_thi_label.setText(_translate("Frame", "Thông tin về đề thi"))
-        self.thoi_gian_label.setText(_translate("Frame", "Thời gian"))
-        self.phut_label.setText(_translate("Frame", "phút"))
-        self.nam_hoc_label.setText(_translate("Frame", "Năm học"))
-        self.hoc_ki_label.setText(_translate("Frame", "Học kỳ"))
-        self.ky_1_radio_button.setText(_translate("Frame", "1"))
-        self.ky_2_radio_button.setText(_translate("Frame", "2"))
-        self.ky_he_radio_button.setText(_translate("Frame", "Kỳ hè"))
+        self.list_question.setText(_translate("exam_frame",
+                                              "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách câu hỏi</span></p></body></html>"))
+        self.list_exam_question_label.setText(_translate("exam_frame",
+                                                         "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Danh sách các câu trong đề</span></p></body></html>"))
+        self.question_score_label.setText(_translate("exam_frame", "Điểm cho câu hỏi"))
+        self.save_exam_button.setText(_translate("exam_frame", "Lưu đề thi"))
+        self.delete_exam_button.setText(_translate("exam_frame", "Xóa đề thi"))
+        self.export_to_file_label.setText(_translate("exam_frame", "Xuất ra file"))
+        self.shuffle_question_label.setText(_translate("exam_frame", "Xáo trộn các câu hỏi"))
+        self.delete_question_from_exam_label.setText(_translate("exam_frame", "Xoá câu hỏi ra khỏi đề thi"))
+        self.exam_description_label.setText(_translate("exam_frame", "Thông tin về đề thi"))
+        self.time_label.setText(_translate("exam_frame", "Thời gian"))
+        self.minute_label.setText(_translate("exam_frame", "phút"))
+        self.year_label.setText(_translate("exam_frame", "Năm học"))
+        self.semester_label.setText(_translate("exam_frame", "Học kỳ"))
+        self.semester_1_radio_button.setText(_translate("exam_frame", "1"))
+        self.semester_2_radio_button.setText(_translate("exam_frame", "2"))
+        self.summer_semester_radio_button.setText(_translate("exam_frame", "Kỳ hè"))
 
         # load info
         for question_id in get_all_question(self.exam_id):
@@ -226,15 +217,15 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         self.exam_question_list_widget_row_change()
 
         if get_exam_info(self.exam_id):
-            self.thoi_gian_line_edit.setText(str(get_exam_info(self.exam_id)[-2]))
-            self.nam_hoc_line_edit.setText(str(get_exam_info(self.exam_id)[-3]))
+            self.time_line_edit.setText(str(get_exam_info(self.exam_id)[-2]))
+            self.year_line_edit.setText(str(get_exam_info(self.exam_id)[-3]))
             semester = get_exam_info(self.exam_id)[-1]
             if semester == 1:
-                self.ky_1_radio_button.click()
+                self.semester_1_radio_button.click()
             elif semester == 2:
-                self.ky_2_radio_button.click()
+                self.semester_2_radio_button.click()
             elif semester == 3:
-                self.ky_he_radio_button.click()
+                self.summer_semester_radio_button.click()
 
     # ------------------------------------------------------------------------------------------------
     # ------------------------------- BUTTON CLICK HANDLE FUNCTION -----------------------------------
@@ -289,7 +280,7 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
         question_id = get_question_id_on_question_from_question_table(question)
 
         # insert into database
-        insert_into_exam(self.exam_id, question_id, self.diem_cau_hoi_spin_box.value())
+        insert_into_exam(self.exam_id, question_id, self.question_score_spin_box.value())
         # insert into gui
         self.exam_question_list_widget.addItem(question)
         self.exam_question_list_widget_row_change()
@@ -306,17 +297,17 @@ class ui_chon_cau_hoi_dua_vao_de_thi_frame(object):
 
     def save_exam_button_click(self):
         hoc_ki = 0
-        if self.ky_1_radio_button.isChecked():
+        if self.semester_1_radio_button.isChecked():
             hoc_ki = 1
-        elif self.ky_2_radio_button.isChecked():
+        elif self.semester_2_radio_button.isChecked():
             hoc_ki = 2
-        elif self.ky_he_radio_button.isChecked():
+        elif self.summer_semester_radio_button.isChecked():
             hoc_ki = 3
 
         insert_else_update_exam_to_exam_table(self.subject_id,
                                               "Đề thi môn {}".format(get_subject_name(self.subject_id)),
-                                              self.nam_hoc_line_edit.text(),
-                                              int(self.thoi_gian_line_edit.text()),
+                                              self.year_line_edit.text(),
+                                              int(self.time_line_edit.text()),
                                               hoc_ki,
                                               exam_id=self.exam_id
                                               )
@@ -382,7 +373,7 @@ if __name__ == "__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     Frame = QtWidgets.QFrame()
-    ui = ui_chon_cau_hoi_dua_vao_de_thi_frame()
+    ui = Ui_exam_frame()
     ui.setupUi(Frame)
     Frame.show()
     sys.exit(app.exec_())
