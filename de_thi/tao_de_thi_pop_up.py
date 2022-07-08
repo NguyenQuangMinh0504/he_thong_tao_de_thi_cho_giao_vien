@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFrame
 
 from database.Exam.exam_access import get_last_exam_id
-from de_thi.chon_cau_hoi_dua_vao_de_thi import ui_chon_cau_hoi_dua_vao_de_thi_frame
+from de_thi.exam import Ui_exam_frame
 from de_thi.ra_de_thi_tu_dong import Ui_ra_de_thi_tu_dong_frame
 
 
@@ -21,7 +21,7 @@ class Ui_tao_de_thi_pop_up(object):
         self.parent_frame = parent_frame
         self.subject_id = subject_id
         self.Frame = Frame
-        Frame.setObjectName("Frame")
+        Frame.setObjectName("main_screen_frame")
         Frame.resize(361, 179)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -46,12 +46,12 @@ class Ui_tao_de_thi_pop_up(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.tao_de_thi_thu_cong_button.setText(_translate("Frame", "Tạo đề thi thủ công"))
-        self.tao_de_thi_tu_dong_button.setText(_translate("Frame", "Tạo đề thi tự động"))
+        Frame.setWindowTitle(_translate("main_screen_frame", "main_screen_frame"))
+        self.tao_de_thi_thu_cong_button.setText(_translate("main_screen_frame", "Tạo đề thi thủ công"))
+        self.tao_de_thi_tu_dong_button.setText(_translate("main_screen_frame", "Tạo đề thi tự động"))
 
     def tao_de_thi_thu_cong_button_click(self):
-        self.ui_chon_cau_hoi_de_dua_vao_de_thi = ui_chon_cau_hoi_dua_vao_de_thi_frame()
+        self.ui_chon_cau_hoi_de_dua_vao_de_thi = Ui_exam_frame()
         self.chon_cau_hoi_de_dua_vao_de_thi_frame = QFrame()
         self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame,
                                                        self.subject_id,

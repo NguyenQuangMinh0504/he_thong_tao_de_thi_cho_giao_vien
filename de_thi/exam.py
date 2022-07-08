@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'chon_cau_hoi_dua_vao_de_thi.ui'
+# Form implementation generated from reading ui file 'exam.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -290,9 +290,9 @@ class Ui_exam_frame(object):
         save_exam_table()
         save_exam_question_table()
         self.Frame.close()
-        from de_thi.quan_li_de_thi import Ui_quan_li_de_thi_frame
+        from de_thi.exam_manage import Ui_exam_manage_frame
         frame = QFrame()
-        Ui_quan_li_de_thi_frame().setupUi(frame, self.subject_id)
+        Ui_exam_manage_frame().setupUi(frame, self.subject_id)
         frame.show()
 
     def save_exam_button_click(self):
@@ -314,9 +314,9 @@ class Ui_exam_frame(object):
         save_exam_question_table()
         save_exam_table()
         self.Frame.close()
-        from de_thi.quan_li_de_thi import Ui_quan_li_de_thi_frame
+        from de_thi.exam_manage import Ui_exam_manage_frame
         frame = QFrame()
-        Ui_quan_li_de_thi_frame().setupUi(frame, self.subject_id)
+        Ui_exam_manage_frame().setupUi(frame, self.subject_id)
         frame.show()
 
     def up_arrow_button_click(self):
