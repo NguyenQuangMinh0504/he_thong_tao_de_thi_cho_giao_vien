@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>quan_ly_mon_hoc_frame</class>
- <widget class="QFrame" name="quan_ly_mon_hoc_frame">
+ <class>subject_manage_frame</class>
+ <widget class="QFrame" name="subject_manage_frame">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>385</width>
-    <height>400</height>
+    <width>378</width>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Frame</string>
+   <string>Quản lý môn học</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::StyledPanel</enum>
@@ -32,77 +32,77 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
       <item>
-       <widget class="QLabel" name="mon_hoc_label">
+       <widget class="QLabel" name="subject_label">
         <property name="text">
          <string>Môn học</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="mon_hoc_combo_box"/>
+       <widget class="QComboBox" name="subject_combo_box"/>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="ten_mon_hoc_label">
+       <widget class="QLabel" name="subject_name_label">
         <property name="text">
          <string>Tên môn học</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="ten_mon_hoc_text_edit"/>
+       <widget class="QTextEdit" name="subject_name_text_edit"/>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="ma_hoc_phan_label">
+       <widget class="QLabel" name="subject_code_label">
         <property name="text">
          <string>Mã học phần</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="ma_hoc_phan_text_edit"/>
+       <widget class="QTextEdit" name="subject_code_text_edit"/>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QLabel" name="so_chuong_label">
+       <widget class="QLabel" name="num_chapter_label">
         <property name="text">
          <string>Số chương</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="so_chuong_spin_box"/>
+       <widget class="QSpinBox" name="num_chapter_spin_box"/>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QLabel" name="gioi_thieu_label">
+       <widget class="QLabel" name="description_label">
         <property name="text">
          <string>Giới thiệu</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="gioi_thieu_text_edit"/>
+       <widget class="QTextEdit" name="description_text_edit"/>
       </item>
      </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QPushButton" name="luu_button">
+       <widget class="QPushButton" name="save_button">
         <property name="text">
          <string>Lưu</string>
         </property>
@@ -116,7 +116,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="xoa_mon_hoc_button">
+       <widget class="QPushButton" name="delete_subject_button">
         <property name="text">
          <string>Xóa môn học</string>
         </property>
