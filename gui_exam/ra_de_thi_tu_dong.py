@@ -14,7 +14,7 @@ from PyQt5.QtWidgets import QFrame, QPushButton, QSpinBox
 from database.Exam.exam_access import get_last_exam_id
 from database.Exam.exam_question_access import auto_generate_exam_on_difficulty, auto_generate_exam_on_coverage
 from database.Subject.subject_access import get_subject_chapter
-from de_thi.exam import Ui_exam_frame
+from gui_exam.exam import Ui_exam_frame
 
 
 class Ui_ra_de_thi_tu_dong_frame(object):

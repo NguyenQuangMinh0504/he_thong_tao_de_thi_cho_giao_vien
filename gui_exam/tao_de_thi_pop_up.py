@@ -12,8 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFrame
 
 from database.Exam.exam_access import get_last_exam_id
-from de_thi.exam import Ui_exam_frame
-from de_thi.ra_de_thi_tu_dong import Ui_ra_de_thi_tu_dong_frame
+from gui_exam.exam import Ui_exam_frame
+from gui_exam.ra_de_thi_tu_dong import Ui_ra_de_thi_tu_dong_frame
 
 
 class Ui_tao_de_thi_pop_up(object):

@@ -290,7 +290,7 @@ class Ui_exam_frame(object):
         save_exam_table()
         save_exam_question_table()
         self.Frame.close()
-        from de_thi.exam_manage import Ui_exam_manage_frame
+        from gui_exam.exam_manage import Ui_exam_manage_frame
         frame = QFrame()
         Ui_exam_manage_frame().setupUi(frame, self.subject_id)
         frame.show()
@@ -314,7 +314,7 @@ class Ui_exam_frame(object):
         save_exam_question_table()
         save_exam_table()
         self.Frame.close()
-        from de_thi.exam_manage import Ui_exam_manage_frame
+        from gui_exam.exam_manage import Ui_exam_manage_frame
         frame = QFrame()
         Ui_exam_manage_frame().setupUi(frame, self.subject_id)
         frame.show()
