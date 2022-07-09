@@ -16,7 +16,7 @@ from database.MCQS_Answer.mcq_answer_access import save_mcq_answer_table, mcq_an
 from database.MCQS_Answer.written_exam_answer_access import \
     insert_answer_or_modify_current_answer_to_written_exam_answer_table, save_written_exam_answer_table
 from database.Question.question_access import save_question_table, get_question_id_on_question_from_question_table
-from soan_cau_hoi.add_question_pop_up import Ui_them_cau_hoi_frame
+from gui_question_manage.add_question_pop_up import Ui_them_cau_hoi_frame
 
 
 class Ui_question_frame(object):
@@ -240,7 +240,7 @@ class Ui_question_frame(object):
 
     def them_dap_an_click(self, *args, **kwargs):
         self.them_dap_an_pop_up = QtWidgets.QFrame()
-        from soan_cau_hoi.them_dap_an_pop_up import Ui_them_dap_an_pop_up
+        from gui_question_manage.them_dap_an_pop_up import Ui_them_dap_an_pop_up
         self.ui_them_dap_an_pop_up = Ui_them_dap_an_pop_up()
         self.ui_them_dap_an_pop_up.setupUi(self.them_dap_an_pop_up)
         # clear the check box of them dap an pop up
@@ -253,7 +253,7 @@ class Ui_question_frame(object):
 
     def chinh_sua_click(self, *args, **kwargs):
         self.chinh_sua_dap_an_pop_up = QtWidgets.QFrame()
-        from soan_cau_hoi.chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
+        from gui_question_manage.chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
         self.ui_chinh_sua_dap_an_pop_up = Ui_chinh_sua_dap_an_pop_up()
         self.ui_chinh_sua_dap_an_pop_up.setupUi(self.chinh_sua_dap_an_pop_up)
         if self.multiple_choice_answer_list_widget.currentItem() is not None:  # in case the user don't click any answer

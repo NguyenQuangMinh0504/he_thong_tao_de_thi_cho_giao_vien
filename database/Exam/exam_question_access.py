@@ -25,15 +25,23 @@ def get_exam_id(question_id):
 
 
 def auto_generate_exam_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho):
-    for question_id in get_feasible_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho):
-        insert_into_exam(get_last_exam_id(), question_id, 0)
-    print(exam_question_table)
+    status = get_feasible_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho)[0]
+    if status:
+        for question_id in get_feasible_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho)[1]:
+            insert_into_exam(get_last_exam_id(), question_id, 0)
+        return True
+    elif not status:
+        return [False, get_feasible_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho)[1]]
 
 
 def auto_generate_exam_on_coverage(subject_id, coverage):
-    for question_id in get_feasible_question_on_coverage(subject_id, coverage):
-        insert_into_exam(get_last_exam_id(), question_id, 0)
-    print(exam_question_table)
+    status = get_feasible_question_on_coverage(subject_id, coverage)[0]
+    if status:
+        for question_id in get_feasible_question_on_coverage(subject_id, coverage)[1]:
+            insert_into_exam(get_last_exam_id(), question_id, 0)
+        return True
+    elif not status:
+        return [False, get_feasible_question_on_coverage(subject_id, coverage)[1]]
 
 
 def remove_question_from_exam_question_table(question_id):

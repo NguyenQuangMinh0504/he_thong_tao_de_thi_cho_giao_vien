@@ -177,18 +177,36 @@ class Ui_ra_de_thi_tu_dong_frame(object):
     def tao_de_thi_button_click(self):
         self.Frame.close()
         if self.ra_de_thi_theo_combo_box.currentText() == "Độ khó":
-            auto_generate_exam_on_difficulty(self.subject_id,
+            status = auto_generate_exam_on_difficulty(self.subject_id,
                                              self.so_cau_de_spin_box.value(),
                                              self.so_cau_vua_spin_box.value(),
                                              self.so_cau_kho_spin_box.value()
                                              )
+            if len(status) == 2:
+                msg = QtWidgets.QMessageBox()
+                msg.setIcon(QtWidgets.QMessageBox.Critical)
+                msg.setText("\n".join(status[1]))
+                print(status[1])
+                msg.setStandardButtons(QtWidgets.QMessageBox.Close)
+                msg.exec_()
+                self.Frame.show()
+                return
+
         elif self.ra_de_thi_theo_combo_box.currentText() == "Độ bao phủ":
             coverage = []
             for i in range(get_subject_chapter(self.subject_id)):
                 coverage.append(
                     self.verticalLayoutWidget_3.findChild(QSpinBox, "chuong_{}_spin_box".format(i + 1)).value())
-            auto_generate_exam_on_coverage(self.subject_id, coverage)
-
+            status = auto_generate_exam_on_coverage(self.subject_id, coverage)
+            if len(status) == 2:
+                msg = QtWidgets.QMessageBox()
+                msg.setIcon(QtWidgets.QMessageBox.Critical)
+                msg.setText("\n".join(status[1]))
+                print(status[1])
+                msg.setStandardButtons(QtWidgets.QMessageBox.Close)
+                msg.exec_()
+                self.Frame.show()
+                return
         self.ui_chon_cau_hoi_de_dua_vao_de_thi = Ui_exam_frame()
         self.chon_cau_hoi_de_dua_vao_de_thi_frame = QFrame()
         self.ui_chon_cau_hoi_de_dua_vao_de_thi.setupUi(self.chon_cau_hoi_de_dua_vao_de_thi_frame,

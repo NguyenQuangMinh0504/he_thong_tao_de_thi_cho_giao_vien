@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QFrame
 from gui_main_screen.pop_up import Ui_pop_up
 from gui_subject_manage.subject_manage import Ui_subject_manage_frame
 from gui_exam.exam_manage import Ui_exam_manage_frame
-from soan_cau_hoi.question_manage import Ui_question_frame
+from gui_question_manage.question_manage import Ui_question_frame
 from database.Subject.subject_access import get_subject_id
 
 
