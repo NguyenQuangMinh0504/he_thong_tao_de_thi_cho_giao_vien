@@ -13,7 +13,7 @@ from database.Exam.exam_access import insert_else_update_exam_to_exam_table, sav
     remove_exam_from_exam_table
 from database.Subject.subject_access import get_subject_name
 from database.Question.question_access import *
-from database.MCQS_Answer.mcq_answer_access import get_answer, get_right_answer
+from database.MCQS_Answer.mcq_answer_access import get_all_answer, get_all_correct_answer
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -340,12 +340,12 @@ class Ui_exam_frame(object):
             self.question_show_text_edit.clear()
             question = self.question_list_widget.currentItem().text()
             question_id = get_question_id_on_question_from_question_table(question)
-            list_answer = get_answer(question_id)
+            list_answer = get_all_answer(question_id)
             self.question_show_text_edit.append(question)
             for number, answer in enumerate(list_answer):
                 self.question_show_text_edit.append("{}.  {}".format(number, answer))
             self.question_show_text_edit.append("Thông tin chi tiết:")
-            self.question_show_text_edit.append("Đáp án đúng: {}".format(get_right_answer(question_id)))
+            self.question_show_text_edit.append("Đáp án đúng: {}".format(get_all_correct_answer(question_id)))
             self.question_show_text_edit.append("Độ khó: {}".format(get_question_difficulty(question_id)))
             self.question_show_text_edit.append("Chương: Chương {}".format(get_question_chapter(question_id)))
 
@@ -361,7 +361,7 @@ class Ui_exam_frame(object):
         for number, question in enumerate(questions):
             question_id = get_question_id_on_question_from_question_table(question)
             self.exam_show_text_edit.append("Câu {}: {}".format(number + 1, question))
-            for order, answer in enumerate(get_answer(question_id)):
+            for order, answer in enumerate(get_all_answer(question_id)):
                 self.exam_show_text_edit.append("{}.   {}".format(alphabet[order], answer))
             self.exam_show_text_edit.append("")
 

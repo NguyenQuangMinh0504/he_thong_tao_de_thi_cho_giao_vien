@@ -1,11 +1,25 @@
-import pandas
-import json
+import pandas as pd
 
 
-def export_to_json(dataframe: pandas.DataFrame, fp: str):
-    value = dataframe.values.tolist()
+def export_to_json_file(dataframe: pd.DataFrame, fp:str):
     if fp == "":
         print("File path not exist !")
     else:
-        with open(fp, "w") as outfile:
-            json.dump(value, outfile)
+        dataframe.to_json(fp)
+
+
+def import_json_file(fp: str):
+    if fp == "":
+        print("File path not exist !")
+    else:
+        table = pd.read_json(fp)
+        print(table)
+        pass
+
+
+if __name__ == '__main__':
+    test = pd.read_csv("../database/Question/Question.csv")
+    print(test)
+    a = test.to_json()
+    print(a)
+

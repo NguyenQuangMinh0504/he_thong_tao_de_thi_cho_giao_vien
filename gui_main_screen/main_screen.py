@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QFrame
 from gui_main_screen.pop_up import Ui_pop_up
 from gui_subject_manage.subject_manage import Ui_subject_manage_frame
 from gui_exam.exam_manage import Ui_exam_manage_frame
-from soan_cau_hoi.soan_cau_hoi_ver_trinh_thanh_trung import Ui_soan_cau_hoi_frame
+from soan_cau_hoi.question_manage import Ui_question_frame
 from database.Subject.subject_access import get_subject_id
 
 
@@ -70,7 +70,7 @@ class Ui_main_screen_frame(object):
     def question_manage_pop_up_ok_button_click(self):
         self.pop_up_frame.close()
         self.exam_manage_frame = QFrame()
-        Ui_soan_cau_hoi_frame().setupUi(self.exam_manage_frame,
+        Ui_question_frame().setupUi(self.exam_manage_frame,
                                         get_subject_id(self.ui_pop_up.danh_sach_mon_hoc_combo_box.currentText()))
         self.exam_manage_frame.show()
 

@@ -54,13 +54,11 @@ class Ui_export_data_frame(object):
         for subject in get_all_subject():
             self.subject_combo_box.addItem(subject)
 
-
     def export_data_button_click(self):
         path = QtWidgets.QFileDialog.getSaveFileName()
+        print(path)
         from database.Question.question_access import export_to_json
-        export_to_json(path)
-
-
+        export_to_json(path[0])
 
 
 if __name__ == "__main__":

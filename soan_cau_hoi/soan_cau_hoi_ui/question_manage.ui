@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>question_frame</class>
+ <widget class="QFrame" name="question_frame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1137</width>
+    <height>634</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Quản lý câu hỏi</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="frameShape">
+   <enum>QFrame::StyledPanel</enum>
+  </property>
+  <property name="frameShadow">
+   <enum>QFrame::Raised</enum>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="_3">
+     <item>
+      <layout class="QVBoxLayout" name="_4">
+       <item>
+        <widget class="QLabel" name="list_question_label">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Danh sách câu hỏi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="question_list_widget"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="add_question_label">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Thêm câu hỏi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="_5">
+       <item>
+        <layout class="QHBoxLayout" name="_10">
+         <item>
+          <widget class="QLabel" name="question_type_label">
+           <property name="text">
+            <string>Dạng câu hỏi</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="mcq_radio_button">
+           <property name="text">
+            <string>Trắc nghiệm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="construct_response_radio_button">
+           <property name="text">
+            <string>Tự luận</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="_8">
+         <item>
+          <layout class="QHBoxLayout" name="_2">
+           <item>
+            <widget class="QLabel" name="chapter_label">
+             <property name="text">
+              <string>Chương</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="chapter_combo_box"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="_7">
+           <item>
+            <widget class="QLabel" name="difficulty_label">
+             <property name="text">
+              <string>Độ khó</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="difficulty_combo_box"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="problem_label">
+         <property name="text">
+          <string>Đề bài</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="probelem_text_edit"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="mcq_answer_label">
+         <property name="text">
+          <string>Các lựa chọn đáp án</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="multiple_choice_answer_list_widget"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="_9">
+         <item>
+          <widget class="QLabel" name="add_mcq_answer_label">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Thêm&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="edit_mcq_answer_label">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Chỉnh sửa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="delete_mcq_answer_label">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#fc0107;&quot;&gt;Xóa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="answer_or_suggest_answer_label">
+         <property name="text">
+          <string>Đáp án hoặc gợi ý trả lời</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="answer_or_suggest_answer_text_edit"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="_6">
+         <item>
+          <widget class="QPushButton" name="delete_question_button">
+           <property name="text">
+            <string>Xóa câu hỏi</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="save_button">
+           <property name="text">
+            <string>Lưu</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

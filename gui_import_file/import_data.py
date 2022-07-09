@@ -56,8 +56,9 @@ class Ui_import_data_frame(object):
 
     def import_data_button_click(self):
         path = QtWidgets.QFileDialog.getOpenFileName()
-        from database.Question.question_access import export_to_json
-        export_to_json(path)
+        from database.Question.question_access import import_json_file
+        import_json_file(path[0])
+        print("KEC")
 
 
 if __name__ == "__main__":

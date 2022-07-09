@@ -17,27 +17,27 @@ from gui_exam.tao_de_thi_pop_up import Ui_tao_de_thi_pop_up
 
 
 class Ui_exam_manage_frame(object):
-    def setupUi(self, exam_frame, subject_id):
+    def setupUi(self, exam_manage_frame, subject_id):
         self.subject_id = subject_id
-        self.Frame = exam_frame
-        exam_frame.setObjectName("exam_frame")
-        exam_frame.resize(800, 600)
-        exam_frame.setAutoFillBackground(False)
-        exam_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        exam_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.exam_manage_label = QtWidgets.QLabel(exam_frame)
+        self.Frame = exam_manage_frame
+        exam_manage_frame.setObjectName("exam_manage_frame")
+        exam_manage_frame.resize(800, 600)
+        exam_manage_frame.setAutoFillBackground(False)
+        exam_manage_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        exam_manage_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.exam_manage_label = QtWidgets.QLabel(exam_manage_frame)
         self.exam_manage_label.setGeometry(QtCore.QRect(20, 10, 291, 51))
         self.exam_manage_label.setObjectName("exam_manage_label")
-        self.open_existing_exam_label = QtWidgets.QLabel(exam_frame)
+        self.open_existing_exam_label = QtWidgets.QLabel(exam_manage_frame)
         self.open_existing_exam_label.setGeometry(QtCore.QRect(30, 60, 151, 41))
         self.open_existing_exam_label.setObjectName("open_existing_exam_label")
-        self.create_new_exam_button = QtWidgets.QPushButton(exam_frame)
+        self.create_new_exam_button = QtWidgets.QPushButton(exam_manage_frame)
         self.create_new_exam_button.setGeometry(QtCore.QRect(500, 30, 151, 41))
         self.create_new_exam_button.setStyleSheet("background-color: blue;\n"
 "color: white;\n"
 "border-radius: 5px;")
         self.create_new_exam_button.setObjectName("create_new_exam_button")
-        self.exam_container_frame = QtWidgets.QWidget(exam_frame)
+        self.exam_container_frame = QtWidgets.QWidget(exam_manage_frame)
         self.exam_container_frame.setGeometry(QtCore.QRect(20, 100, 760, 400))
         self.exam_container_frame.setStyleSheet(".QWidget  {border-style: dashed;\n"
 "border-width: 5px;\n"
@@ -57,16 +57,16 @@ class Ui_exam_manage_frame(object):
         # there is a bug that this will be washed by garbage collector.
         self.tao_de_thi_moi_button_click = self.tao_de_thi_moi_button_click
         self.create_new_exam_button.clicked.connect(self.tao_de_thi_moi_button_click)
-        self.retranslateUi(exam_frame)
-        QtCore.QMetaObject.connectSlotsByName(exam_frame)
+        self.retranslateUi(exam_manage_frame)
+        QtCore.QMetaObject.connectSlotsByName(exam_manage_frame)
 
 
-    def retranslateUi(self, exam_frame):
+    def retranslateUi(self, exam_manage_frame):
         _translate = QtCore.QCoreApplication.translate
-        exam_frame.setWindowTitle(_translate("exam_frame", "Quản lý đề thi"))
-        self.exam_manage_label.setText(_translate("exam_frame", "<html><head/><body><p><span style=\" font-size:24pt;\">Quản lý đề thi</span></p></body></html>"))
-        self.open_existing_exam_label.setText(_translate("exam_frame", "<html><head/><body><p><span style=\" font-size:18pt;\">Mở đề thi có sẵn</span></p></body></html>"))
-        self.create_new_exam_button.setText(_translate("exam_frame", "Tạo đề thi mới"))
+        exam_manage_frame.setWindowTitle(_translate("exam_manage_frame", "Quản lý đề thi"))
+        self.exam_manage_label.setText(_translate("exam_manage_frame", "<html><head/><body><p><span style=\" font-size:24pt;\">Quản lý đề thi</span></p></body></html>"))
+        self.open_existing_exam_label.setText(_translate("exam_manage_frame", "<html><head/><body><p><span style=\" font-size:18pt;\">Mở đề thi có sẵn</span></p></body></html>"))
+        self.create_new_exam_button.setText(_translate("exam_manage_frame", "Tạo đề thi mới"))
 
     def tao_de_thi_moi_button_click(self):
         self.tao_de_thi_pop_up = QFrame()

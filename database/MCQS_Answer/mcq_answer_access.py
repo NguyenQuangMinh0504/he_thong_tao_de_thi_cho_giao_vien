@@ -1,14 +1,17 @@
 import pandas as pd
-import re
 
-from database.Question.question_access import question_table
 from database.path import QUESTION_PATH, MCQ_ANSWER_PATH
 
 mcq_answer_table = pd.read_csv(MCQ_ANSWER_PATH)
 
 
-def get_answer(question_id):
+def get_all_answer(question_id):
     query = "Question_ID == {}".format(question_id)
+    return list(mcq_answer_table.query(query)["Dap_An"])
+
+
+def get_all_correct_answer(question_id):
+    query = "Question_ID == {} and Correct_Answer == True".format(question_id)
     return list(mcq_answer_table.query(query)["Dap_An"])
 
 
@@ -21,8 +24,7 @@ def insert_row(question_id, dap_an, true_false):
     mcq_answer_table.loc[mcq_answer_table.shape[0]] = [question_id, dap_an, true_false]
 
 
-def get_right_answer(question_id):
-    query = "Question_ID == {} and Correct_Answer == True".format(question_id)
+
     try:
         return list(mcq_answer_table.query(query)["Dap_An"])[0]
     except IndexError:
@@ -41,6 +43,7 @@ def modify_correct(answer, correct):
 
 def get_answer_correct(answer):
     query = "Dap_An == \"{}\"".format(answer)
+    print(list(mcq_answer_table.query(query)["Correct_Answer"]))
     return list(mcq_answer_table.query(query)["Correct_Answer"])[0]
 
 

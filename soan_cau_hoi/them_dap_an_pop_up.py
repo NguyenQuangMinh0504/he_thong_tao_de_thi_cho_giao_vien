@@ -6,7 +6,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_them_dap_an_pop_up(object):
     def setupUi(self, Frame):
         self.Frame = Frame
-        Frame.setObjectName("Frame")
+        Frame.setObjectName("main_screen_frame")
         Frame.resize(244, 166)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -38,10 +38,10 @@ class Ui_them_dap_an_pop_up(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.dap_an_label.setText(_translate("Frame", "Đáp án"))
-        self.dap_an_dung_label.setText(_translate("Frame", "Đáp án đúng"))
-        self.ok_button.setText(_translate("Frame", "OK"))
+        Frame.setWindowTitle(_translate("main_screen_frame", "main_screen_frame"))
+        self.dap_an_label.setText(_translate("main_screen_frame", "Đáp án"))
+        self.dap_an_dung_label.setText(_translate("main_screen_frame", "Đáp án đúng"))
+        self.ok_button.setText(_translate("main_screen_frame", "OK"))
 
 
 if __name__ == "__main__":

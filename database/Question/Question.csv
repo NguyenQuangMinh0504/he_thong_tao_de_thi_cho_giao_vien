@@ -3,7 +3,7 @@ Question_ID,Question,Subject_ID,Type,Difficulty,Chapter
 3,Which was the first purely object oriented programming language developed?,1,trac_nghiem,3,3
 4,When OOP concept did first came into picture?,1,trac_nghiem,1,2
 5,Which feature of OOP indicates code reusability?,1,trac_nghiem,1,4
-6, Which header file is required in C++ to use OOP?,1,trac_nghiem,3,5
+6,Which header file is required in C++ to use OOP?,1,trac_nghiem,3,5
 7,Why Java is Partially OOP language?,1,trac_nghiem,2,6
 8,Which among the following doesn’t come under OOP concept?,1,trac_nghiem,1,7
 9,Which is the correct syntax of inheritance?,1,trac_nghiem,1,8
@@ -11,5 +11,5 @@ Question_ID,Question,Subject_ID,Type,Difficulty,Chapter
 16,software is defined as _____  ?,2,trac_nghiem,1,1
 17,What is Software Engineering ?,2,trac_nghiem,1,1
 18,Who invented OOP?,1,trac_nghiem,1,1
-19,cau hoi tu luan 1,1,tu_luan,1,1
 20,cau hoi tu luan 2,1,tu_luan,1,1
+21,câu hỏi software engineer 3,2,trac_nghiem,1,1

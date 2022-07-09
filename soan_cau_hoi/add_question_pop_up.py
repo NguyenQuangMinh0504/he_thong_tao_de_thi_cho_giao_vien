@@ -18,7 +18,7 @@ from database.Subject.subject_access import get_subject_chapter
 class Ui_them_cau_hoi_frame(object):
     def setupUi(self, Frame, subject_id):
         self.subject_id = subject_id
-        Frame.setObjectName("Frame")
+        Frame.setObjectName("main_screen_frame")
         Frame.resize(430, 407)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -38,13 +38,13 @@ class Ui_them_cau_hoi_frame(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.dang_cau_hoi_label = QtWidgets.QLabel(self.horizontalLayoutWidget)
-        self.dang_cau_hoi_label.setObjectName("dang_cau_hoi_label")
+        self.dang_cau_hoi_label.setObjectName("question_type_label")
         self.horizontalLayout.addWidget(self.dang_cau_hoi_label)
         self.trac_nghiem_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.trac_nghiem_radio_button.setObjectName("trac_nghiem_radio_button")
+        self.trac_nghiem_radio_button.setObjectName("mcq_radio_button")
         self.horizontalLayout.addWidget(self.trac_nghiem_radio_button)
         self.tu_luan_radio_button = QtWidgets.QRadioButton(self.horizontalLayoutWidget)
-        self.tu_luan_radio_button.setObjectName("tu_luan_radio_button")
+        self.tu_luan_radio_button.setObjectName("construct_response_radio_button")
         self.horizontalLayout.addWidget(self.tu_luan_radio_button)
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(Frame)
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 50, 318, 51))
@@ -56,7 +56,7 @@ class Ui_them_cau_hoi_frame(object):
         self.do_kho_label.setObjectName("do_kho_label")
         self.horizontalLayout_2.addWidget(self.do_kho_label)
         self.do_kho_combo_box = QtWidgets.QComboBox(self.horizontalLayoutWidget_2)
-        self.do_kho_combo_box.setObjectName("do_kho_combo_box")
+        self.do_kho_combo_box.setObjectName("difficulty_combo_box")
         self.horizontalLayout_2.addWidget(self.do_kho_combo_box)
         self.chuong_label = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
         self.chuong_label.setObjectName("chuong_label")
@@ -76,14 +76,14 @@ class Ui_them_cau_hoi_frame(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("Frame", "Frame"))
-        self.cau_hoi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Câu hỏi</span></p></body></html>"))
-        self.ok_button.setText(_translate("Frame", "OK"))
-        self.dang_cau_hoi_label.setText(_translate("Frame", "Dạng câu hỏi"))
-        self.trac_nghiem_radio_button.setText(_translate("Frame", "Trắc nghiệm"))
-        self.tu_luan_radio_button.setText(_translate("Frame", "Tự luận"))
-        self.do_kho_label.setText(_translate("Frame", "Độ khó"))
-        self.chuong_label.setText(_translate("Frame", "Chương"))
+        Frame.setWindowTitle(_translate("main_screen_frame", "main_screen_frame"))
+        self.cau_hoi_label.setText(_translate("main_screen_frame", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Câu hỏi</span></p></body></html>"))
+        self.ok_button.setText(_translate("main_screen_frame", "OK"))
+        self.dang_cau_hoi_label.setText(_translate("main_screen_frame", "Dạng câu hỏi"))
+        self.trac_nghiem_radio_button.setText(_translate("main_screen_frame", "Trắc nghiệm"))
+        self.tu_luan_radio_button.setText(_translate("main_screen_frame", "Tự luận"))
+        self.do_kho_label.setText(_translate("main_screen_frame", "Độ khó"))
+        self.chuong_label.setText(_translate("main_screen_frame", "Chương"))
 
     def ok_button_click(self):
         error_list = []
