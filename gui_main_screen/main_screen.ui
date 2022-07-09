@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Frame</class>
- <widget class="QFrame" name="Frame">
+ <class>main_screen_frame</class>
+ <widget class="QFrame" name="main_screen_frame">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Frame</string>
+   <string>Giao diện chính</string>
   </property>
   <property name="frameShape">
    <enum>QFrame::StyledPanel</enum>
@@ -45,6 +45,13 @@
     <widget class="QPushButton" name="export_data_button">
      <property name="text">
       <string>Xuất dữ liệu</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="import_data_button">
+     <property name="text">
+      <string>Nhập dữ liệu</string>
      </property>
     </widget>
    </item>

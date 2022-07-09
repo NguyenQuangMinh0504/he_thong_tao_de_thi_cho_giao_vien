@@ -37,7 +37,7 @@ class Ui_pop_up(object):
 
     def retranslateUi(self, pop_up):
         _translate = QtCore.QCoreApplication.translate
-        pop_up.setWindowTitle(_translate("pop_up", "Frame"))
+        pop_up.setWindowTitle(_translate("pop_up", "Chọn môn học"))
         self.chon_mon_hoc_label.setText(_translate("pop_up", "Chọn môn học:"))
         self.ok_button.setText(_translate("pop_up", "OK"))
 
