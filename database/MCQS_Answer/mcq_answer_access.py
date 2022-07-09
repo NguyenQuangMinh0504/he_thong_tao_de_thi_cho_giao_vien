@@ -24,13 +24,6 @@ def insert_row(question_id, dap_an, true_false):
     mcq_answer_table.loc[mcq_answer_table.shape[0]] = [question_id, dap_an, true_false]
 
 
-
-    try:
-        return list(mcq_answer_table.query(query)["Dap_An"])[0]
-    except IndexError:
-        print("No result")
-
-
 def remove_answer(answer):
     query = "Dap_An == \"{}\"".format(answer)
     mcq_answer_table.drop(mcq_answer_table.query(query).index, inplace=True)

@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 from database.Subject.subject_access import add_subject
 
 
@@ -23,44 +24,41 @@ class Ui_add_subject_frame(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.verticalLayout.addLayout(self.horizontalLayout_6)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.ten_mon_hoc_label = QtWidgets.QLabel(add_subject_frame)
-        self.ten_mon_hoc_label.setObjectName("subject_name_label")
-        self.horizontalLayout.addWidget(self.ten_mon_hoc_label)
-        self.ten_mon_hoc_text_edit = QtWidgets.QTextEdit(add_subject_frame)
-        self.ten_mon_hoc_text_edit.setObjectName("subject_name_text_edit")
-        self.horizontalLayout.addWidget(self.ten_mon_hoc_text_edit)
+        self.subject_label = QtWidgets.QLabel(add_subject_frame)
+        self.subject_label.setObjectName("subject_label")
+        self.horizontalLayout.addWidget(self.subject_label)
+        self.subject_text_edit = QtWidgets.QTextEdit(add_subject_frame)
+        self.subject_text_edit.setObjectName("subject_text_edit")
+        self.horizontalLayout.addWidget(self.subject_text_edit)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.ma_hoc_phan_label = QtWidgets.QLabel(add_subject_frame)
-        self.ma_hoc_phan_label.setObjectName("subject_code_label")
-        self.horizontalLayout_2.addWidget(self.ma_hoc_phan_label)
-        self.ma_hoc_phan_text_edit = QtWidgets.QTextEdit(add_subject_frame)
-        self.ma_hoc_phan_text_edit.setObjectName("subject_code_text_edit")
-        self.horizontalLayout_2.addWidget(self.ma_hoc_phan_text_edit)
+        self.subject_code_label = QtWidgets.QLabel(add_subject_frame)
+        self.subject_code_label.setObjectName("subject_code_label")
+        self.horizontalLayout_2.addWidget(self.subject_code_label)
+        self.subject_code_text_edit = QtWidgets.QTextEdit(add_subject_frame)
+        self.subject_code_text_edit.setObjectName("subject_code_text_edit")
+        self.horizontalLayout_2.addWidget(self.subject_code_text_edit)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.so_chuong_label = QtWidgets.QLabel(add_subject_frame)
-        self.so_chuong_label.setObjectName("num_chapter_label")
-        self.horizontalLayout_3.addWidget(self.so_chuong_label)
-        self.so_chuong_spin_box = QtWidgets.QSpinBox(add_subject_frame)
-        self.so_chuong_spin_box.setObjectName("num_chapter_combo_box")
-        self.horizontalLayout_3.addWidget(self.so_chuong_spin_box)
+        self.num_chapter_label = QtWidgets.QLabel(add_subject_frame)
+        self.num_chapter_label.setObjectName("num_chapter_label")
+        self.horizontalLayout_3.addWidget(self.num_chapter_label)
+        self.num_chapter_spin_box = QtWidgets.QSpinBox(add_subject_frame)
+        self.num_chapter_spin_box.setObjectName("num_chapter_spin_box")
+        self.horizontalLayout_3.addWidget(self.num_chapter_spin_box)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.gioi_thieu_label = QtWidgets.QLabel(add_subject_frame)
-        self.gioi_thieu_label.setObjectName("description_label")
-        self.horizontalLayout_4.addWidget(self.gioi_thieu_label)
-        self.gioi_thieu_text_edit = QtWidgets.QTextEdit(add_subject_frame)
-        self.gioi_thieu_text_edit.setObjectName("description_text_edit")
-        self.horizontalLayout_4.addWidget(self.gioi_thieu_text_edit)
+        self.description_label = QtWidgets.QLabel(add_subject_frame)
+        self.description_label.setObjectName("description_label")
+        self.horizontalLayout_4.addWidget(self.description_label)
+        self.description_text_edit = QtWidgets.QTextEdit(add_subject_frame)
+        self.description_text_edit.setObjectName("description_text_edit")
+        self.horizontalLayout_4.addWidget(self.description_text_edit)
         self.verticalLayout.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
@@ -69,26 +67,27 @@ class Ui_add_subject_frame(object):
         self.horizontalLayout_5.addWidget(self.add_subject_button)
         self.verticalLayout.addLayout(self.horizontalLayout_5)
         self.verticalLayout_2.addLayout(self.verticalLayout)
+
         self.add_subject_button.clicked.connect(self.add_subject_button_click)
 
         self.retranslateUi(add_subject_frame)
         QtCore.QMetaObject.connectSlotsByName(add_subject_frame)
 
-    def retranslateUi(self, quan_ly_mon_hoc_frame):
+    def retranslateUi(self, add_subject_frame):
         _translate = QtCore.QCoreApplication.translate
-        quan_ly_mon_hoc_frame.setWindowTitle(_translate("add_subject_frame", "Frame"))
-        self.ten_mon_hoc_label.setText(_translate("add_subject_frame", "Tên môn học"))
-        self.ma_hoc_phan_label.setText(_translate("add_subject_frame", "Mã học phần"))
-        self.so_chuong_label.setText(_translate("add_subject_frame", "Số chương"))
-        self.gioi_thieu_label.setText(_translate("add_subject_frame", "Giới thiệu"))
+        add_subject_frame.setWindowTitle(_translate("add_subject_frame", "Thêm môn học"))
+        self.subject_label.setText(_translate("add_subject_frame", "Tên môn học"))
+        self.subject_code_label.setText(_translate("add_subject_frame", "Mã học phần"))
+        self.num_chapter_label.setText(_translate("add_subject_frame", "Số chương"))
+        self.description_label.setText(_translate("add_subject_frame", "Giới thiệu"))
         self.add_subject_button.setText(_translate("add_subject_frame", "Thêm môn học"))
 
     def add_subject_button_click(self):
         add_subject(
-            self.ten_mon_hoc_text_edit.toPlainText(),
-            self.ma_hoc_phan_text_edit.toPlainText(),
-            self.so_chuong_spin_box.value(),
-            self.gioi_thieu_text_edit.toPlainText()
+            self.subject_text_edit.toPlainText(),
+            self.subject_code_text_edit.toPlainText(),
+            self.num_chapter_spin_box.value(),
+            self.description_text_edit.toPlainText()
         )
         self.add_subject_frame.close()
 

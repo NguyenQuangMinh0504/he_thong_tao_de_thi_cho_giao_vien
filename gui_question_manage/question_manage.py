@@ -276,11 +276,12 @@ class Ui_question_frame(object):
         self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
 
     def save_button_click(self):
-        answer = self.answer_or_suggest_answer_text_edit.toPlainText()
-        if self.question_list_widget.currentItem() is not None:
-            from database.Question.question_access import get_question_id_on_question_from_question_table
-            question_id = get_question_id_on_question_from_question_table(self.question_list_widget.currentItem().text())
-            insert_answer_or_modify_current_answer_to_written_exam_answer_table(question_id, answer)
+        if self.construct_response_radio_button.isChecked():
+            answer = self.answer_or_suggest_answer_text_edit.toPlainText()
+            if self.question_list_widget.currentItem() is not None:
+                from database.Question.question_access import get_question_id_on_question_from_question_table
+                question_id = get_question_id_on_question_from_question_table(self.question_list_widget.currentItem().text())
+                insert_answer_or_modify_current_answer_to_written_exam_answer_table(question_id, answer)
         save_mcq_answer_table()
         save_question_table()
         save_written_exam_answer_table()
