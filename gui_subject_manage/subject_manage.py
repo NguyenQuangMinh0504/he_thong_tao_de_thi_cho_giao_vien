@@ -11,7 +11,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFrame, QMessageBox
 
-from database.Subject.subject_access import get_all_subject, get_subject_info, change_subject_info, save_subject_table, get_subject_id
+from database.Subject.subject_access import get_all_subject, get_subject_info, change_subject_info, save_subject_table, \
+    get_subject_id, add_subject
 
 
 class Ui_subject_manage_frame(object):
@@ -130,7 +131,21 @@ class Ui_subject_manage_frame(object):
         self.add_subject_frame = QFrame()
         from gui_subject_manage.add_subject_frame import Ui_add_subject_frame
         self.ui_add_subject_frame = Ui_add_subject_frame()
-        self.ui_add_subject_frame.setupUi(add_subject_frame=self.add_subject_frame)
+        self.ui_add_subject_frame.setupUi(self.add_subject_frame)
+
+        def pop_up_add_subject_button_click():
+            add_subject(
+                self.ui_add_subject_frame.subject_text_edit.toPlainText(),
+                self.ui_add_subject_frame.subject_code_text_edit.toPlainText(),
+                self.ui_add_subject_frame.num_chapter_spin_box.value(),
+                self.ui_add_subject_frame.description_text_edit.toPlainText()
+            )
+            self.subject_combo_box.addItem(self.ui_add_subject_frame.subject_text_edit.toPlainText())
+            self.ui_add_subject_frame.add_subject_frame.close()
+            print("kec")
+
+
+        self.ui_add_subject_frame.add_subject_button.clicked.connect(pop_up_add_subject_button_click)
         self.add_subject_frame.show()
 
     def delete_subject_button_click(self):

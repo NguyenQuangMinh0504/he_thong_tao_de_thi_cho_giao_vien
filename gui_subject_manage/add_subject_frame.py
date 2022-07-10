@@ -10,8 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from database.Subject.subject_access import add_subject
-
 
 class Ui_add_subject_frame(object):
     def setupUi(self, add_subject_frame):
@@ -67,9 +65,6 @@ class Ui_add_subject_frame(object):
         self.horizontalLayout_5.addWidget(self.add_subject_button)
         self.verticalLayout.addLayout(self.horizontalLayout_5)
         self.verticalLayout_2.addLayout(self.verticalLayout)
-
-        self.add_subject_button.clicked.connect(self.add_subject_button_click)
-
         self.retranslateUi(add_subject_frame)
         QtCore.QMetaObject.connectSlotsByName(add_subject_frame)
 
@@ -81,15 +76,6 @@ class Ui_add_subject_frame(object):
         self.num_chapter_label.setText(_translate("add_subject_frame", "Số chương"))
         self.description_label.setText(_translate("add_subject_frame", "Giới thiệu"))
         self.add_subject_button.setText(_translate("add_subject_frame", "Thêm môn học"))
-
-    def add_subject_button_click(self):
-        add_subject(
-            self.subject_text_edit.toPlainText(),
-            self.subject_code_text_edit.toPlainText(),
-            self.num_chapter_spin_box.value(),
-            self.description_text_edit.toPlainText()
-        )
-        self.add_subject_frame.close()
 
 
 if __name__ == "__main__":
