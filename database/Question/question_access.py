@@ -138,15 +138,6 @@ def get_question_statistic(subject_id):
     return difficulty, chapter
 
 
-def export_to_json(path: str):
-    from database.json_file_handle import export_to_json_file
-    return export_to_json_file(question_table, path)
-
-
-def import_json_file(path: str):
-    from database.json_file_handle import import_json_file
-    return import_json_file(path)
-
 
 
 

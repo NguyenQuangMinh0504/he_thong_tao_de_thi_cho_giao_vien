@@ -95,16 +95,14 @@ class Ui_main_screen_frame(object):
         self.subject_manage_frame.show()
 
     def export_data_button_click(self):
-        from gui_export_to_file.export_data import Ui_export_data_frame
-        self.export_data_frame = QFrame()
-        Ui_export_data_frame().setupUi(self.export_data_frame)
-        self.export_data_frame.show()
+        path = QtWidgets.QFileDialog.getSaveFileName()
+        from database.json_file_handle import export_all_to_json_file
+        export_all_to_json_file(path[0])
 
     def import_data_button_click(self):
-        from gui_import_file.import_data import Ui_import_data_frame
-        self.export_data_frame = QFrame()
-        Ui_import_data_frame().setupUi(self.export_data_frame)
-        self.export_data_frame.show()
+        path = QtWidgets.QFileDialog.getOpenFileName()
+        from database.json_file_handle import import_all_from_json_file
+        import_all_from_json_file(path[0])
 
 
 
