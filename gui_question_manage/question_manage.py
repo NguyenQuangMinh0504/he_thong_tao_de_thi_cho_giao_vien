@@ -166,7 +166,7 @@ class Ui_question_frame(object):
 
         # clickable label
         self.add_mcq_answer_label.mousePressEvent = self.them_dap_an_click
-        self.edit_mcq_answer_label.mousePressEvent = self.chinh_sua_click
+        self.edit_mcq_answer_label.mousePressEvent = self.modify_answer_click
         self.delete_mcq_answer_label.mousePressEvent = self.delete_mcq_answer_click
         self.add_question_label.mousePressEvent = self.them_cau_hoi_click
     # ------------------------------------------------------------------------------------------
@@ -239,33 +239,57 @@ class Ui_question_frame(object):
     # ------------------------------------------------------------------------------------------
 
     def them_dap_an_click(self, *args, **kwargs):
-        self.them_dap_an_pop_up = QtWidgets.QFrame()
-        from gui_question_manage.them_dap_an_pop_up import Ui_them_dap_an_pop_up
-        self.ui_them_dap_an_pop_up = Ui_them_dap_an_pop_up()
-        self.ui_them_dap_an_pop_up.setupUi(self.them_dap_an_pop_up)
-        # clear the check box of them dap an pop up
-        self.ui_them_dap_an_pop_up.dap_an_check_box.setChecked(False)
-        # clear the text edit of them dap an pop up
-        self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.clear()
+        self.add_answer_pop_up_frame = QtWidgets.QFrame()
+        from gui_question_manage.add_answer_pop_up import Ui_add_answer_pop_up
+        self.ui_add_answer_pop_up = Ui_add_answer_pop_up()
+        self.ui_add_answer_pop_up.setupUi(self.add_answer_pop_up_frame)
+        # clear right answer check box
+        self.ui_add_answer_pop_up.right_answer_check_box.setChecked(False)
+        # clear answer text edit
+        self.ui_add_answer_pop_up.answer_text_edit.clear()
         # show the text edit pop up
-        self.them_dap_an_pop_up.show()
-        self.ui_them_dap_an_pop_up.ok_button.clicked.connect(self.them_dap_an_pop_up_ok_button_click)
+        self.add_answer_pop_up_frame.show()
 
-    def chinh_sua_click(self, *args, **kwargs):
-        self.chinh_sua_dap_an_pop_up = QtWidgets.QFrame()
-        from gui_question_manage.chinh_sua_dap_an_pop_up import Ui_chinh_sua_dap_an_pop_up
-        self.ui_chinh_sua_dap_an_pop_up = Ui_chinh_sua_dap_an_pop_up()
-        self.ui_chinh_sua_dap_an_pop_up.setupUi(self.chinh_sua_dap_an_pop_up)
+        def add_answer_pop_up_ok_button_click():
+            # add question to database
+            mcq_answer = self.ui_add_answer_pop_up.answer_text_edit.toPlainText()
+            question = self.question_list_widget.currentItem().text()
+            insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer,
+                       self.ui_add_answer_pop_up.right_answer_check_box.isChecked())
+            # update gui
+            self.multiple_choice_answer_list_widget.addItem(mcq_answer)
+            # close pop up window
+            self.add_answer_pop_up_frame.close()
+
+        self.ui_add_answer_pop_up.ok_button.clicked.connect(add_answer_pop_up_ok_button_click)
+
+    def modify_answer_click(self, *args, **kwargs):
+        self.modify_answer_pop_up = QtWidgets.QFrame()
+        from gui_question_manage.modify_answer_pop_up import Ui_modify_answer_pop_up
+        self.ui_modify_answer_pop_up = Ui_modify_answer_pop_up()
+        self.ui_modify_answer_pop_up.setupUi(self.modify_answer_pop_up)
         if self.multiple_choice_answer_list_widget.currentItem() is not None:  # in case the user don't click any answer
             # set text of pop up text edit to current clicked answer
             current_answer = self.multiple_choice_answer_list_widget.currentItem().text()
-            self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(current_answer)
+            self.ui_modify_answer_pop_up.answer_text_edit.setText(current_answer)
             # set correct answer check box
             from database.Answer.mcq_answer_access import get_answer_correct
-            self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.setChecked(get_answer_correct(current_answer))
+            self.ui_modify_answer_pop_up.right_answer_check_box.setChecked(get_answer_correct(current_answer))
             # show pop up
-            self.chinh_sua_dap_an_pop_up.show()
-            self.ui_chinh_sua_dap_an_pop_up.ok_button.clicked.connect(self.chinh_sua_dap_an_pop_up_ok_button_click)
+            self.modify_answer_pop_up.show()
+
+            def modify_answer_pop_up_ok_button_click():
+                answer = self.multiple_choice_answer_list_widget.currentItem().text()
+                new_answer = self.ui_modify_answer_pop_up.answer_text_edit.toPlainText()
+                # update data
+                mcq_answer_table.replace(answer, new_answer, inplace=True)
+                modify_correct(new_answer, self.ui_modify_answer_pop_up.right_answer_check_box.isChecked())
+                # update ui
+                self.multiple_choice_answer_list_widget.currentItem().setText(new_answer)
+                # close pop up window
+                self.modify_answer_pop_up.close()
+
+            self.ui_modify_answer_pop_up.ok_button.clicked.connect(modify_answer_pop_up_ok_button_click)
 
     def delete_mcq_answer_click(self, *args, **kwargs):
         answer = self.multiple_choice_answer_list_widget.currentItem().text()
@@ -317,26 +341,8 @@ class Ui_question_frame(object):
     # ------------------------------------------------------------------------------------------
     # Pop up event handler
 
-    def chinh_sua_dap_an_pop_up_ok_button_click(self):
-        answer = self.multiple_choice_answer_list_widget.currentItem().text()
-        new_answer = self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
-        # update data
-        mcq_answer_table.replace(answer, new_answer, inplace=True)
-        modify_correct(new_answer, self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.isChecked())
-        # update ui
-        self.multiple_choice_answer_list_widget.currentItem().setText(new_answer)
-        # close pop up window
-        self.chinh_sua_dap_an_pop_up.close()
 
-    def them_dap_an_pop_up_ok_button_click(self):
-        # add question to database
-        mcq_answer = self.ui_them_dap_an_pop_up.dap_an_dung_text_edit.toPlainText()
-        question = self.question_list_widget.currentItem().text()
-        insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer, self.ui_them_dap_an_pop_up.dap_an_check_box.isChecked())
-        # update gui
-        self.multiple_choice_answer_list_widget.addItem(mcq_answer)
-        # close pop up window
-        self.them_dap_an_pop_up.close()
+
 
     def them_cau_hoi_pop_up_ok_button_click(self):
         question = self.ui_them_cau_hoi_pop_up.cau_hoi_text_edit.toPlainText()
