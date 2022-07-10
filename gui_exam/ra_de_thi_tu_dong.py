@@ -156,7 +156,8 @@ class Ui_ra_de_thi_tu_dong_frame(object):
         self.dang_de_thi_combo_box.setItemText(1, _translate("main_screen_frame", "Tự luận"))
         self.dang_de_thi_combo_box.setItemText(2, _translate("main_screen_frame", "Trắc nghiệm và tự luận"))
         self.hinh_thuc_thi_label.setText(_translate("main_screen_frame", "Hình thức"))
-        self.hinh_thuc_thi_combo_box.setItemText(0, _translate("main_screen_frame", "Trắc nghiệm và tự luận riêng biệt"))
+        self.hinh_thuc_thi_combo_box.setItemText(0,
+                                                 _translate("main_screen_frame", "Trắc nghiệm và tự luận riêng biệt"))
         self.hinh_thuc_thi_combo_box.setItemText(1, _translate("main_screen_frame", "Trộn lẫn trắc nghiệm và tự luận"))
         self.so_cau_label.setText(_translate("main_screen_frame", "Số câu"))
         self.ra_de_thi_theo_label.setText(_translate("main_screen_frame", "Ra đề thi theo"))
@@ -178,15 +179,14 @@ class Ui_ra_de_thi_tu_dong_frame(object):
         self.Frame.close()
         if self.ra_de_thi_theo_combo_box.currentText() == "Độ khó":
             status = auto_generate_exam_on_difficulty(self.subject_id,
-                                             self.so_cau_de_spin_box.value(),
-                                             self.so_cau_vua_spin_box.value(),
-                                             self.so_cau_kho_spin_box.value()
-                                             )
-            if len(status) == 2:
+                                                      self.so_cau_de_spin_box.value(),
+                                                      self.so_cau_vua_spin_box.value(),
+                                                      self.so_cau_kho_spin_box.value()
+                                                      )
+            if not status:
                 msg = QtWidgets.QMessageBox()
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
                 msg.setText("\n".join(status[1]))
-                print(status[1])
                 msg.setStandardButtons(QtWidgets.QMessageBox.Close)
                 msg.exec_()
                 self.Frame.show()
@@ -198,11 +198,10 @@ class Ui_ra_de_thi_tu_dong_frame(object):
                 coverage.append(
                     self.verticalLayoutWidget_3.findChild(QSpinBox, "chuong_{}_spin_box".format(i + 1)).value())
             status = auto_generate_exam_on_coverage(self.subject_id, coverage)
-            if len(status) == 2:
+            if not status:
                 msg = QtWidgets.QMessageBox()
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
                 msg.setText("\n".join(status[1]))
-                print(status[1])
                 msg.setStandardButtons(QtWidgets.QMessageBox.Close)
                 msg.exec_()
                 self.Frame.show()

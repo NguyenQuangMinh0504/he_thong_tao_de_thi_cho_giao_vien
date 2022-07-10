@@ -13,7 +13,7 @@ from database.Exam.exam_access import insert_else_update_exam_to_exam_table, sav
     remove_exam_from_exam_table
 from database.Subject.subject_access import get_subject_name
 from database.Question.question_access import *
-from database.MCQS_Answer.mcq_answer_access import get_all_answer, get_all_correct_answer
+from database.Answer.mcq_answer_access import get_all_answer, get_all_correct_answer
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -304,13 +304,24 @@ class Ui_exam_frame(object):
         elif self.summer_semester_radio_button.isChecked():
             hoc_ki = 3
 
-        insert_else_update_exam_to_exam_table(self.subject_id,
-                                              "Đề thi môn {}".format(get_subject_name(self.subject_id)),
-                                              self.year_line_edit.text(),
-                                              int(self.time_line_edit.text()),
-                                              hoc_ki,
-                                              exam_id=self.exam_id
-                                              )
+        error_messages = []
+        try:
+            time = int(self.time_line_edit.text())
+            insert_else_update_exam_to_exam_table(self.subject_id,
+                                                  "Đề thi môn {}".format(get_subject_name(self.subject_id)),
+                                                  self.year_line_edit.text(),
+                                                  time,
+                                                  hoc_ki,
+                                                  exam_id=self.exam_id
+                                                  )
+        except ValueError:
+            error_messages.append("Thời gian thi không hợp lệ")
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setText("\n".join(error_messages))
+            msg.setStandardButtons(QtWidgets.QMessageBox.Close)
+            msg.exec_()
+            return
         save_exam_question_table()
         save_exam_table()
         self.Frame.close()

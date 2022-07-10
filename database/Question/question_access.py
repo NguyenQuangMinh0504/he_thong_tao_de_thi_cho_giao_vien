@@ -44,8 +44,8 @@ def get_question_id_on_question_from_question_table(question):
 
 def remove_question_from_question_table(question_id):
     from database.Exam.exam_question_access import remove_question_from_exam_question_table
-    from database.MCQS_Answer.mcq_answer_access import remove_question_and_answer_from_mcq_answer_table
-    from database.MCQS_Answer.written_exam_answer_access import remove_question_and_answer_from_written_exam_answer_table
+    from database.Answer.mcq_answer_access import remove_question_and_answer_from_mcq_answer_table
+    from database.Answer.written_exam_answer_access import remove_question_and_answer_from_written_exam_answer_table
     remove_question_and_answer_from_written_exam_answer_table(question_id)
     remove_question_and_answer_from_mcq_answer_table(question_id)
     remove_question_from_exam_question_table(question_id)

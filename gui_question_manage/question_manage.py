@@ -12,8 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from database.Exam.exam_access import get_exam_info_string
 from database.Exam.exam_question_access import get_exam_id
-from database.MCQS_Answer.mcq_answer_access import save_mcq_answer_table, mcq_answer_table, modify_correct, insert_row
-from database.MCQS_Answer.written_exam_answer_access import \
+from database.Answer.mcq_answer_access import save_mcq_answer_table, mcq_answer_table, modify_correct, insert_row
+from database.Answer.written_exam_answer_access import \
     insert_answer_or_modify_current_answer_to_written_exam_answer_table, save_written_exam_answer_table
 from database.Question.question_access import save_question_table, get_question_id_on_question_from_question_table
 from gui_question_manage.add_question_pop_up import Ui_them_cau_hoi_frame
@@ -199,17 +199,17 @@ class Ui_question_frame(object):
 
 
             if self.mcq_radio_button.isChecked():
-                from database.MCQS_Answer.mcq_answer_access import get_all_answer
+                from database.Answer.mcq_answer_access import get_all_answer
 
                 for answer in get_all_answer(question_id):
                     self.multiple_choice_answer_list_widget.addItem(QtWidgets.QListWidgetItem(answer))
 
-                from database.MCQS_Answer.mcq_answer_access import get_all_correct_answer
+                from database.Answer.mcq_answer_access import get_all_correct_answer
                 self.answer_or_suggest_answer_text_edit.setPlainText("\n".join(get_all_correct_answer(question_id)))
 
 
             elif self.construct_response_radio_button.isChecked():
-                from database.MCQS_Answer.written_exam_answer_access import get_written_answer
+                from database.Answer.written_exam_answer_access import get_written_answer
                 written_answer = get_written_answer(question_id)
                 self.answer_or_suggest_answer_text_edit.setPlainText(written_answer)
 
@@ -261,7 +261,7 @@ class Ui_question_frame(object):
             current_answer = self.multiple_choice_answer_list_widget.currentItem().text()
             self.ui_chinh_sua_dap_an_pop_up.dap_an_dung_text_edit.setText(current_answer)
             # set correct answer check box
-            from database.MCQS_Answer.mcq_answer_access import get_answer_correct
+            from database.Answer.mcq_answer_access import get_answer_correct
             self.ui_chinh_sua_dap_an_pop_up.dap_an_check_box.setChecked(get_answer_correct(current_answer))
             # show pop up
             self.chinh_sua_dap_an_pop_up.show()
@@ -270,7 +270,7 @@ class Ui_question_frame(object):
     def delete_mcq_answer_click(self, *args, **kwargs):
         answer = self.multiple_choice_answer_list_widget.currentItem().text()
         # remove answer from database
-        from database.MCQS_Answer.mcq_answer_access import remove_answer
+        from database.Answer.mcq_answer_access import remove_answer
         remove_answer(answer)
         # remove data from ui
         self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
