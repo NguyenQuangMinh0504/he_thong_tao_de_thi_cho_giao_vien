@@ -1,2 +1,0 @@
-current has a bug when closing qmessagedialog close the parent widget
-
