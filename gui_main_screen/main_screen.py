@@ -97,12 +97,14 @@ class Ui_main_screen_frame(object):
     def export_data_button_click(self):
         path = QtWidgets.QFileDialog.getSaveFileName()
         from database.json_file_handle import export_all_to_json_file
-        export_all_to_json_file(path[0])
+        if path[0] != "":
+            export_all_to_json_file(path[0])
 
     def import_data_button_click(self):
         path = QtWidgets.QFileDialog.getOpenFileName()
         from database.json_file_handle import import_all_from_json_file
-        import_all_from_json_file(path[0])
+        if path[0] != "":
+            import_all_from_json_file(path[0])
 
 
 

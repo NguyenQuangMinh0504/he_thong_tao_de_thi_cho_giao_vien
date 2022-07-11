@@ -21,7 +21,7 @@ class Ui_tao_de_thi_pop_up(object):
         self.parent_frame = parent_frame
         self.subject_id = subject_id
         self.Frame = Frame
-        Frame.setObjectName("main_screen_frame")
+        Frame.setObjectName("Frame")
         Frame.resize(361, 179)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -46,9 +46,9 @@ class Ui_tao_de_thi_pop_up(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("main_screen_frame", "main_screen_frame"))
-        self.tao_de_thi_thu_cong_button.setText(_translate("main_screen_frame", "Tạo đề thi thủ công"))
-        self.tao_de_thi_tu_dong_button.setText(_translate("main_screen_frame", "Tạo đề thi tự động"))
+        Frame.setWindowTitle(_translate("Frame", "Tạo đề thi"))
+        self.tao_de_thi_thu_cong_button.setText(_translate("Frame", "Tạo đề thi thủ công"))
+        self.tao_de_thi_tu_dong_button.setText(_translate("Frame", "Tạo đề thi tự động"))
 
     def tao_de_thi_thu_cong_button_click(self):
         self.ui_chon_cau_hoi_de_dua_vao_de_thi = Ui_exam_frame()

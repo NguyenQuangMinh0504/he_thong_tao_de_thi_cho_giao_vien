@@ -21,7 +21,7 @@ class Ui_ra_de_thi_tu_dong_frame(object):
     def setupUi(self, Frame, subject_id):
         self.Frame = Frame
         self.subject_id = subject_id
-        Frame.setObjectName("main_screen_frame")
+        Frame.setObjectName("Frame")
         Frame.resize(424, 664)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -146,25 +146,25 @@ class Ui_ra_de_thi_tu_dong_frame(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("main_screen_frame", "main_screen_frame"))
-        self.thiet_lap_do_kho_label.setText(_translate("main_screen_frame", "Thiết lập độ khó"))
-        self.so_cau_de_label.setText(_translate("main_screen_frame", "Số câu dễ"))
-        self.so_cau_vua_label.setText(_translate("main_screen_frame", "Số câu vừa"))
-        self.so_cau_kho_label.setText(_translate("main_screen_frame", "Số câu khó"))
-        self.dang_de_thi_label.setText(_translate("main_screen_frame", "Dạng đề thi"))
-        self.dang_de_thi_combo_box.setItemText(0, _translate("main_screen_frame", "Trắc nghiệm"))
-        self.dang_de_thi_combo_box.setItemText(1, _translate("main_screen_frame", "Tự luận"))
-        self.dang_de_thi_combo_box.setItemText(2, _translate("main_screen_frame", "Trắc nghiệm và tự luận"))
-        self.hinh_thuc_thi_label.setText(_translate("main_screen_frame", "Hình thức"))
+        Frame.setWindowTitle(_translate("Frame", "Tạo đề thi tự động"))
+        self.thiet_lap_do_kho_label.setText(_translate("Frame", "Thiết lập độ khó"))
+        self.so_cau_de_label.setText(_translate("Frame", "Số câu dễ"))
+        self.so_cau_vua_label.setText(_translate("Frame", "Số câu vừa"))
+        self.so_cau_kho_label.setText(_translate("Frame", "Số câu khó"))
+        self.dang_de_thi_label.setText(_translate("Frame", "Dạng đề thi"))
+        self.dang_de_thi_combo_box.setItemText(0, _translate("Frame", "Trắc nghiệm"))
+        self.dang_de_thi_combo_box.setItemText(1, _translate("Frame", "Tự luận"))
+        self.dang_de_thi_combo_box.setItemText(2, _translate("Frame", "Trắc nghiệm và tự luận"))
+        self.hinh_thuc_thi_label.setText(_translate("Frame", "Hình thức"))
         self.hinh_thuc_thi_combo_box.setItemText(0,
-                                                 _translate("main_screen_frame", "Trắc nghiệm và tự luận riêng biệt"))
-        self.hinh_thuc_thi_combo_box.setItemText(1, _translate("main_screen_frame", "Trộn lẫn trắc nghiệm và tự luận"))
-        self.so_cau_label.setText(_translate("main_screen_frame", "Số câu"))
-        self.ra_de_thi_theo_label.setText(_translate("main_screen_frame", "Ra đề thi theo"))
-        self.ra_de_thi_theo_combo_box.setItemText(0, _translate("main_screen_frame", "Độ khó"))
-        self.ra_de_thi_theo_combo_box.setItemText(1, _translate("main_screen_frame", "Độ bao phủ"))
-        self.tao_de_thi_button.setText(_translate("main_screen_frame", "Tạo đề thi"))
-        self.thiet_lap_do_bao_phu_label.setText(_translate("main_screen_frame", "Thiết lập độ bao phủ"))
+                                                 _translate("Frame", "Trắc nghiệm và tự luận riêng biệt"))
+        self.hinh_thuc_thi_combo_box.setItemText(1, _translate("Frame", "Trộn lẫn trắc nghiệm và tự luận"))
+        self.so_cau_label.setText(_translate("Frame", "Số câu"))
+        self.ra_de_thi_theo_label.setText(_translate("Frame", "Ra đề thi theo"))
+        self.ra_de_thi_theo_combo_box.setItemText(0, _translate("Frame", "Độ khó"))
+        self.ra_de_thi_theo_combo_box.setItemText(1, _translate("Frame", "Độ bao phủ"))
+        self.tao_de_thi_button.setText(_translate("Frame", "Tạo đề thi"))
+        self.thiet_lap_do_bao_phu_label.setText(_translate("Frame", "Thiết lập độ bao phủ"))
 
     def ra_de_thi_theo_combo_box_index_change(self):
         current_text = self.ra_de_thi_theo_combo_box.currentText()

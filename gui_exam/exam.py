@@ -356,7 +356,7 @@ class Ui_exam_frame(object):
             for number, answer in enumerate(list_answer):
                 self.question_show_text_edit.append("{}.  {}".format(number, answer))
             self.question_show_text_edit.append("Thông tin chi tiết:")
-            self.question_show_text_edit.append("Đáp án đúng: {}".format(get_all_correct_answer(question_id)))
+            self.question_show_text_edit.append("Đáp án đúng: " + ", ".join((get_all_correct_answer(question_id))))
             self.question_show_text_edit.append("Độ khó: {}".format(get_question_difficulty(question_id)))
             self.question_show_text_edit.append("Chương: Chương {}".format(get_question_chapter(question_id)))
 
