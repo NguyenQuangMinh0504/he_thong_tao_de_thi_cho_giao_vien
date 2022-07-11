@@ -14,7 +14,7 @@ from database.Exam.exam_access import insert_else_update_exam_to_exam_table, sav
 from database.Subject.subject_access import get_subject_name
 from database.Question.question_access import *
 from database.Answer.mcq_answer_access import get_all_answer, get_all_correct_answer
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_exam_frame(object):
@@ -290,7 +290,7 @@ class Ui_exam_frame(object):
         save_exam_table()
         save_exam_question_table()
         self.Frame.close()
-        from gui_exam.exam_manage import Ui_exam_manage_frame
+        from gui.gui_exam.exam_manage import Ui_exam_manage_frame
         frame = QFrame()
         Ui_exam_manage_frame().setupUi(frame, self.subject_id)
         frame.show()
@@ -325,7 +325,7 @@ class Ui_exam_frame(object):
         save_exam_question_table()
         save_exam_table()
         self.Frame.close()
-        from gui_exam.exam_manage import Ui_exam_manage_frame
+        from gui.gui_exam.exam_manage import Ui_exam_manage_frame
         frame = QFrame()
         Ui_exam_manage_frame().setupUi(frame, self.subject_id)
         frame.show()
