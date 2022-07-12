@@ -82,26 +82,39 @@ class Ui_ra_de_thi_tu_dong_frame(object):
         self.dang_de_thi_combo_box.addItem("")
         self.horizontalLayout.addWidget(self.dang_de_thi_combo_box)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.hinh_thuc_thi_label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
-        self.hinh_thuc_thi_label.setObjectName("hinh_thuc_thi_label")
-        self.horizontalLayout_6.addWidget(self.hinh_thuc_thi_label)
-        self.hinh_thuc_thi_combo_box = QtWidgets.QComboBox(self.verticalLayoutWidget_2)
-        self.hinh_thuc_thi_combo_box.setObjectName("hinh_thuc_thi_combo_box")
-        self.hinh_thuc_thi_combo_box.addItem("")
-        self.hinh_thuc_thi_combo_box.addItem("")
-        self.horizontalLayout_6.addWidget(self.hinh_thuc_thi_combo_box)
-        self.verticalLayout_2.addLayout(self.horizontalLayout_6)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.so_cau_label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
-        self.so_cau_label.setObjectName("so_cau_label")
-        self.horizontalLayout_2.addWidget(self.so_cau_label)
-        self.so_cau_spin_box = QtWidgets.QSpinBox(self.verticalLayoutWidget_2)
-        self.so_cau_spin_box.setObjectName("so_cau_spin_box")
-        self.horizontalLayout_2.addWidget(self.so_cau_spin_box)
-        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
+
+
+
+
+        # self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
+        # self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        # self.hinh_thuc_thi_label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
+        # self.hinh_thuc_thi_label.setObjectName("hinh_thuc_thi_label")
+        # self.horizontalLayout_6.addWidget(self.hinh_thuc_thi_label)
+        # self.hinh_thuc_thi_combo_box = QtWidgets.QComboBox(self.verticalLayoutWidget_2)
+        # self.hinh_thuc_thi_combo_box.setObjectName("hinh_thuc_thi_combo_box")
+        # self.hinh_thuc_thi_combo_box.addItem("")
+        # self.hinh_thuc_thi_combo_box.addItem("")
+        # self.horizontalLayout_6.addWidget(self.hinh_thuc_thi_combo_box)
+        # self.verticalLayout_2.addLayout(self.horizontalLayout_6)
+
+
+        # self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        # self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        # self.so_cau_label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
+        # self.so_cau_label.setObjectName("so_cau_label")
+        # self.horizontalLayout_2.addWidget(self.so_cau_label)
+        # self.so_cau_spin_box = QtWidgets.QSpinBox(self.verticalLayoutWidget_2)
+        # self.so_cau_spin_box.setObjectName("so_cau_spin_box")
+        # self.horizontalLayout_2.addWidget(self.so_cau_spin_box)
+        # self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
+
+
+
+
+
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
         self.ra_de_thi_theo_label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
@@ -155,11 +168,20 @@ class Ui_ra_de_thi_tu_dong_frame(object):
         self.dang_de_thi_combo_box.setItemText(0, _translate("Frame", "Trắc nghiệm"))
         self.dang_de_thi_combo_box.setItemText(1, _translate("Frame", "Tự luận"))
         self.dang_de_thi_combo_box.setItemText(2, _translate("Frame", "Trắc nghiệm và tự luận"))
-        self.hinh_thuc_thi_label.setText(_translate("Frame", "Hình thức"))
-        self.hinh_thuc_thi_combo_box.setItemText(0,
-                                                 _translate("Frame", "Trắc nghiệm và tự luận riêng biệt"))
-        self.hinh_thuc_thi_combo_box.setItemText(1, _translate("Frame", "Trộn lẫn trắc nghiệm và tự luận"))
-        self.so_cau_label.setText(_translate("Frame", "Số câu"))
+
+
+
+
+        # self.hinh_thuc_thi_label.setText(_translate("Frame", "Hình thức"))
+        # self.hinh_thuc_thi_combo_box.setItemText(0,
+        #                                          _translate("Frame", "Trắc nghiệm và tự luận riêng biệt"))
+        # self.hinh_thuc_thi_combo_box.setItemText(1, _translate("Frame", "Trộn lẫn trắc nghiệm và tự luận"))
+        # self.so_cau_label.setText(_translate("Frame", "Số câu"))
+
+
+
+
+
         self.ra_de_thi_theo_label.setText(_translate("Frame", "Ra đề thi theo"))
         self.ra_de_thi_theo_combo_box.setItemText(0, _translate("Frame", "Độ khó"))
         self.ra_de_thi_theo_combo_box.setItemText(1, _translate("Frame", "Độ bao phủ"))
@@ -181,9 +203,10 @@ class Ui_ra_de_thi_tu_dong_frame(object):
             status = auto_generate_exam_on_difficulty(self.subject_id,
                                                       self.so_cau_de_spin_box.value(),
                                                       self.so_cau_vua_spin_box.value(),
-                                                      self.so_cau_kho_spin_box.value()
-                                                      )
-            if not status:
+                                                      self.so_cau_kho_spin_box.value(),
+                                                      self.dang_de_thi_combo_box.currentText())
+            print(status)
+            if status != True:
                 msg = QtWidgets.QMessageBox()
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
                 msg.setText("\n".join(status[1]))
@@ -197,8 +220,8 @@ class Ui_ra_de_thi_tu_dong_frame(object):
             for i in range(get_subject_chapter(self.subject_id)):
                 coverage.append(
                     self.verticalLayoutWidget_3.findChild(QSpinBox, "chuong_{}_spin_box".format(i + 1)).value())
-            status = auto_generate_exam_on_coverage(self.subject_id, coverage)
-            if not status:
+            status = auto_generate_exam_on_coverage(self.subject_id, coverage, self.dang_de_thi_combo_box.currentText())
+            if status != True:
                 msg = QtWidgets.QMessageBox()
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
                 msg.setText("\n".join(status[1]))

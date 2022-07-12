@@ -6,6 +6,19 @@ from database.path import QUESTION_PATH
 question_table = pd.read_csv(QUESTION_PATH)
 
 
+def get_question_statistic(subject_id):
+    difficulty = []
+    for i in range(3):
+        query = "Subject_ID == {} and Difficulty == {}".format(subject_id, i + 1)
+        difficulty.append(question_table.query(query).shape[0])
+    from database.Subject.subject_access import get_subject_chapter
+    chapter = []
+    for i in range(get_subject_chapter(subject_id)):
+        query = "Subject_ID == {} and Chapter == {}".format(subject_id, i + 1)
+        chapter.append(question_table.query(query).shape[0])
+    return difficulty, chapter
+
+
 def get_info(subject_id):
 
     query = "Subject_ID == {}".format(subject_id)
@@ -125,17 +138,121 @@ def get_feasible_question_on_coverage(subject_id, coverage):
 
 
 
-def get_question_statistic(subject_id):
-    difficulty = []
-    for i in range(3):
-        query = "Subject_ID == {} and Difficulty == {}".format(subject_id, i + 1)
-        difficulty.append(question_table.query(query).shape[0])
-    from database.Subject.subject_access import get_subject_chapter
-    chapter = []
-    for i in range(get_subject_chapter(subject_id)):
-        query = "Subject_ID == {} and Chapter == {}".format(subject_id, i + 1)
-        chapter.append(question_table.query(query).shape[0])
-    return difficulty, chapter
+
+def get_feasible_mcq_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho):
+
+    query1 = "Subject_ID == {} and Difficulty == 1".format(subject_id)
+    query2 = "Subject_ID == {} and Difficulty == 2".format(subject_id)
+    query3 = "Subject_ID == {} and Difficulty == 3".format(subject_id)
+
+    query_mcq = "Type == 'trac_nghiem'"
+
+    so_cau_de_index = list(question_table.query(query1).query(query_mcq).index)
+    so_cau_vua_index = list(question_table.query(query2).query(query_mcq).index)
+    so_cau_kho_index = list(question_table.query(query3).query(query_mcq).index)
+
+    error_messages = []
+
+    if len(so_cau_de_index) < so_cau_de:
+        error_messages.append("Số câu hỏi dễ trong đề: {}; Số câu hỏi dễ hiện có: {}".
+                              format(so_cau_de, len(so_cau_de_index)))
+    if len(so_cau_vua_index) < so_cau_vua:
+        error_messages.append("Số câu hỏi vừa trong đề: {}; Số câu hỏi vừa hiện có: {}".
+                              format(so_cau_vua, len(so_cau_vua_index)))
+    if len(so_cau_kho_index) < so_cau_kho:
+        error_messages.append("Số câu hỏi khó trong đề: {}; Số câu hỏi khó hiện có: {}".
+                              format(so_cau_kho, len(so_cau_kho_index)))
+
+    if len(error_messages) == 0:
+        indexes = so_cau_de_index[:so_cau_de] + so_cau_vua_index[:so_cau_vua] + so_cau_kho_index[:so_cau_kho]
+        question_ids = []
+        for index in indexes:
+            question_ids.append(question_table.loc[index]["Question_ID"])
+        return [True, question_ids]
+    elif len(error_messages) != 0:
+        return [False, error_messages]
+
+
+def get_feasible_mcq_question_on_coverage(subject_id, coverage):
+    indexes = []
+    error_messages = []
+
+    query_mcq = "Type == 'trac_nghiem'"
+
+    for i, j in enumerate(coverage):
+        query = "Subject_ID == {} and Chapter == {}".format(subject_id, i+1)
+        chapter_index = list(question_table.query(query).query(query_mcq).index)
+        if len(chapter_index) < j:
+            error_messages.append("Số câu chương {} trong đề: {}; Số câu chương {} hiện có: {}".
+                                  format(i + 1, j, i + 1, len(chapter_index)))
+        indexes += chapter_index[:j]
+    if len(error_messages) == 0:
+        question_ids = []
+        for index in indexes:
+            question_ids.append(question_table.loc[index]["Question_ID"])
+        return [True, question_ids]
+    elif len(error_messages) != 0:
+        return [False, error_messages]
+
+
+def get_feasible_construct_response_question_on_difficulty(subject_id, so_cau_de, so_cau_vua, so_cau_kho):
+
+    query1 = "Subject_ID == {} and Difficulty == 1".format(subject_id)
+    query2 = "Subject_ID == {} and Difficulty == 2".format(subject_id)
+    query3 = "Subject_ID == {} and Difficulty == 3".format(subject_id)
+
+    query_mcq = "Type == 'tu_luan'"
+
+    so_cau_de_index = list(question_table.query(query1).query(query_mcq).index)
+    so_cau_vua_index = list(question_table.query(query2).query(query_mcq).index)
+    so_cau_kho_index = list(question_table.query(query3).query(query_mcq).index)
+
+    error_messages = []
+
+    if len(so_cau_de_index) < so_cau_de:
+        error_messages.append("Số câu hỏi dễ trong đề: {}; Số câu hỏi dễ hiện có: {}".
+                              format(so_cau_de, len(so_cau_de_index)))
+    if len(so_cau_vua_index) < so_cau_vua:
+        error_messages.append("Số câu hỏi vừa trong đề: {}; Số câu hỏi vừa hiện có: {}".
+                              format(so_cau_vua, len(so_cau_vua_index)))
+    if len(so_cau_kho_index) < so_cau_kho:
+        error_messages.append("Số câu hỏi khó trong đề: {}; Số câu hỏi khó hiện có: {}".
+                              format(so_cau_kho, len(so_cau_kho_index)))
+
+    if len(error_messages) == 0:
+        indexes = so_cau_de_index[:so_cau_de] + so_cau_vua_index[:so_cau_vua] + so_cau_kho_index[:so_cau_kho]
+        question_ids = []
+        for index in indexes:
+            question_ids.append(question_table.loc[index]["Question_ID"])
+        return [True, question_ids]
+    elif len(error_messages) != 0:
+        return [False, error_messages]
+
+
+def get_feasible_construct_response_question_on_coverage(subject_id, coverage):
+    indexes = []
+    error_messages = []
+
+    query_mcq = "Type == 'tu_luan'"
+
+    for i, j in enumerate(coverage):
+        query = "Subject_ID == {} and Chapter == {}".format(subject_id, i+1)
+        chapter_index = list(question_table.query(query).query(query_mcq).index)
+        if len(chapter_index) < j:
+            error_messages.append("Số câu chương {} trong đề: {}; Số câu chương {} hiện có: {}".
+                                  format(i + 1, j, i + 1, len(chapter_index)))
+        indexes += chapter_index[:j]
+    if len(error_messages) == 0:
+        question_ids = []
+        for index in indexes:
+            question_ids.append(question_table.loc[index]["Question_ID"])
+        return [True, question_ids]
+    elif len(error_messages) != 0:
+        return [False, error_messages]
+
+
+
+
 
 
 
