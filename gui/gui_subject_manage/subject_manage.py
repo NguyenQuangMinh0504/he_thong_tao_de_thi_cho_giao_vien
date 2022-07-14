@@ -112,10 +112,11 @@ class Ui_subject_manage_frame(object):
 
     def ten_mon_hoc_combo_box_change(self):
         info = get_subject_info(self.subject_combo_box.currentText())
-        self.subject_name_text_edit.setText(self.subject_combo_box.currentText())
-        self.subject_code_text_edit.setPlainText(info[0])
-        self.description_text_edit.setText(info[2])
-        self.num_chapter_spin_box.setValue(info[1])
+        if info:
+            self.subject_name_text_edit.setText(self.subject_combo_box.currentText())
+            self.subject_code_text_edit.setPlainText(info[0])
+            self.description_text_edit.setText(info[2])
+            self.num_chapter_spin_box.setValue(info[1])
 
     def luu_button_click(self):
         change_subject_info(

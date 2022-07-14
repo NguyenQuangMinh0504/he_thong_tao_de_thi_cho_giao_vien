@@ -256,6 +256,12 @@ class Ui_exam_frame(object):
             with open(path[0], "w") as f:
                 text = self.exam_show_text_edit.toPlainText()
                 f.write(text)
+        elif path[0] == "":
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Information)
+            msg.setText("Xuất đề thi ra file thất bại !")
+            msg.exec_()
+
 
     def shuffle_question_click(self, *args, **kwargs):
         exam_question_num = self.exam_question_list_widget.count()

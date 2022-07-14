@@ -10,6 +10,8 @@ def get_all_subject():
 
 
 def get_subject_info(subject_name):
+    if subject_name == "":
+        return False
     ma_hoc_phan = list(subject_table.loc[subject_table["Subject_Name"] == subject_name]["Course_Code"])[0]
     so_chuong = list(subject_table.loc[subject_table["Subject_Name"] == subject_name]["Num_Chapter"])[0]
     gioi_thieu = list(subject_table.loc[subject_table["Subject_Name"] == subject_name]["Description"])[0]
@@ -18,12 +20,16 @@ def get_subject_info(subject_name):
 
 def get_subject_id(subject_name):
     query = "Subject_Name == \"{}\"".format(subject_name)
-    return list(subject_table.query(query)["Subject_Id"])[0]
+    if not subject_table.query(query).empty:
+        return list(subject_table.query(query)["Subject_Id"])[0]
+    return False
 
 
 def get_subject_chapter(subject_id):
     query = "Subject_Id == {}".format(subject_id)
-    return list(subject_table.query(query)["Num_Chapter"])[0]
+    if not subject_table.query(query).empty:
+        return list(subject_table.query(query)["Num_Chapter"])[0]
+    return False
 
 
 def change_subject_info(subject_id, subject_name, course_code, num_chapter, description):
@@ -41,7 +47,10 @@ def get_subject_name(subject_id):
 
 
 def add_subject(subject_name, course_code, num_chapter, description):
-    last_question_id = subject_table.iloc[-1, 0]
+    if subject_table.empty:
+        last_question_id = 0
+    else:
+        last_question_id = subject_table.iloc[-1, 0]
     subject_table.loc[subject_table.shape[0]] = [last_question_id + 1, subject_name, course_code,
                                                  num_chapter, description]
     save_subject_table()

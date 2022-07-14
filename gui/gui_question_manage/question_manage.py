@@ -165,7 +165,7 @@ class Ui_question_frame(object):
         self.delete_question_button.clicked.connect(self.delete_question_click)
 
         # clickable label
-        self.add_mcq_answer_label.mousePressEvent = self.them_dap_an_click
+        self.add_mcq_answer_label.mousePressEvent = self.add_answer_click
         self.edit_mcq_answer_label.mousePressEvent = self.modify_answer_click
         self.delete_mcq_answer_label.mousePressEvent = self.delete_mcq_answer_click
         self.add_question_label.mousePressEvent = self.them_cau_hoi_click
@@ -238,30 +238,38 @@ class Ui_question_frame(object):
 
     # ------------------------------------------------------------------------------------------
 
-    def them_dap_an_click(self, *args, **kwargs):
-        self.add_answer_pop_up_frame = QtWidgets.QFrame()
-        from gui.gui_question_manage.add_answer_pop_up import Ui_add_answer_pop_up
-        self.ui_add_answer_pop_up = Ui_add_answer_pop_up()
-        self.ui_add_answer_pop_up.setupUi(self.add_answer_pop_up_frame)
-        # clear right answer check box
-        self.ui_add_answer_pop_up.right_answer_check_box.setChecked(False)
-        # clear answer text edit
-        self.ui_add_answer_pop_up.answer_text_edit.clear()
-        # show the text edit pop up
-        self.add_answer_pop_up_frame.show()
+    def add_answer_click(self, *args, **kwargs):
 
-        def add_answer_pop_up_ok_button_click():
-            # add question to database
-            mcq_answer = self.ui_add_answer_pop_up.answer_text_edit.toPlainText()
-            question = self.question_list_widget.currentItem().text()
-            insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer,
-                       self.ui_add_answer_pop_up.right_answer_check_box.isChecked())
-            # update gui
-            self.multiple_choice_answer_list_widget.addItem(mcq_answer)
-            # close pop up window
-            self.add_answer_pop_up_frame.close()
+        if self.question_list_widget.currentItem() is not None:  # in case the user don't click any answer
+            self.add_answer_pop_up_frame = QtWidgets.QFrame()
+            from gui.gui_question_manage.add_answer_pop_up import Ui_add_answer_pop_up
+            self.ui_add_answer_pop_up = Ui_add_answer_pop_up()
+            self.ui_add_answer_pop_up.setupUi(self.add_answer_pop_up_frame)
+            # clear right answer check box
+            self.ui_add_answer_pop_up.right_answer_check_box.setChecked(False)
+            # clear answer text edit
+            self.ui_add_answer_pop_up.answer_text_edit.clear()
+            # show the text edit pop up
+            self.add_answer_pop_up_frame.show()
 
-        self.ui_add_answer_pop_up.ok_button.clicked.connect(add_answer_pop_up_ok_button_click)
+            def add_answer_pop_up_ok_button_click():
+                # add question to database
+                mcq_answer = self.ui_add_answer_pop_up.answer_text_edit.toPlainText()
+                question = self.question_list_widget.currentItem().text()
+                insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer,
+                           self.ui_add_answer_pop_up.right_answer_check_box.isChecked())
+                # update gui
+                self.multiple_choice_answer_list_widget.addItem(mcq_answer)
+                # close pop up window
+                self.add_answer_pop_up_frame.close()
+
+            self.ui_add_answer_pop_up.ok_button.clicked.connect(add_answer_pop_up_ok_button_click)
+        else:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setText("Bạn chưa chọn câu hỏi để thêm")
+            msg.exec_()
+
 
     def modify_answer_click(self, *args, **kwargs):
         self.modify_answer_pop_up = QtWidgets.QFrame()
@@ -291,13 +299,26 @@ class Ui_question_frame(object):
 
             self.ui_modify_answer_pop_up.ok_button.clicked.connect(modify_answer_pop_up_ok_button_click)
 
+        else:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setText("Bạn chưa chọn câu hỏi để chỉnh sửa")
+            msg.exec_()
+
     def delete_mcq_answer_click(self, *args, **kwargs):
-        answer = self.multiple_choice_answer_list_widget.currentItem().text()
-        # remove answer from database
-        from database.Answer.mcq_answer_access import remove_answer
-        remove_answer(answer)
-        # remove data from ui
-        self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
+        if self.multiple_choice_answer_list_widget.currentItem() is not None:  # in case the user don't click any answer
+            answer = self.multiple_choice_answer_list_widget.currentItem().text()
+            # remove answer from database
+            from database.Answer.mcq_answer_access import remove_answer
+            remove_answer(answer)
+            # remove data from ui
+            self.multiple_choice_answer_list_widget.takeItem(self.multiple_choice_answer_list_widget.currentRow())
+        else:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setText("Bạn chưa chọn câu hỏi để xoá")
+            msg.exec_()
+
 
     def save_button_click(self):
         if self.construct_response_radio_button.isChecked():
@@ -324,11 +345,11 @@ class Ui_question_frame(object):
             msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
             if msg.exec_() == QtWidgets.QMessageBox.Ok:
                 from database.Question.question_access import remove_question_from_question_table
+                self.question_list_widget.takeItem(self.question_list_widget.currentRow())
                 remove_question_from_question_table(question_id)
-                print("xoa thanh cong")
             else:
-                print("bruh 2")
-            self.question_list_widget.takeItem(self.question_list_widget.currentRow())
+                pass
+
 
 
     def them_cau_hoi_click(self, *args, **kwargs):

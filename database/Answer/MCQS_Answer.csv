@@ -1,2 +1,13 @@
 Question_ID,Dap_An,Correct_Answer
-
+22,Confidentiality,False
+22,Intellectual property rights,False
+22,Both Confidentiality & Intellectual property rights,True
+22,Managing Client Relationships,False
+23,Unauthorized access to computer material,False
+23,Unauthorized modification of computer material,False
+23,Dissemination of viruses or other malware,False
+23,All of the mentioned,True
+24,The product should be easy to use,False
+24,Software engineers shall ensure that their products and related modifications meet the highest professional standards possible,True
+24,Software engineers shall ensure that their products and related modifications satisfy the client,False
+24,It means that the product designed /created should be easily available,False

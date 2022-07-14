@@ -47,7 +47,9 @@ def get_question_chapter(question_id):
 
 
 def get_question_id_on_question_from_question_table(question):
-    query = "Question == \"{}\"".format(question)
+    print(question)
+    query = "Question == '{}'".format(question)
+    print(query)
     query_data = list(question_table.query(query)["Question_ID"])
     if not query_data:
         print("there is no matching row")

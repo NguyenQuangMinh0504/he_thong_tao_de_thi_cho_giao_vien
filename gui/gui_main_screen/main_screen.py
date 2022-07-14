@@ -99,13 +99,22 @@ class Ui_main_screen_frame(object):
         from database.json_file_handle import export_all_to_json_file
         if path[0] != "":
             export_all_to_json_file(path[0])
+        elif path[0] == "":
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Information)
+            msg.setText("Xuất đề thi thất bại")
+            msg.exec_()
 
     def import_data_button_click(self):
         path = QtWidgets.QFileDialog.getOpenFileName()
         from database.json_file_handle import import_all_from_json_file
         if path[0] != "":
             import_all_from_json_file(path[0])
-
+        elif path[0] == "":
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Information)
+            msg.setText("Nhập đề thi thất bại")
+            msg.exec_()
 
 
 
