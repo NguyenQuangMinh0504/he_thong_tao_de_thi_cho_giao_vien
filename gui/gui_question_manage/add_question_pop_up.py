@@ -18,7 +18,7 @@ from database.Subject.subject_access import get_subject_chapter
 class Ui_them_cau_hoi_frame(object):
     def setupUi(self, Frame, subject_id):
         self.subject_id = subject_id
-        Frame.setObjectName("main_screen_frame")
+        Frame.setObjectName("Frame")
         Frame.resize(430, 407)
         Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         Frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -76,14 +76,14 @@ class Ui_them_cau_hoi_frame(object):
 
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
-        Frame.setWindowTitle(_translate("main_screen_frame", "main_screen_frame"))
-        self.cau_hoi_label.setText(_translate("main_screen_frame", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Câu hỏi</span></p></body></html>"))
-        self.ok_button.setText(_translate("main_screen_frame", "OK"))
-        self.dang_cau_hoi_label.setText(_translate("main_screen_frame", "Dạng câu hỏi"))
-        self.trac_nghiem_radio_button.setText(_translate("main_screen_frame", "Trắc nghiệm"))
-        self.tu_luan_radio_button.setText(_translate("main_screen_frame", "Tự luận"))
-        self.do_kho_label.setText(_translate("main_screen_frame", "Độ khó"))
-        self.chuong_label.setText(_translate("main_screen_frame", "Chương"))
+        Frame.setWindowTitle(_translate("Frame", "Thêm câu hỏi"))
+        self.cau_hoi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Câu hỏi</span></p></body></html>"))
+        self.ok_button.setText(_translate("Frame", "OK"))
+        self.dang_cau_hoi_label.setText(_translate("Frame", "Dạng câu hỏi"))
+        self.trac_nghiem_radio_button.setText(_translate("Frame", "Trắc nghiệm"))
+        self.tu_luan_radio_button.setText(_translate("Frame", "Tự luận"))
+        self.do_kho_label.setText(_translate("Frame", "Độ khó"))
+        self.chuong_label.setText(_translate("Frame", "Chương"))
 
     def ok_button_click(self):
         error_list = []
