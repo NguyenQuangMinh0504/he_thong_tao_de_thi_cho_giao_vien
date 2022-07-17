@@ -14,7 +14,6 @@ from PyQt5.QtWidgets import QMessageBox
 from database.Subject.subject_access import get_subject_chapter
 
 
-
 class Ui_them_cau_hoi_frame(object):
     def setupUi(self, Frame, subject_id):
         self.subject_id = subject_id
@@ -77,7 +76,8 @@ class Ui_them_cau_hoi_frame(object):
     def retranslateUi(self, Frame):
         _translate = QtCore.QCoreApplication.translate
         Frame.setWindowTitle(_translate("Frame", "Thêm câu hỏi"))
-        self.cau_hoi_label.setText(_translate("Frame", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Câu hỏi</span></p></body></html>"))
+        self.cau_hoi_label.setText(_translate("Frame",
+                                              "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Câu hỏi</span></p></body></html>"))
         self.ok_button.setText(_translate("Frame", "OK"))
         self.dang_cau_hoi_label.setText(_translate("Frame", "Dạng câu hỏi"))
         self.trac_nghiem_radio_button.setText(_translate("Frame", "Trắc nghiệm"))
@@ -103,15 +103,14 @@ class Ui_them_cau_hoi_frame(object):
             if self.trac_nghiem_radio_button.isChecked():
                 insert_question_to_question_table(self.cau_hoi_text_edit.toPlainText(),
                                                   self.subject_id,
-                                               "trac_nghiem",
+                                                  "trac_nghiem",
                                                   int(self.do_kho_combo_box.currentText()),
                                                   int(self.chuong_combo_box.currentText())
                                                   )
             elif self.tu_luan_radio_button.isChecked():
                 insert_question_to_question_table(self.cau_hoi_text_edit.toPlainText(),
                                                   self.subject_id,
-                                               "tu_luan",
+                                                  "tu_luan",
                                                   int(self.do_kho_combo_box.currentText()),
                                                   int(self.chuong_combo_box.currentText())
                                                   )
-

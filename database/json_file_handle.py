@@ -1,4 +1,6 @@
 import pandas as pd
+
+import database.Exam.exam_access
 from database.Exam.exam_access import exam_table, save_exam_table
 from database.Exam.exam_question_access import exam_question_table, save_exam_question_table
 from database.Question.question_access import question_table, save_question_table
@@ -17,12 +19,16 @@ def export_all_to_json_file(fp):
 
 
 def import_all_from_json_file(fp):
-    with open(fp, "r") as f:
-        for index, table in enumerate(f.readlines()):
-            list_table[index] = pd.read_json(table)
-        save_exam_table()
-        save_exam_question_table()
-        save_mcq_answer_table()
-        save_question_table()
-        save_written_exam_answer_table()
-        save_subject_table()
+    f = open(fp, "r")
+    database.Exam.exam_access.exam_table = pd.read_json(f.readline())
+    database.Exam.exam_question_access.exam_question_table = pd.read_json(f.readline())
+    database.Question.question_access.question_table = pd.read_json(f.readline())
+    database.Answer.mcq_answer_access.mcq_answer_table = pd.read_json(f.readline())
+    database.Answer.written_exam_answer_access.written_exam_answer_table = pd.read_json(f.readline())
+    database.Subject.subject_access.subject_table = pd.read_json(f.readline())
+    save_exam_table()
+    save_exam_question_table()
+    save_mcq_answer_table()
+    save_question_table()
+    save_written_exam_answer_table()
+    save_subject_table()
