@@ -18,7 +18,7 @@ def export_all_to_json_file(fp):
 
 def import_all_from_json_file(fp):
     with open(fp, "r") as f:
-        for index, table in f.readlines():
+        for index, table in enumerate(f.readlines()):
             list_table[index] = pd.read_json(table)
         save_exam_table()
         save_exam_question_table()
