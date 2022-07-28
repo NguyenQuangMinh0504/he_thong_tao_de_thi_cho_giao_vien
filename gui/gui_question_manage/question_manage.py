@@ -211,7 +211,10 @@ class Ui_question_frame(object):
             elif self.construct_response_radio_button.isChecked():
                 from database.Answer.written_exam_answer_access import get_written_answer
                 written_answer = get_written_answer(question_id)
-                self.answer_or_suggest_answer_text_edit.setPlainText(written_answer)
+                if written_answer == False:
+                    self.answer_or_suggest_answer_text_edit.setPlainText("")
+                else:
+                    self.answer_or_suggest_answer_text_edit.setPlainText(str(written_answer))
 
         except AttributeError:
             # This happens because of question list widget item
@@ -350,29 +353,14 @@ class Ui_question_frame(object):
             else:
                 pass
 
-
-
     def them_cau_hoi_click(self, *args, **kwargs):
         self.them_cau_hoi_pop_up = QtWidgets.QFrame()
         self.ui_them_cau_hoi_pop_up = Ui_them_cau_hoi_frame()
         self.ui_them_cau_hoi_pop_up.setupUi(self.them_cau_hoi_pop_up, self.subject_id)
         self.them_cau_hoi_pop_up.show()
-        self.ui_them_cau_hoi_pop_up.ok_button.clicked.connect(self.them_cau_hoi_pop_up_ok_button_click)
 
     # ------------------------------------------------------------------------------------------
-    # Pop up event handler
 
-
-
-
-    def them_cau_hoi_pop_up_ok_button_click(self):
-        question = self.ui_them_cau_hoi_pop_up.cau_hoi_text_edit.toPlainText()
-        # close pop up
-        self.them_cau_hoi_pop_up.close()
-        # add widget to gui
-        self.question_list_widget.addItem(question)
-
-    # ----------------------------------------------------------------------------------------
 
 
 if __name__ == "__main__":

@@ -16,6 +16,7 @@ from database.Subject.subject_access import get_subject_chapter
 
 class Ui_them_cau_hoi_frame(object):
     def setupUi(self, Frame, subject_id):
+        self.Frame = Frame
         self.subject_id = subject_id
         Frame.setObjectName("Frame")
         Frame.resize(430, 407)
@@ -114,3 +115,5 @@ class Ui_them_cau_hoi_frame(object):
                                                   int(self.do_kho_combo_box.currentText()),
                                                   int(self.chuong_combo_box.currentText())
                                                   )
+            self.Frame.close()
+
