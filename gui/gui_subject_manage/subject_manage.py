@@ -135,16 +135,30 @@ class Ui_subject_manage_frame(object):
         self.ui_add_subject_frame.setupUi(self.add_subject_frame)
 
         def pop_up_add_subject_button_click():
-            add_subject(
-                self.ui_add_subject_frame.subject_text_edit.toPlainText(),
-                self.ui_add_subject_frame.subject_code_text_edit.toPlainText(),
-                self.ui_add_subject_frame.num_chapter_spin_box.value(),
-                self.ui_add_subject_frame.description_text_edit.toPlainText()
-            )
-            self.subject_combo_box.addItem(self.ui_add_subject_frame.subject_text_edit.toPlainText())
-            self.ui_add_subject_frame.add_subject_frame.close()
-            print("kec")
-
+            error = []
+            if self.ui_add_subject_frame.subject_text_edit.toPlainText() == "":
+                error.append("Bạn chưa điền tên môn học")
+            if self.ui_add_subject_frame.subject_code_text_edit.toPlainText() == "":
+                error.append("Bạn chưa điền mã môn học")
+            if self.ui_add_subject_frame.num_chapter_spin_box.value() == 0:
+                error.append("Bạn chưa điền số chương môn học")
+            if self.ui_add_subject_frame.description_text_edit.toPlainText() == "":
+                error.append("Bạn chưa điền mô tả môn học")
+            if len(error) != 0:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText("\n".join(error))
+                msg.setStandardButtons(QMessageBox.Close)
+                msg.exec_()
+            elif len(error) == 0:
+                add_subject(
+                    self.ui_add_subject_frame.subject_text_edit.toPlainText(),
+                    self.ui_add_subject_frame.subject_code_text_edit.toPlainText(),
+                    self.ui_add_subject_frame.num_chapter_spin_box.value(),
+                    self.ui_add_subject_frame.description_text_edit.toPlainText()
+                )
+                self.subject_combo_box.addItem(self.ui_add_subject_frame.subject_text_edit.toPlainText())
+                self.ui_add_subject_frame.add_subject_frame.close()
 
         self.ui_add_subject_frame.add_subject_button.clicked.connect(pop_up_add_subject_button_click)
         self.add_subject_frame.show()
