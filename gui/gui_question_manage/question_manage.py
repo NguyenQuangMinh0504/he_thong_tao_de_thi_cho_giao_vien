@@ -258,13 +258,21 @@ class Ui_question_frame(object):
             def add_answer_pop_up_ok_button_click():
                 # add question to database
                 mcq_answer = self.ui_add_answer_pop_up.answer_text_edit.toPlainText()
-                question = self.question_list_widget.currentItem().text()
-                insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer,
-                           self.ui_add_answer_pop_up.right_answer_check_box.isChecked())
-                # update gui
-                self.multiple_choice_answer_list_widget.addItem(mcq_answer)
-                # close pop up window
-                self.add_answer_pop_up_frame.close()
+                if mcq_answer == "":
+                    msg = QtWidgets.QMessageBox()
+                    msg.setIcon(QtWidgets.QMessageBox.Critical)
+                    msg.setText("Bạn chưa điền câu trả lời")
+                    msg.setStandardButtons(QtWidgets.QMessageBox.Close)
+                    msg.exec_()
+                    pass
+                else:
+                    question = self.question_list_widget.currentItem().text()
+                    insert_row(int(get_question_id_on_question_from_question_table(question)), mcq_answer,
+                               self.ui_add_answer_pop_up.right_answer_check_box.isChecked())
+                    # update gui
+                    self.multiple_choice_answer_list_widget.addItem(mcq_answer)
+                    # close pop up window
+                    self.add_answer_pop_up_frame.close()
 
             self.ui_add_answer_pop_up.ok_button.clicked.connect(add_answer_pop_up_ok_button_click)
         else:
